@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:sudoku/ui/pages/game_page.dart';
+import 'package:sudoku/router/app_router.dart';
+import 'package:sudoku/styles/theme.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp.router(
+    title: 'Flutter Demo',
+    theme: appTheme,
+    routerConfig: appRouter,
+  );
 }
