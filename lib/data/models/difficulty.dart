@@ -1,3 +1,3 @@
 enum Difficulty {
-  beginner, easy, normal, advanced, expert
+  test, beginner, easy, normal, advanced, expert
 }

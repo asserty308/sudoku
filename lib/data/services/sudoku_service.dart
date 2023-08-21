@@ -6,6 +6,9 @@ Future<SudokuModel> getNewSudoku(Difficulty difficulty) async {
   var emptySquares = 2;
 
   switch (difficulty) {
+    case Difficulty.test:
+      emptySquares = 1;
+      break;
     case Difficulty.beginner:
       emptySquares = 18;
       break;
