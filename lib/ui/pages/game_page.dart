@@ -57,7 +57,7 @@ class _GamePageState extends State<GamePage> {
   );
 
   Future<void> _buildNewGame() async {
-    final newGame = await getNewSudoku(Difficulty.test);
+    final newGame = await getNewSudoku(Difficulty.normal);
 
     setState(() {
       _boardKey = UniqueKey();
