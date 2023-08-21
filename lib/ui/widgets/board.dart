@@ -102,6 +102,10 @@ class _SudokuBoardState extends State<SudokuBoard> {
     final color1 = Colors.amber.shade100;
     final color2 = Colors.amber.shade50;
 
+    if (_selectedField?.x == x && _selectedField?.y == y) {
+      return Colors.amber;
+    }
+
     if ((y > 2 && y < 6) && (x > 2 && x < 6)) {
       return color1;
     }
