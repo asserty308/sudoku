@@ -97,11 +97,12 @@ class _SudokuBoardState extends State<SudokuBoard> {
   }
 
   Color _tileColor(int x, int y) {
-    final color1 = context.isDarkMode ? Colors.blueGrey.shade300 : Colors.amber.shade100;
-    final color2 = context.isDarkMode ? Colors.blueGrey.shade400 : Colors.amber.shade50;
+    final color1 = context.isDarkMode ? Colors.blueGrey.shade800 : Colors.amber.shade100;
+    final color2 = context.isDarkMode ? Colors.blueGrey.shade700 : Colors.amber.shade50;
+    final selectedColor = context.isDarkMode ? Colors.blueGrey : Colors.amber;
 
     if (_selectedField?.x == x && _selectedField?.y == y) {
-      return context.isDarkMode ? Colors.blueGrey.shade100 : Colors.amber;
+      return selectedColor;
     }
 
     if ((y > 2 && y < 6) && (x > 2 && x < 6)) {

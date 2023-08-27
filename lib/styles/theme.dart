@@ -11,7 +11,7 @@ ThemeData get darkTheme => ThemeData(
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(
       foregroundColor: Colors.white,
-      disabledForegroundColor: Colors.white70
+      disabledForegroundColor: Colors.white54
     )
   )
 );
