@@ -1,0 +1,10 @@
+{
+    "difficulty": "Schwierigkeitsgrad",
+    "beginner": "Anfänger",
+    "easy": "Einfach",
+    "normal": "Normal",
+    "advanced": "Fortgeschritten",
+    "expert": "Experte",
+    "victoryDialogTitle": "Du hast gewonnen",
+    "victoryDialogDismiss": "Okay"
+}

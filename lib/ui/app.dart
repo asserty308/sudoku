@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sudoku/config/app_config.dart';
 import 'package:sudoku/router/app_router.dart';
 import 'package:sudoku/styles/theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,7 +12,9 @@ class MyApp extends StatelessWidget {
     title: appName,
     debugShowCheckedModeBanner: false,
     theme: lightTheme,
-    // darkTheme: darkTheme,
+    darkTheme: darkTheme,
     routerConfig: appRouter,
+    localizationsDelegates: AppLocalizations.localizationsDelegates,
+    supportedLocales: AppLocalizations.supportedLocales,
   );
 }

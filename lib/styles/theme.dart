@@ -10,8 +10,8 @@ ThemeData get darkTheme => ThemeData(
   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple, brightness: Brightness.dark),
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(
-      foregroundColor: Colors.deepPurple,
-      disabledForegroundColor: Colors.grey
+      foregroundColor: Colors.white,
+      disabledForegroundColor: Colors.white70
     )
   )
 );
