@@ -1,16 +1,19 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:sudoku/data/models/sudoku_model.dart';
+import 'package:sudoku/utility/context_ext.dart';
 import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 
 class SudokuBoard extends StatefulWidget {
   const SudokuBoard({
     super.key, 
     required this.model, 
-    required this.onSuccess,
+    required this.onGameWon,
   });
 
   final SudokuModel model;
-  final VoidCallback onSuccess;
+  final VoidCallback onGameWon;
 
   @override
   State<SudokuBoard> createState() => _SudokuBoardState();
@@ -24,7 +27,8 @@ class _SudokuBoardState extends State<SudokuBoard> {
   void initState() {
     super.initState();
 
-    _currentProgress = widget.model.board.map((row) => [...row]).toList();
+    // Use a copy of the initial board to keep the initial state
+    _currentProgress = widget.model.boardCopy;
   }
 
   @override
@@ -32,13 +36,11 @@ class _SudokuBoardState extends State<SudokuBoard> {
     mainAxisSize: MainAxisSize.min,
     children: [
       ...List.generate(9, _row),
-      if (_selectedField != null) ...[
-        const SizedBox(height: 16,),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: List.generate(9, _inputButton),
+      if (_selectedField != null)
+        Padding(
+          padding: const EdgeInsets.only(top: 16),
+          child: _inputRow,
         ),
-      ]
     ],
   );
 
@@ -60,13 +62,16 @@ class _SudokuBoardState extends State<SudokuBoard> {
         color: _tileColor(x, y),
       ),
       child: TextButton(
-        onPressed: editable ? () => setState(() {
-          _selectedField = (x:x,y:y);
-        }) : null, 
+        onPressed: editable ? () => _onEdit(x, y)  : null, 
         child: Text(value),
       ),
     );
   }
+
+  Widget get _inputRow => Row(
+    mainAxisSize: MainAxisSize.min,
+    children: List.generate(9, _inputButton),
+  );
 
   Widget _inputButton(int index) {
     final value = index + 1;
@@ -78,23 +83,14 @@ class _SudokuBoardState extends State<SudokuBoard> {
         border: Border.all(),
       ),
       child: TextButton(
-        onPressed: () {
-          setState(() {
-            _currentProgress[_selectedField!.y][_selectedField!.x] = value;
-            _selectedField = null;
-          });
-
-          if (SudokuUtilities.isSolved(_currentProgress)) {
-            widget.onSuccess();
-          }
-        }, 
+        onPressed: () => _onInput(value), 
         child: Text('$value'),
       ),
     );
   }
 
   double get _buttonSize {
-    final shortestSide = MediaQuery.of(context).size.shortestSide;
+    final shortestSide = context.mediaSize.shortestSide;
     return shortestSide < 500 ? 38 : 50;
   }
 
@@ -115,5 +111,24 @@ class _SudokuBoardState extends State<SudokuBoard> {
     }
 
     return color1;
+  }
+
+  void _onEdit(int x, int y) => setState(() {
+    _selectedField = (x:x,y:y);
+  });
+
+  void _onInput(int value) {
+    setState(() {
+      _currentProgress[_selectedField!.y][_selectedField!.x] = value;
+      _selectedField = null;
+    });
+
+    try {
+      if (SudokuUtilities.isSolved(_currentProgress)) {
+        widget.onGameWon();
+      }
+    } on InvalidSudokuConfigurationException {
+      log('Invalid input');
+    }
   }
 }

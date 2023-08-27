@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sudoku/data/models/difficulty.dart';
-import 'package:sudoku/data/models/sudoku_model.dart';
-import 'package:sudoku/data/services/sudoku_service.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sudoku/business/sudoku/sudoku_cubit.dart';
 import 'package:sudoku/ui/widgets/board.dart';
 
 class GamePage extends StatefulWidget {
@@ -12,56 +12,52 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
-  SudokuModel? _currentGame;
-
-  var _boardKey = UniqueKey();
+  final _bloc = SudokuCubit();
 
   @override
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => _buildNewGame());
+    _buildNewGame();
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    body: Builder(
-      builder: (context) {
-        if (_currentGame == null) {
-          return const Center(child: CircularProgressIndicator.adaptive());
-        }
-
-        return Center(
-          child: SudokuBoard(
-            key: _boardKey,
-            model: _currentGame!,
-            onSuccess: () => showDialog(
-              context: context, 
-              builder: (context) => AlertDialog(
-                title: const Text('You won'),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      _buildNewGame();
-                    }, 
-                    child: const Text('Okay')
-                  ),
-                ],
-              )
+    body: BlocBuilder(
+      bloc: _bloc,
+      builder: (context, state) {
+        if (state is SudokuLoaded) {
+          return Center(
+            child: SudokuBoard(
+              key: UniqueKey(),
+              model: state.model,
+              onGameWon: _onGameWon,
             ),
-          ),
-        );
+          );
+        }
+        
+        return const Center(child: CircularProgressIndicator.adaptive());
       }
     ),
   );
 
   Future<void> _buildNewGame() async {
-    final newGame = await getNewSudoku(Difficulty.normal);
-
-    setState(() {
-      _boardKey = UniqueKey();
-      _currentGame = newGame;
-    });
+    await _bloc.buildNewGame();
   }
+
+  void _onGameWon() => showDialog(
+    context: context, 
+    builder: (context) => AlertDialog(
+      title: const Text('You won'),
+      actions: [
+        TextButton(
+          onPressed: () {
+            context.pop();
+            _buildNewGame();
+          }, 
+          child: const Text('Okay')
+        ),
+      ],
+    )
+  );
 }

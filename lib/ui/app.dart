@@ -10,7 +10,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp.router(
     title: appName,
     debugShowCheckedModeBanner: false,
-    theme: appTheme,
+    theme: lightTheme,
+    // darkTheme: darkTheme,
     routerConfig: appRouter,
   );
 }
