@@ -80,7 +80,9 @@ class _SudokuBoardState extends State<SudokuBoard> {
       width: _buttonSize,
       height: _buttonSize,
       decoration: BoxDecoration(
-        border: Border.all(),
+        border: Border.all(
+          color: context.isDarkMode ? Colors.white : Colors.black
+        ),
       ),
       child: TextButton(
         onPressed: () => _onInput(value), 

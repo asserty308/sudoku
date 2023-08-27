@@ -34,37 +34,22 @@ class _SettingsPageState extends State<SettingsPage> {
     title: Text(context.l10n.difficulty),
     trailing: DropdownButton<Difficulty>(
       value: _difficulty,
-      items: [
-        DropdownMenuItem<Difficulty>(
-          value: Difficulty.beginner,
-          child: Text(context.l10n.beginner)
-        ),
-        DropdownMenuItem<Difficulty>(
-          value: Difficulty.easy,
-          child: Text(context.l10n.easy)
-        ),
-        DropdownMenuItem<Difficulty>(
-          value: Difficulty.normal,
-          child: Text(context.l10n.normal)
-        ),
-        DropdownMenuItem<Difficulty>(
-          value: Difficulty.advanced,
-          child: Text(context.l10n.advanced)
-        ),
-        DropdownMenuItem<Difficulty>(
-          value: Difficulty.expert,
-          child: Text(context.l10n.expert)
-        ),
-      ],
-      onChanged: (value) {
-        if (value == null) {
-          return;
-        }
-
-        sudokuRepo.setDifficulty(value).then((value) => setState(() {
-          _difficulty = sudokuRepo.getDifficulty();
-        }));
-      },
+      items: DifficultyExt.playable
+        .map((element) => DropdownMenuItem<Difficulty>(
+          value: element,
+          child: Text(element.title(context)),
+        )).toList(),
+      onChanged: _changeDifficulty,
     ),
   );
+
+  void _changeDifficulty(Difficulty? difficulty) {
+    if (difficulty == null) {
+      return;
+    }
+
+    sudokuRepo.setDifficulty(difficulty).then((value) => setState(() {
+      _difficulty = sudokuRepo.getDifficulty();
+    }));
+  }
 }
