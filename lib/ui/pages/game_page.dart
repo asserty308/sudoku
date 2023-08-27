@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sudoku/business/sudoku/sudoku_cubit.dart';
+import 'package:sudoku/l10n/l10n.dart';
+import 'package:sudoku/router/app_router.dart';
 import 'package:sudoku/ui/widgets/board.dart';
 
 class GamePage extends StatefulWidget {
@@ -23,6 +25,11 @@ class _GamePageState extends State<GamePage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(
+      actions: [
+        IconButton(onPressed: () => appRouter.push('/settings'), icon: const Icon(Icons.settings))
+      ],
+    ),
     body: BlocBuilder(
       bloc: _bloc,
       builder: (context, state) {
@@ -48,14 +55,14 @@ class _GamePageState extends State<GamePage> {
   void _onGameWon() => showDialog(
     context: context, 
     builder: (context) => AlertDialog(
-      title: const Text('You won'),
+      title: Text(context.l10n.victoryDialogTitle),
       actions: [
         TextButton(
           onPressed: () {
             context.pop();
             _buildNewGame();
           }, 
-          child: const Text('Okay')
+          child: Text(context.l10n.victoryDialogDismiss)
         ),
       ],
     )

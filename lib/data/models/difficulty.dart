@@ -35,7 +35,7 @@ extension DifficultyExt on Difficulty {
       case 'expert':
         return Difficulty.expert;
       default:
-        return Difficulty.test;
+        return Difficulty.normal;
     }
   }
 }
