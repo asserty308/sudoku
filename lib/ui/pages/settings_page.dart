@@ -25,7 +25,7 @@ class _SettingsPageState extends State<SettingsPage> {
     appBar: AppBar(),
     body: ListView(
       children: [
-        _difficultyTile
+        _difficultyTile,
       ],
     ),
   );

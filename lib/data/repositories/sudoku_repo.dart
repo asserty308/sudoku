@@ -1,6 +1,7 @@
 import 'package:sudoku/config/keys.dart';
 import 'package:sudoku/data/models/difficulty.dart';
 import 'package:sudoku/data/services/app_session.dart';
+import 'package:sudoku/data/datasources/shared_prefs.dart';
 
 final sudokuRepo = SudokuRepo();
 
@@ -10,7 +11,6 @@ class SudokuRepo {
   }
 
   Difficulty getDifficulty() {
-    final cachedDifficulty = sharedPrefs.getString(kDifficulty) ?? '';
-    return DifficultyExt.fromString(cachedDifficulty);
+    return sharedPrefs.difficulty;
   }
 }

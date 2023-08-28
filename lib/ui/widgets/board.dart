@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:sudoku/data/models/sudoku_model.dart';
+import 'package:sudoku/styles/colors.dart';
 import 'package:sudoku/utility/context_ext.dart';
 import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 
@@ -97,23 +98,19 @@ class _SudokuBoardState extends State<SudokuBoard> {
   }
 
   Color _tileColor(int x, int y) {
-    final color1 = context.isDarkMode ? Colors.blueGrey.shade800 : Colors.amber.shade100;
-    final color2 = context.isDarkMode ? Colors.blueGrey.shade700 : Colors.amber.shade50;
-    final selectedColor = context.isDarkMode ? Colors.blueGrey : Colors.amber;
-
     if (_selectedField?.x == x && _selectedField?.y == y) {
-      return selectedColor;
+      return AppColors.selectedField(context);
     }
 
     if ((y > 2 && y < 6) && (x > 2 && x < 6)) {
-      return color1;
+      return AppColors.fieldBg1(context);
     }
 
     if ((y > 2 && y < 6) || (x > 2 && x < 6)) {
-      return color2;
+      return AppColors.fieldBg2(context);
     }
 
-    return color1;
+    return AppColors.fieldBg1(context);
   }
 
   void _onEdit(int x, int y) => setState(() {
