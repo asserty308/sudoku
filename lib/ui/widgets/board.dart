@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:sudoku/data/models/sudoku_model.dart';
 import 'package:sudoku/styles/colors.dart';
-import 'package:sudoku/utility/context_ext.dart';
+import 'package:sudoku/data/datasources/media_query.dart';
 import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 
 class SudokuBoard extends StatefulWidget {
