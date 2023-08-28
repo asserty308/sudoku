@@ -26,7 +26,7 @@ extension DifficultyExt on Difficulty {
     }
   }
 
-  static List<Difficulty> get playable => Difficulty.values.where((element) => kDebugMode ? true : element != Difficulty.test).toList();
+  static List<Difficulty> get playable => Difficulty.values.where((element) => kDebugMode || element != Difficulty.test).toList();
 
   String title(BuildContext context) {
     switch (this) {
