@@ -1,5 +1,6 @@
 {
     "difficulty": "Difficulty",
+    "test": "Test",
     "beginner": "Beginner",
     "easy": "Easy",
     "normal": "Normal",

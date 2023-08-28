@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sudoku/l10n/l10n.dart';
 
@@ -25,12 +26,12 @@ extension DifficultyExt on Difficulty {
     }
   }
 
-  static List<Difficulty> get playable => Difficulty.values.where((element) => element != Difficulty.test).toList();
+  static List<Difficulty> get playable => Difficulty.values.where((element) => kDebugMode ? true : element != Difficulty.test).toList();
 
   String title(BuildContext context) {
     switch (this) {
       case Difficulty.test:
-        return '';
+        return context.l10n.test;
       case Difficulty.beginner:
         return context.l10n.beginner;
       case Difficulty.easy:

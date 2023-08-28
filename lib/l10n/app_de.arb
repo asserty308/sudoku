@@ -1,5 +1,6 @@
 {
     "difficulty": "Schwierigkeitsgrad",
+    "test": "Test",
     "beginner": "Anfänger",
     "easy": "Einfach",
     "normal": "Normal",
