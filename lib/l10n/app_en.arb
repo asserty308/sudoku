@@ -7,5 +7,9 @@
     "advanced": "Advanced",
     "expert": "Expert",
     "victoryDialogTitle": "You won",
-    "victoryDialogDismiss": "Okay"
+    "victoryDialogDismiss": "Okay",
+    "changedDifficultyDialogTitle": "Start new game",
+    "changedDifficultyDialogBody": "The difficulty has been changed. Do you want to start a new game or resume to your current game?",
+    "changedDifficultyDialogResume": "Resume game",
+    "changedDifficultyDialogNew": "New game"
 }

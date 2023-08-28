@@ -7,6 +7,8 @@ import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 
 part 'sudoku_state.dart';
 
+final sudokuBloc = SudokuCubit();
+
 class SudokuCubit extends Cubit<SudokuState> {
   SudokuCubit() : super(SudokuInitial());
 

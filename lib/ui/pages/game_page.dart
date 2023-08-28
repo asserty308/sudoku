@@ -14,7 +14,6 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
-  final _bloc = SudokuCubit();
 
   @override
   void initState() {
@@ -31,7 +30,7 @@ class _GamePageState extends State<GamePage> {
       ],
     ),
     body: BlocBuilder(
-      bloc: _bloc,
+      bloc: sudokuBloc,
       builder: (context, state) {
         if (state is SudokuLoaded) {
           return Center(
@@ -49,7 +48,7 @@ class _GamePageState extends State<GamePage> {
   );
 
   Future<void> _buildNewGame() async {
-    await _bloc.buildNewGame();
+    await sudokuBloc.buildNewGame();
   }
 
   void _onGameWon() => showDialog(
@@ -65,6 +64,6 @@ class _GamePageState extends State<GamePage> {
           child: Text(context.l10n.victoryDialogDismiss)
         ),
       ],
-    )
+    ),
   );
 }
