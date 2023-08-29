@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sudoku/data/datasources/media_query.dart';
+import 'package:sudoku/data/datasources/theme.dart';
 
 extension AppColors on Colors {
   static Color fieldBg1(BuildContext context) => context.isDarkMode ? Colors.blueGrey.shade800 : Colors.amber.shade100;
