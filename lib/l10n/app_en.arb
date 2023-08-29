@@ -8,8 +8,20 @@
     "expert": "Expert",
     "victoryDialogTitle": "You won",
     "victoryDialogDismiss": "Okay",
+    "settings": "Settings",
     "changedDifficultyDialogTitle": "Start new game",
     "changedDifficultyDialogBody": "The difficulty has been changed. Do you want to start a new game or resume to your current game?",
     "changedDifficultyDialogResume": "Resume game",
-    "changedDifficultyDialogNew": "New game"
+    "changedDifficultyDialogNew": "New game",
+    "osl": "Open Source Licenses",
+    "appVersion": "Version {version}",
+    "@appVersion": {
+        "placeholders": {
+            "version": {
+                "type": "String",
+                "example": "1.0.0"
+            }
+        }
+    },
+    "sourceCode": "Source Code"
 }

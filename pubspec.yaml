@@ -1,7 +1,7 @@
 name: sudoku
 description: A new Flutter project.
 publish_to: 'none'
-version: 0.0.2+5
+version: 0.1.0+6
 
 environment:
   sdk: '>=3.1.0 <4.0.0'
@@ -15,8 +15,10 @@ dependencies:
     sdk: flutter
   go_router: ^10.1.1
   intl: ^0.18.1
+  package_info_plus: ^4.1.0
   shared_preferences: ^2.2.0
   sudoku_solver_generator: ^2.1.0+1
+  url_launcher: ^6.1.12
 
 dev_dependencies:
   flutter_launcher_icons: ^0.13.1

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sudoku/business/sudoku/sudoku_cubit.dart';
+import 'package:sudoku/config/app_config.dart';
 import 'package:sudoku/data/models/difficulty.dart';
 import 'package:sudoku/data/repositories/sudoku_repo.dart';
+import 'package:sudoku/data/services/app_session.dart';
 import 'package:sudoku/l10n/l10n.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -33,10 +36,16 @@ class _SettingsPageState extends State<SettingsPage> {
       return true;
     },
     child: Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(context.l10n.settings),
+      ),
       body: ListView(
         children: [
           _difficultyTile,
+          const SizedBox(height: 16,),
+          _licensesTile(context),
+          _showGitHubRepoTile(context),
+          _versionTileBuilder(context),
         ],
       ),
     ),
@@ -53,6 +62,23 @@ class _SettingsPageState extends State<SettingsPage> {
         )).toList(),
       onChanged: _changeDifficulty,
     ),
+  );
+
+  Widget _licensesTile(BuildContext context) => ListTile(
+    title: Text(context.l10n.osl),
+    onTap: () => showLicensePage(
+      context: context,
+      applicationVersion: appPackageInfo.version,
+    ),
+  );
+
+  Widget _showGitHubRepoTile(BuildContext context) => ListTile(
+    title: Text(context.l10n.sourceCode),
+    onTap: () => launchUrl(Uri.parse(gitHubRepoUrl))
+  );
+
+  Widget _versionTileBuilder(BuildContext context) => ListTile(
+    subtitle: Text(context.l10n.appVersion(appPackageInfo.version)),
   );
 
   Future<void> _showDifficultyChangedDialog() async {

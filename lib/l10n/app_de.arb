@@ -8,8 +8,20 @@
     "expert": "Experte",
     "victoryDialogTitle": "Du hast gewonnen",
     "victoryDialogDismiss": "Okay",
+    "settings": "Einstellungen",
     "changedDifficultyDialogTitle": "Neues Spiel",
     "changedDifficultyDialogBody": "Der Schwierigkeitsgrad wurde geändert. Möchtest du ein neues Spiel starten oder zu deinem aktuellen zurückkehren?",
     "changedDifficultyDialogResume": "Zurück zum Spiel",
-    "changedDifficultyDialogNew": "Neues Spiel"
+    "changedDifficultyDialogNew": "Neues Spiel",
+    "osl": "Open Source Lizenzen",
+    "appVersion": "Version {version}",
+    "@appVersion": {
+        "placeholders": {
+            "version": {
+                "type": "String",
+                "example": "1.0.0"
+            }
+        }
+    },
+    "sourceCode": "Quellcode"
 }
