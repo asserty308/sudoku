@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sudoku/data/models/difficulty.dart';
-import 'package:sudoku/data/models/sudoku_model.dart';
-import 'package:sudoku/data/repositories/sudoku_repo.dart';
+import 'package:sudoku/game/data/models/difficulty.dart';
+import 'package:sudoku/game/data/models/sudoku_model.dart';
+import 'package:sudoku/game/data/repositories/sudoku_repo.dart';
 import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 
 part 'sudoku_state.dart';

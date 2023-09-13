@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sudoku/business/sudoku/sudoku_cubit.dart';
-import 'package:sudoku/config/app_config.dart';
-import 'package:sudoku/data/models/difficulty.dart';
-import 'package:sudoku/data/repositories/sudoku_repo.dart';
-import 'package:sudoku/data/services/app_session.dart';
+import 'package:sudoku/app/config/app_config.dart';
+import 'package:sudoku/game/business/sudoku/sudoku_cubit.dart';
+import 'package:sudoku/game/data/models/difficulty.dart';
+import 'package:sudoku/game/data/repositories/sudoku_repo.dart';
+import 'package:sudoku/app/services/app_session.dart';
 import 'package:sudoku/l10n/l10n.dart';
+import 'package:sudoku/settings/services/settings_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -42,6 +43,7 @@ class _SettingsPageState extends State<SettingsPage> {
       body: ListView(
         children: [
           _difficultyTile,
+          _themeTile,
           const SizedBox(height: 16,),
           _licensesTile(context),
           _showGitHubRepoTile(context),
@@ -61,6 +63,30 @@ class _SettingsPageState extends State<SettingsPage> {
           child: Text(element.title(context)),
         )).toList(),
       onChanged: _changeDifficulty,
+    ),
+  );
+
+  Widget get _themeTile => ListTile(
+    title: Text('Theme'),
+    trailing: DropdownButton<ThemeMode>(
+      // Read the selected themeMode from the controller
+      value: settingsController.themeMode,
+      // Call the updateThemeMode method any time the user selects a theme.
+      onChanged: (theme) => settingsController.updateThemeMode(theme).then((value) => setState(() {})),
+      items: const [
+        DropdownMenuItem(
+          value: ThemeMode.system,
+          child: Text('System Theme'),
+        ),
+        DropdownMenuItem(
+          value: ThemeMode.light,
+          child: Text('Light Theme'),
+        ),
+        DropdownMenuItem(
+          value: ThemeMode.dark,
+          child: Text('Dark Theme'),
+        )
+      ],
     ),
   );
 

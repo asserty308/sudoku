@@ -1,1 +1,0 @@
-const kDifficulty = 'difficulty';

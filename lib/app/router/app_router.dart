@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
-import 'package:sudoku/ui/pages/game_page.dart';
-import 'package:sudoku/ui/pages/settings_page.dart';
+import 'package:sudoku/game/ui/pages/game_page.dart';
+import 'package:sudoku/settings/ui/pages/settings_page.dart';
 
 final appRouter = GoRouter(
   routes: [
