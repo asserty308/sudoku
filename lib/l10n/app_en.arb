@@ -23,5 +23,9 @@
             }
         }
     },
-    "sourceCode": "Source Code"
+    "sourceCode": "Source Code",
+    "theme": "Appearance",
+    "systemTheme": "System",
+    "lightTheme": "Light",
+    "darkTheme": "Dark"
 }

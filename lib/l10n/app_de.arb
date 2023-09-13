@@ -23,5 +23,9 @@
             }
         }
     },
-    "sourceCode": "Quellcode"
+    "sourceCode": "Quellcode",
+    "theme": "Darstellung",
+    "systemTheme": "System",
+    "lightTheme": "Hell",
+    "darkTheme": "Dunkel"
 }
