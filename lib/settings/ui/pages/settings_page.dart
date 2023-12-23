@@ -27,13 +27,14 @@ class _SettingsPageState extends State<SettingsPage> {
     _difficulty = sudokuRepo.getDifficulty();
   }
 
+  // TODO: PopScope not working with go_router https://github.com/flutter/flutter/issues/138737
   @override
-  Widget build(BuildContext context) => PopScope(
-    canPop: true,
-    onPopInvoked: (didPod) async {
+  Widget build(BuildContext context) => WillPopScope(
+    onWillPop: () async {
       if (_difficultyChanged) {
         await _showDifficultyChangedDialog();
       }
+      return true;
     },
     child: Scaffold(
       appBar: AppBar(
