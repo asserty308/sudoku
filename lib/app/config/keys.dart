@@ -1,2 +1,2 @@
-const kDifficulty = 'difficulty';
-const kPreferredTheme = 'preferred_theme';
+const kDifficultyKey = 'difficulty';
+const kPreferredThemeKey = 'preferred_theme';
