@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sudoku/app/config/keys.dart';
-import 'package:sudoku/app/services/app_session.dart';
+import 'package:sudoku/app/domain/app_session.dart';
 
 /// A service that stores and retrieves user settings.
 ///

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sudoku/game/business/sudoku/sudoku_cubit.dart';
+import 'package:sudoku/game/ui/blocs/sudoku/sudoku_cubit.dart';
 import 'package:sudoku/l10n/l10n.dart';
-import 'package:sudoku/app/router/app_router.dart';
+import 'package:sudoku/app/domain/app_router.dart';
 import 'package:sudoku/game/ui/widgets/board.dart';
 
 class GamePage extends StatefulWidget {

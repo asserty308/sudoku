@@ -1,6 +1,6 @@
 import 'package:sudoku/game/data/models/difficulty.dart';
-import 'package:sudoku/app/services/app_session.dart';
-import 'package:sudoku/app/services/shared_prefs.dart';
+import 'package:sudoku/app/domain/app_session.dart';
+import 'package:sudoku/app/domain/shared_prefs.dart';
 
 final sudokuRepo = SudokuRepo();
 

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sudoku/app/config/app_config.dart';
-import 'package:sudoku/game/business/sudoku/sudoku_cubit.dart';
+import 'package:sudoku/game/ui/blocs/sudoku/sudoku_cubit.dart';
 import 'package:sudoku/game/data/models/difficulty.dart';
 import 'package:sudoku/game/data/repositories/sudoku_repo.dart';
-import 'package:sudoku/app/services/app_session.dart';
+import 'package:sudoku/app/domain/app_session.dart';
 import 'package:sudoku/l10n/l10n.dart';
-import 'package:sudoku/settings/services/settings_controller.dart';
+import 'package:sudoku/settings/domain/settings_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends StatefulWidget {

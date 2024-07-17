@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:sudoku/settings/services/settings_service.dart';
+import 'package:sudoku/settings/domain/settings_service.dart';
 
 final settingsController = SettingsController();
 
