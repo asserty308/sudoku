@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sudoku/app/domain/app_session.dart';
+import 'package:sudoku/app/domain/setup.dart';
 import 'package:sudoku/app/domain/shared_prefs.dart';
 
 final settingsController = SettingsController();
