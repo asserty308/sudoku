@@ -14,6 +14,9 @@ class SudokuCubit extends Cubit<SudokuState> {
 
   final GetDifficultyUseCase getDifficultyUseCase;
 
+  DateTime? _timeStarted;
+  DateTime? get timeStarted => _timeStarted;
+
   Future<void> buildNewGame() async {
     emit(SudokuLoading());
 
@@ -28,6 +31,8 @@ class SudokuCubit extends Cubit<SudokuState> {
       board: generator.newSudoku, 
       solution: generator.newSudokuSolved
     );
+
+    _timeStarted = DateTime.now();
 
     emit(SudokuLoaded(model: model));
   }
