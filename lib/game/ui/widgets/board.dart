@@ -1,11 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:sudoku/app/domain/media_query.dart';
 import 'package:sudoku/app/domain/theme.dart';
 import 'package:sudoku/game/data/models/sudoku_model.dart';
 import 'package:sudoku/app/ui/styles/colors.dart';
+import 'package:sudoku/game/domain/usecases/handle_keyboad_input_usecase.dart';
 import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 
 class SudokuBoard extends StatefulWidget {
@@ -27,6 +27,7 @@ class _SudokuBoardState extends State<SudokuBoard> {
   ({int x, int y})? _selectedField;
 
   final _focusNode = FocusNode();
+  final handleKeyboadInputUseCase = HandleKeyboadInputUseCase();
 
   @override
   void initState() {
@@ -47,22 +48,7 @@ class _SudokuBoardState extends State<SudokuBoard> {
     focusNode: _focusNode, 
     autofocus: true,
     onKeyEvent: (focusNode, event) {
-      if (event is! KeyDownEvent) {
-        return KeyEventResult.ignored;
-      }
-
-      int enterValue = switch (event.logicalKey) {
-        LogicalKeyboardKey.digit1 || LogicalKeyboardKey.numpad1 => 1,
-        LogicalKeyboardKey.digit2 || LogicalKeyboardKey.numpad2 => 2,
-        LogicalKeyboardKey.digit3 || LogicalKeyboardKey.numpad3 => 3,
-        LogicalKeyboardKey.digit4 || LogicalKeyboardKey.numpad4 => 4,
-        LogicalKeyboardKey.digit5 || LogicalKeyboardKey.numpad5 => 5,
-        LogicalKeyboardKey.digit6 || LogicalKeyboardKey.numpad6 => 6,
-        LogicalKeyboardKey.digit7 || LogicalKeyboardKey.numpad7 => 7,
-        LogicalKeyboardKey.digit8 || LogicalKeyboardKey.numpad8 => 8,
-        LogicalKeyboardKey.digit9 || LogicalKeyboardKey.numpad9 => 9,
-        _ => 0,
-      };
+      final enterValue = handleKeyboadInputUseCase.execute(event);
 
       if (enterValue > 0) {
         _onInput(enterValue);
@@ -123,7 +109,7 @@ class _SudokuBoardState extends State<SudokuBoard> {
       height: _buttonSize,
       decoration: BoxDecoration(
         border: Border.all(
-          color: context.isDarkMode ? Colors.white : Colors.black
+          color: context.isDarkMode ? Colors.white : Colors.black,
         ),
       ),
       child: TextButton(
