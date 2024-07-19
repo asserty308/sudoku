@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sudoku/game/data/providers/providers.dart';
 import 'package:sudoku/game/ui/blocs/sudoku/sudoku_cubit.dart';
 import 'package:sudoku/l10n/l10n.dart';
 import 'package:sudoku/app/domain/app_router.dart';
 import 'package:sudoku/game/ui/widgets/board.dart';
 
-class GamePage extends StatefulWidget {
+class GamePage extends ConsumerStatefulWidget {
   const GamePage({super.key});
 
   @override
-  State<GamePage> createState() => _GamePageState();
+  ConsumerState<GamePage> createState() => _GamePageState();
 }
 
-class _GamePageState extends State<GamePage> {
+class _GamePageState extends ConsumerState<GamePage> {
+  late final _bloc = ref.read(sudokuCubitProvider);
 
   @override
   void initState() {
@@ -30,7 +33,7 @@ class _GamePageState extends State<GamePage> {
       ],
     ),
     body: BlocBuilder(
-      bloc: sudokuBloc,
+      bloc: _bloc,
       builder: (context, state) {
         if (state is SudokuLoaded) {
           return Center(
@@ -48,7 +51,7 @@ class _GamePageState extends State<GamePage> {
   );
 
   Future<void> _buildNewGame() async {
-    await sudokuBloc.buildNewGame();
+    await _bloc.buildNewGame();
   }
 
   void _onGameWon() => showDialog(

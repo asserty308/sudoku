@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sudoku/app/config/app_config.dart';
-import 'package:sudoku/game/ui/blocs/sudoku/sudoku_cubit.dart';
+import 'package:sudoku/game/data/providers/providers.dart';
 import 'package:sudoku/game/data/models/difficulty.dart';
-import 'package:sudoku/game/data/repositories/sudoku_repo.dart';
 import 'package:sudoku/app/domain/setup.dart';
 import 'package:sudoku/l10n/l10n.dart';
 import 'package:sudoku/settings/domain/settings_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class SettingsPage extends StatefulWidget {
+class SettingsPage extends ConsumerStatefulWidget {
   const SettingsPage({super.key});
 
   @override
-  State<SettingsPage> createState() => _SettingsPageState();
+  ConsumerState<SettingsPage> createState() => _SettingsPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _SettingsPageState extends ConsumerState<SettingsPage> {
+  late final getDifficultyUseCase = ref.read(getDifficultyUseCaseProvider);
+  late final setDifficultyUseCase = ref.read(setDifficultyUseCaseProvider);
+  late final _bloc = ref.read(sudokuCubitProvider);
+
   late Difficulty _difficulty; 
   var _difficultyChanged = false;
 
@@ -24,7 +28,7 @@ class _SettingsPageState extends State<SettingsPage> {
   void initState() {
     super.initState();
 
-    _difficulty = sudokuRepo.getDifficulty();
+    _difficulty = getDifficultyUseCase.execute();
   }
 
   // TODO: PopScope not working with go_router https://github.com/flutter/flutter/issues/138737
@@ -117,7 +121,7 @@ class _SettingsPageState extends State<SettingsPage> {
           TextButton(
             onPressed: () {
               context.pop();
-              sudokuBloc.buildNewGame();
+              _bloc.buildNewGame();
             }, 
             child: Text(context.l10n.changedDifficultyDialogNew),
           ),
@@ -137,8 +141,8 @@ class _SettingsPageState extends State<SettingsPage> {
       return;
     }
 
-    sudokuRepo.setDifficulty(difficulty).then((value) => setState(() {
-      _difficulty = sudokuRepo.getDifficulty();
+    setDifficultyUseCase.execute(difficulty).then((value) => setState(() {
+      _difficulty = getDifficultyUseCase.execute();
       _difficultyChanged = true;
     }));
   }
