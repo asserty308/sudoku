@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sudoku/app/domain/media_query.dart';
 import 'package:sudoku/app/domain/theme.dart';
 import 'package:sudoku/game/data/models/sudoku_model.dart';
@@ -23,7 +24,9 @@ class SudokuBoard extends StatefulWidget {
 
 class _SudokuBoardState extends State<SudokuBoard> {
   var _currentProgress = <List<int>>[];
-  ({int x,int y})? _selectedField;
+  ({int x, int y})? _selectedField;
+
+  final _focusNode = FocusNode();
 
   @override
   void initState() {
@@ -34,7 +37,44 @@ class _SudokuBoardState extends State<SudokuBoard> {
   }
 
   @override
-  Widget build(BuildContext context) => Column(
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => Focus(
+    focusNode: _focusNode, 
+    autofocus: true,
+    onKeyEvent: (focusNode, event) {
+      if (event is! KeyDownEvent) {
+        return KeyEventResult.ignored;
+      }
+
+      int enterValue = switch (event.logicalKey) {
+        LogicalKeyboardKey.digit1 || LogicalKeyboardKey.numpad1 => 1,
+        LogicalKeyboardKey.digit2 || LogicalKeyboardKey.numpad2 => 2,
+        LogicalKeyboardKey.digit3 || LogicalKeyboardKey.numpad3 => 3,
+        LogicalKeyboardKey.digit4 || LogicalKeyboardKey.numpad4 => 4,
+        LogicalKeyboardKey.digit5 || LogicalKeyboardKey.numpad5 => 5,
+        LogicalKeyboardKey.digit6 || LogicalKeyboardKey.numpad6 => 6,
+        LogicalKeyboardKey.digit7 || LogicalKeyboardKey.numpad7 => 7,
+        LogicalKeyboardKey.digit8 || LogicalKeyboardKey.numpad8 => 8,
+        LogicalKeyboardKey.digit9 || LogicalKeyboardKey.numpad9 => 9,
+        _ => 0,
+      };
+
+      if (enterValue > 0) {
+        _onInput(enterValue);
+        return KeyEventResult.handled;
+      }
+
+      return KeyEventResult.ignored;
+    },
+    child: _board,
+  );
+  
+  Widget get _board => Column(
     mainAxisSize: MainAxisSize.min,
     children: [
       ...List.generate(9, _row),
@@ -119,6 +159,10 @@ class _SudokuBoardState extends State<SudokuBoard> {
   });
 
   void _onInput(int value) {
+    if (_selectedField == null) {
+      return;
+    }
+
     setState(() {
       _currentProgress[_selectedField!.y][_selectedField!.x] = value;
       _selectedField = null;
@@ -129,7 +173,7 @@ class _SudokuBoardState extends State<SudokuBoard> {
         widget.onGameWon();
       }
     } on InvalidSudokuConfigurationException {
-      log('Invalid input');
+      log('User entered a wrong number');
     }
   }
 }
