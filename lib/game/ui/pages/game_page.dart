@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sudoku/game/data/models/sudoku_model.dart';
 import 'package:sudoku/game/data/providers/providers.dart';
 import 'package:sudoku/game/ui/blocs/sudoku/sudoku_cubit.dart';
 import 'package:sudoku/l10n/l10n.dart';
@@ -27,27 +28,35 @@ class _GamePageState extends ConsumerState<GamePage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      actions: [
-        IconButton(onPressed: () => appRouter.push('/settings'), icon: const Icon(Icons.settings))
-      ],
-    ),
-    body: BlocBuilder(
-      bloc: _bloc,
-      builder: (context, state) {
-        if (state is SudokuLoaded) {
-          return Center(
-            child: SudokuBoard(
-              key: UniqueKey(),
-              model: state.model,
-              onGameWon: _onGameWon,
+    body: _body,
+  );
+
+  Widget get _body => BlocBuilder(
+    bloc: _bloc,
+    builder: (context, state) {
+      if (state is SudokuLoaded) {
+        return Stack(
+          children: [
+            Align(
+              alignment: Alignment.center,
+              child: _board(state.model),
             ),
-          );
-        }
-        
-        return const Center(child: CircularProgressIndicator.adaptive());
+            Align(
+              alignment: Alignment.bottomRight,
+              child: IconButton(onPressed: () => appRouter.push('/settings'), icon: const Icon(Icons.settings)),
+            )
+          ],
+        );
       }
-    ),
+      
+      return const Center(child: CircularProgressIndicator.adaptive());
+    }
+  );
+
+  Widget _board(SudokuModel model) => SudokuBoard(
+    key: UniqueKey(),
+    model: model,
+    onGameWon: _onGameWon,
   );
 
   Future<void> _buildNewGame() async {
