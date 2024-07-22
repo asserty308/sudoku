@@ -30,11 +30,11 @@ extension AppPreferences on SharedPreferences {
   Future<void> addTimeToLeaderboard(Difficulty difficulty, LeaderboardEntryModel entry) async {
     final currentLeaderboard = getLeaderboard(difficulty);
     currentLeaderboard.add(entry);
-    await sharedPrefs.setStringList(difficulty.name, currentLeaderboard.map((e) => jsonEncode(e.toJson())).toList());
+    await sharedPrefs.setStringList('leaderboard_${difficulty.name}', currentLeaderboard.map((e) => jsonEncode(e.toJson())).toList());
   }
 
   List<LeaderboardEntryModel> getLeaderboard(Difficulty difficulty) {
-    final values = sharedPrefs.getStringList(difficulty.name) ?? <String>[];
+    final values = sharedPrefs.getStringList('leaderboard_${difficulty.name}') ?? <String>[];
     return values
       .map((e) => LeaderboardEntryModel.fromJson(jsonDecode(e)))
       .toList();

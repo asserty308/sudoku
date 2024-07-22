@@ -19,7 +19,7 @@ class SudokuCubit extends Cubit<SudokuState> {
 
   Difficulty? difficulty;
 
-  Future<void> buildNewGame() async {
+  void buildNewGame() {
     emit(SudokuLoading());
 
     difficulty = getDifficultyUseCase.execute();

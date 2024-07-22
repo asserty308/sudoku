@@ -7,3 +7,4 @@ linter:
     - sort_constructors_first
     - sort_unnamed_constructors_first
     - unnecessary_lambdas
+    - eol_at_end_of_file

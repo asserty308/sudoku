@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:sudoku/app/domain/setup.dart';
-import 'package:sudoku/app/data/repositories/shared_prefs.dart';
+import 'package:sudoku/app/data/repositories/app_prefs.dart';
 import 'package:sudoku/game/data/models/leaderboard_entry_model.dart';
 import 'package:sudoku/game/ui/blocs/sudoku/sudoku_cubit.dart';
 

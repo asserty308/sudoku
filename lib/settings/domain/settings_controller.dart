@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sudoku/app/domain/setup.dart';
-import 'package:sudoku/app/data/repositories/shared_prefs.dart';
+import 'package:sudoku/app/data/repositories/app_prefs.dart';
 
 final settingsController = SettingsController();
 

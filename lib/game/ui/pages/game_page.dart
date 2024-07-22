@@ -61,7 +61,7 @@ class _GamePageState extends ConsumerState<GamePage> {
   );
 
   Future<void> _buildNewGame() async {
-    await _bloc.buildNewGame();
+    _bloc.buildNewGame();
   }
 
   Future<void> _onGameWon() async {
