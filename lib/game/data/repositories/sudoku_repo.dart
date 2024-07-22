@@ -1,6 +1,6 @@
 import 'package:sudoku/game/data/models/difficulty.dart';
 import 'package:sudoku/app/domain/setup.dart';
-import 'package:sudoku/app/domain/shared_prefs.dart';
+import 'package:sudoku/app/data/repositories/shared_prefs.dart';
 
 class SudokuRepo {
   Future<void> setDifficulty(Difficulty difficulty) async {

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sudoku/game/data/models/sudoku_model.dart';
 import 'package:sudoku/game/data/providers/providers.dart';
+import 'package:sudoku/game/domain/usecases/on_game_won_usecase.dart';
 import 'package:sudoku/game/ui/blocs/sudoku/sudoku_cubit.dart';
 import 'package:sudoku/l10n/l10n.dart';
 import 'package:sudoku/app/domain/app_router.dart';
@@ -63,19 +64,28 @@ class _GamePageState extends ConsumerState<GamePage> {
     await _bloc.buildNewGame();
   }
 
-  void _onGameWon() => showDialog(
-    context: context, 
-    builder: (context) => AlertDialog(
-      title: Text(context.l10n.victoryDialogTitle),
-      actions: [
-        TextButton(
-          onPressed: () {
-            context.pop();
-            _buildNewGame();
-          }, 
-          child: Text(context.l10n.victoryDialogDismiss)
-        ),
-      ],
-    ),
-  );
+  Future<void> _onGameWon() async {
+    final useCase = OnGameWonUseCase(bloc: _bloc);
+    await useCase.execute();
+
+    if (!mounted) {
+      return;
+    }
+
+    showDialog(
+      context: context, 
+      builder: (context) => AlertDialog(
+        title: Text(context.l10n.victoryDialogTitle),
+        actions: [
+          TextButton(
+            onPressed: () {
+              context.pop();
+              _buildNewGame();
+            }, 
+            child: Text(context.l10n.victoryDialogDismiss),
+          ),
+        ],
+      ),
+    );
+  }
 }

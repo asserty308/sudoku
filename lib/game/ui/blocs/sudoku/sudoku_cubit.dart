@@ -17,13 +17,15 @@ class SudokuCubit extends Cubit<SudokuState> {
   DateTime? _timeStarted;
   DateTime? get timeStarted => _timeStarted;
 
+  Difficulty? difficulty;
+
   Future<void> buildNewGame() async {
     emit(SudokuLoading());
 
-    final difficulty = getDifficultyUseCase.execute();
+    difficulty = getDifficultyUseCase.execute();
 
     final generator = SudokuGenerator(
-      emptySquares: difficulty.emptySquares, 
+      emptySquares: difficulty!.emptySquares, 
       uniqueSolution: true,
     );
 

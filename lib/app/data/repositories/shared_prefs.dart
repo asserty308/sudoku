@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sudoku/app/config/keys.dart';
+import 'package:sudoku/app/domain/setup.dart';
 import 'package:sudoku/game/data/models/difficulty.dart';
+import 'package:sudoku/game/data/models/leaderboard_entry_model.dart';
 
-extension SharedPreferencesExt on SharedPreferences {
+extension AppPreferences on SharedPreferences {
   Future<void> setDifficulty(Difficulty difficulty) => setString(kDifficultyKey, difficulty.name);
 
   Difficulty get difficulty {
@@ -22,4 +26,17 @@ extension SharedPreferencesExt on SharedPreferences {
     2 => ThemeMode.dark,
     _ => ThemeMode.system,
   };
+
+  Future<void> addTimeToLeaderboard(Difficulty difficulty, LeaderboardEntryModel entry) async {
+    final currentLeaderboard = getLeaderboard(difficulty);
+    currentLeaderboard.add(entry);
+    await sharedPrefs.setStringList(difficulty.name, currentLeaderboard.map((e) => jsonEncode(e.toJson())).toList());
+  }
+
+  List<LeaderboardEntryModel> getLeaderboard(Difficulty difficulty) {
+    final values = sharedPrefs.getStringList(difficulty.name) ?? <String>[];
+    return values
+      .map((e) => LeaderboardEntryModel.fromJson(jsonDecode(e)))
+      .toList();
+  }
 }
