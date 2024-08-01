@@ -52,7 +52,10 @@ class _GamePageState extends ConsumerState<GamePage> {
       ),
       Align(
         alignment: Alignment.topRight,
-        child: SudokuTimer(startTime: _bloc.timeStarted ?? DateTime.now()),
+        child: SudokuTimer(
+          key: UniqueKey(),
+          startTime: _bloc.timeStarted ?? DateTime.now(),
+        ),
       )
     ],
   );

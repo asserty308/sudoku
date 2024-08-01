@@ -21,11 +21,18 @@ class _SudokuTimerState extends State<SudokuTimer> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Timer.periodic(const Duration(seconds: 1), (_) => setState(() {
-        _duration += const Duration(seconds: 1);
-      }));
+      Timer.periodic(const Duration(seconds: 1), (_) {
+        if (!mounted) {
+          return;
+        }
+        
+        setState(() {
+          _duration += const Duration(seconds: 1);
+        });
+      });
     });
   }
+
   @override
   Widget build(BuildContext context) => Text(_duration.formatHMS());
 }
