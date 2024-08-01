@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sudoku/app/domain/duration.dart';
 
@@ -25,7 +24,7 @@ class _SudokuTimerState extends State<SudokuTimer> {
         if (!mounted) {
           return;
         }
-        
+
         setState(() {
           _duration += const Duration(seconds: 1);
         });
