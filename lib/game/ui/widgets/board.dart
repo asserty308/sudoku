@@ -5,7 +5,7 @@ import 'package:sudoku/app/domain/media_query.dart';
 import 'package:sudoku/app/domain/theme.dart';
 import 'package:sudoku/game/data/models/sudoku_model.dart';
 import 'package:sudoku/app/ui/styles/colors.dart';
-import 'package:sudoku/game/domain/usecases/handle_keyboad_input_usecase.dart';
+import 'package:sudoku/game/domain/use_cases/handle_keyboad_input_use_case.dart';
 import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 
 class SudokuBoard extends StatefulWidget {

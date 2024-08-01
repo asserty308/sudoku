@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sudoku/game/data/repositories/sudoku_repo.dart';
-import 'package:sudoku/game/domain/usecases/get_difficulty_usecase.dart';
-import 'package:sudoku/game/domain/usecases/on_game_won_usecase.dart';
-import 'package:sudoku/game/domain/usecases/set_difficulty_usecase.dart';
+import 'package:sudoku/game/domain/use_cases/get_difficulty_use_case.dart';
+import 'package:sudoku/game/domain/use_cases/on_game_won_use_case.dart';
+import 'package:sudoku/game/domain/use_cases/set_difficulty_use_case.dart';
 import 'package:sudoku/game/ui/blocs/sudoku/sudoku_cubit.dart';
 
 final sudokuRepoProvider = Provider((ref) => SudokuRepo());

@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sudoku/game/data/models/sudoku_model.dart';
 import 'package:sudoku/game/data/providers/providers.dart';
 import 'package:sudoku/game/ui/blocs/sudoku/sudoku_cubit.dart';
+import 'package:sudoku/game/ui/widgets/timer.dart';
 import 'package:sudoku/l10n/l10n.dart';
 import 'package:sudoku/app/domain/app_router.dart';
 import 'package:sudoku/game/ui/widgets/board.dart';
@@ -48,6 +49,10 @@ class _GamePageState extends ConsumerState<GamePage> {
       Align(
         alignment: Alignment.bottomRight,
         child: _settingsButton,
+      ),
+      Align(
+        alignment: Alignment.topRight,
+        child: SudokuTimer(startTime: _bloc.timeStarted ?? DateTime.now()),
       )
     ],
   );
