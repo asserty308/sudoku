@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sudoku/game/data/models/sudoku_model.dart';
 import 'package:sudoku/game/data/providers/providers.dart';
-import 'package:sudoku/game/domain/usecases/on_game_won_usecase.dart';
 import 'package:sudoku/game/ui/blocs/sudoku/sudoku_cubit.dart';
 import 'package:sudoku/l10n/l10n.dart';
 import 'package:sudoku/app/domain/app_router.dart';
@@ -29,29 +28,28 @@ class _GamePageState extends ConsumerState<GamePage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    body: _body,
+    body: _bodyBuilder,
   );
 
-  Widget get _body => BlocBuilder(
+  Widget get _bodyBuilder => BlocBuilder<SudokuCubit, SudokuState>(
     bloc: _bloc,
-    builder: (context, state) {
-      if (state is SudokuLoaded) {
-        return Stack(
-          children: [
-            Align(
-              alignment: Alignment.center,
-              child: _board(state.model),
-            ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: IconButton(onPressed: () => appRouter.push('/settings'), icon: const Icon(Icons.settings)),
-            )
-          ],
-        );
-      }
-      
-      return const Center(child: CircularProgressIndicator.adaptive());
+    builder: (context, state) => switch (state) {
+      SudokuLoaded state => _body(state.model),
+      _ => const Center(child: CircularProgressIndicator.adaptive()),
     }
+  );
+
+  Widget _body(SudokuModel model) => Stack(
+    children: [
+      Align(
+        alignment: Alignment.center,
+        child: _board(model),
+      ),
+      Align(
+        alignment: Alignment.bottomRight,
+        child: _settingsButton,
+      )
+    ],
   );
 
   Widget _board(SudokuModel model) => SudokuBoard(
@@ -60,13 +58,17 @@ class _GamePageState extends ConsumerState<GamePage> {
     onGameWon: _onGameWon,
   );
 
+  Widget get _settingsButton => IconButton(
+    onPressed: () => appRouter.push('/settings'), 
+    icon: const Icon(Icons.settings),
+  );
+
   Future<void> _buildNewGame() async {
     _bloc.buildNewGame();
   }
 
   Future<void> _onGameWon() async {
-    final useCase = OnGameWonUseCase(bloc: _bloc);
-    await useCase.execute();
+    await ref.read(onGameWoneUseCaseProvider).execute(_bloc.timeStarted!, _bloc.difficulty!);
 
     if (!mounted) {
       return;

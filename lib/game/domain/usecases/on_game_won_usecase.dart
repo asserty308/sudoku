@@ -2,24 +2,20 @@ import 'dart:developer';
 
 import 'package:sudoku/app/domain/setup.dart';
 import 'package:sudoku/app/data/repositories/app_prefs.dart';
+import 'package:sudoku/game/data/models/difficulty.dart';
 import 'package:sudoku/game/data/models/leaderboard_entry_model.dart';
-import 'package:sudoku/game/ui/blocs/sudoku/sudoku_cubit.dart';
 
 class OnGameWonUseCase {
-  OnGameWonUseCase({required this.bloc});
-
-  final SudokuCubit bloc;
-
-  Future<bool> execute() async {
+  Future<bool> execute(DateTime timeStarted, Difficulty difficulty) async {
     try {
       final now = DateTime.now();
-      final duration = now.difference(bloc.timeStarted!).inSeconds;
+      final duration = now.difference(timeStarted).inSeconds;
       final entry = LeaderboardEntryModel(
         timestamp:  now, 
         durationInSeconds: duration, 
         username: 'dev',
       );
-      await sharedPrefs.addTimeToLeaderboard(bloc.difficulty!, entry);
+      await sharedPrefs.addTimeToLeaderboard(difficulty, entry);
       return true;
     } catch (e) {
       log('Error adding time to leaderboard', error: e);
