@@ -1,23 +1,24 @@
 extension DurationExt on Duration {
+  String get format {
+    if (inHours > 0) {
+      return _formatHMS;
+    }
+
+    return _formatMS;
+  }
+
   /// Returns HH:mm:ss
-  String formatHMS() {
+  String get _formatHMS {
     final hours = inHours.toString().padLeft(2, '0');
     final minutes = (inMinutes % 60).toString().padLeft(2, '0');
     final seconds = (inSeconds % 60).toString().padLeft(2, '0');
-    return '$hours:$minutes:$seconds';
-  }
-
-  /// Returns HH:mm
-  String formatHM() {
-    final hours = inHours.toString().padLeft(2, '0');
-    final minutes = (inMinutes % 60).toString().padLeft(2, '0');
-    return '$hours:$minutes';
+    return '$hours:$minutes:$seconds h';
   }
 
   /// Returns mm:ss
-  String formatMS() {
+  String get _formatMS {
     final minutes = inMinutes.toString().padLeft(2, '0');
     final seconds = (inSeconds % 60).toString().padLeft(2, '0');
-    return '$minutes:$seconds';
+    return '$minutes:$seconds m';
   }
 }

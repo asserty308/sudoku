@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sudoku/game/data/models/difficulty.dart';
@@ -14,18 +16,13 @@ class SudokuCubit extends Cubit<SudokuState> {
 
   final GetDifficultyUseCase getDifficultyUseCase;
 
-  DateTime? _timeStarted;
-  DateTime? get timeStarted => _timeStarted;
-
-  Difficulty? difficulty;
-
   void buildNewGame() {
     emit(SudokuLoading());
 
-    difficulty = getDifficultyUseCase.execute();
+    final difficulty = getDifficultyUseCase.execute();
 
     final generator = SudokuGenerator(
-      emptySquares: difficulty!.emptySquares, 
+      emptySquares: difficulty.emptySquares, 
       uniqueSolution: true,
     );
 
@@ -34,8 +31,10 @@ class SudokuCubit extends Cubit<SudokuState> {
       solution: generator.newSudokuSolved
     );
 
-    _timeStarted = DateTime.now();
+    final timeStarted = DateTime.now();
 
-    emit(SudokuLoaded(model: model));
+    log('Building new game with difficulty ${difficulty.name}');
+
+    emit(SudokuLoaded(model: model, timeStarted: timeStarted, difficulty: difficulty));
   }
 }

@@ -1,8 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sudoku/game/data/models/sudoku_model.dart';
 import 'package:sudoku/game/data/providers/providers.dart';
 import 'package:sudoku/game/ui/blocs/sudoku/sudoku_cubit.dart';
 import 'package:sudoku/game/ui/widgets/timer.dart';
@@ -19,6 +20,7 @@ class GamePage extends ConsumerStatefulWidget {
 
 class _GamePageState extends ConsumerState<GamePage> {
   late final _bloc = ref.read(sudokuCubitProvider);
+  Timer? _timer;
 
   @override
   void initState() {
@@ -35,16 +37,17 @@ class _GamePageState extends ConsumerState<GamePage> {
   Widget get _bodyBuilder => BlocBuilder<SudokuCubit, SudokuState>(
     bloc: _bloc,
     builder: (context, state) => switch (state) {
-      SudokuLoaded state => _body(state.model),
+      SudokuLoaded state => _body(state),
       _ => const Center(child: CircularProgressIndicator.adaptive()),
     }
   );
 
-  Widget _body(SudokuModel model) => Stack(
+  Widget _body(SudokuLoaded state) => Stack(
+    key: UniqueKey(), // needed to start new games
     children: [
       Align(
         alignment: Alignment.center,
-        child: _board(model),
+        child: _board(state),
       ),
       Align(
         alignment: Alignment.bottomRight,
@@ -52,18 +55,14 @@ class _GamePageState extends ConsumerState<GamePage> {
       ),
       Align(
         alignment: Alignment.topRight,
-        child: SudokuTimer(
-          key: UniqueKey(),
-          startTime: _bloc.timeStarted ?? DateTime.now(),
-        ),
+        child: _timerWidget(state),
       )
     ],
   );
 
-  Widget _board(SudokuModel model) => SudokuBoard(
-    key: UniqueKey(),
-    model: model,
-    onGameWon: _onGameWon,
+  Widget _board(SudokuLoaded state) => SudokuBoard(
+    model: state.model,
+    onGameWon: () => _onGameWon(state),
   );
 
   Widget get _settingsButton => IconButton(
@@ -71,12 +70,20 @@ class _GamePageState extends ConsumerState<GamePage> {
     icon: const Icon(Icons.settings),
   );
 
+  Widget _timerWidget(SudokuLoaded state) => SudokuTimer(
+    startTime: state.timeStarted,
+    onTimerCreated: (timer) {
+      _timer = timer;
+    },
+  );
+
   Future<void> _buildNewGame() async {
     _bloc.buildNewGame();
   }
 
-  Future<void> _onGameWon() async {
-    await ref.read(onGameWoneUseCaseProvider).execute(_bloc.timeStarted!, _bloc.difficulty!);
+  Future<void> _onGameWon(SudokuLoaded state) async {
+    _timer?.cancel();
+    await ref.read(onGameWoneUseCaseProvider).execute(state.timeStarted, state.difficulty);
 
     if (!mounted) {
       return;
