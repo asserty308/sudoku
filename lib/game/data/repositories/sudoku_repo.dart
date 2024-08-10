@@ -1,13 +1,13 @@
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sudoku/game/data/models/difficulty.dart';
-import 'package:sudoku/app/domain/setup.dart';
 import 'package:sudoku/app/data/repositories/app_prefs.dart';
 
 class SudokuRepo {
-  Future<void> setDifficulty(Difficulty difficulty) async {
-    await sharedPrefs.setDifficulty(difficulty);
-  }
+  SudokuRepo({required this.sharedPrefs});
 
-  Difficulty getDifficulty() {
-    return sharedPrefs.difficulty;
-  }
+  final SharedPreferencesAsync sharedPrefs;
+  
+  Future<void> setDifficulty(Difficulty difficulty) => sharedPrefs.setDifficulty(difficulty);
+
+  Future<Difficulty> getDifficulty() => sharedPrefs.difficulty;
 }

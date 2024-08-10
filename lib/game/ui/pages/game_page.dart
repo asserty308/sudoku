@@ -70,20 +70,23 @@ class _GamePageState extends ConsumerState<GamePage> {
     icon: const Icon(Icons.settings),
   );
 
-  Widget _timerWidget(SudokuLoaded state) => SudokuTimer(
-    startTime: state.timeStarted,
-    onTimerCreated: (timer) {
-      _timer = timer;
-    },
+  Widget _timerWidget(SudokuLoaded state) => Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: SudokuTimer(
+      startTime: state.timeStarted,
+      onTimerCreated: (timer) {
+        _timer = timer;
+      },
+    ),
   );
 
-  Future<void> _buildNewGame() async {
+  void _buildNewGame() {
     _bloc.buildNewGame();
   }
 
   Future<void> _onGameWon(SudokuLoaded state) async {
     _timer?.cancel();
-    await ref.read(onGameWoneUseCaseProvider).execute(state.timeStarted, state.difficulty);
+    await ref.read(onGameWonUseCaseProvider).execute(state.timeStarted, state.difficulty);
 
     if (!mounted) {
       return;

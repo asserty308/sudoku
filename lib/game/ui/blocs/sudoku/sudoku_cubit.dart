@@ -16,10 +16,10 @@ class SudokuCubit extends Cubit<SudokuState> {
 
   final GetDifficultyUseCase getDifficultyUseCase;
 
-  void buildNewGame() {
+  Future<void> buildNewGame() async {
     emit(SudokuLoading());
 
-    final difficulty = getDifficultyUseCase.execute();
+    final difficulty = await getDifficultyUseCase.execute();
 
     final generator = SudokuGenerator(
       emptySquares: difficulty.emptySquares, 

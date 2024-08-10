@@ -31,7 +31,7 @@ class _SudokuTimerState extends State<SudokuTimer> {
         }
 
         setState(() {
-          _duration += const Duration(seconds: 1);
+          _duration = DateTime.now().difference(widget.startTime);
         });
       });
 

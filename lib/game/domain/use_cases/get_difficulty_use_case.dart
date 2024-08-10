@@ -6,5 +6,5 @@ class GetDifficultyUseCase {
 
   final SudokuRepo sudokuRepo;
 
-  Difficulty execute() => sudokuRepo.getDifficulty();
+  Future<Difficulty> execute() => sudokuRepo.getDifficulty();
 }
