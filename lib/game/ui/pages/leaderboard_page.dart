@@ -9,7 +9,7 @@ class LeaderboardPage extends StatefulWidget {
 
 class _LeaderboardPageState extends State<LeaderboardPage> {
   @override
-  Widget build(BuildContext context) => const Scaffold(
-    
+  Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(),
   );
 }

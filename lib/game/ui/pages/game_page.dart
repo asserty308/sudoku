@@ -51,7 +51,13 @@ class _GamePageState extends ConsumerState<GamePage> {
       ),
       Align(
         alignment: Alignment.bottomRight,
-        child: _settingsButton,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _leaderboardButton,
+            _settingsButton,
+          ],
+        ),
       ),
       Align(
         alignment: Alignment.topRight,
@@ -63,6 +69,11 @@ class _GamePageState extends ConsumerState<GamePage> {
   Widget _board(SudokuLoaded state) => SudokuBoard(
     model: state.model,
     onGameWon: () => _onGameWon(state),
+  );
+
+  Widget get _leaderboardButton => IconButton(
+    onPressed: () => appRouter.push('/leaderboard'), 
+    icon: const Icon(Icons.leaderboard),
   );
 
   Widget get _settingsButton => IconButton(
