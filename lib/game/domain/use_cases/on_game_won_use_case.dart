@@ -10,14 +10,12 @@ class OnGameWonUseCase {
 
   final SharedPreferencesAsync sharedPrefs;
   
-  Future<bool> execute(DateTime timeStarted, Difficulty difficulty) async {
-    try {
-      final now = DateTime.now();
-      final duration = now.difference(timeStarted).inSeconds;
+  Future<bool> execute(DateTime now, int durationInSeconds, Difficulty difficulty, String username) async {
+    try {      
       final entry = LeaderboardEntryModel(
         timestamp:  now, 
-        durationInSeconds: duration, 
-        username: 'dev',
+        durationInSeconds: durationInSeconds, 
+        username: username,
       );
       await sharedPrefs.addTimeToLeaderboard(difficulty, entry);
       return true;

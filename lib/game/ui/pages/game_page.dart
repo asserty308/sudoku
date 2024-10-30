@@ -97,13 +97,11 @@ class _GamePageState extends ConsumerState<GamePage> {
 
   Future<void> _onGameWon(SudokuLoaded state) async {
     _timer?.cancel();
-    await ref.read(onGameWonUseCaseProvider).execute(state.timeStarted, state.difficulty);
 
-    if (!mounted) {
-      return;
-    }
+    final now = DateTime.now();
+    final duration = now.difference(state.timeStarted).inSeconds;
 
-    showDialog(
+    await showDialog(
       context: context, 
       builder: (context) => AlertDialog(
         title: Text(context.l10n.victoryDialogTitle),
@@ -118,5 +116,43 @@ class _GamePageState extends ConsumerState<GamePage> {
         ],
       ),
     );
+
+    if (!mounted) {
+      return;
+    }
+    
+    final username = await showDialog<String>(
+      context: context,
+      builder: (context) {
+        TextEditingController textController = TextEditingController();
+        return AlertDialog(
+          title: Text('Enter your name'),
+          content: TextField(
+            controller: textController,
+            decoration: InputDecoration(hintText: 'Your name'),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(textController.text),
+              child: Text('Submit'),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (username?.isEmpty ?? true) {
+      return;
+    }
+
+    await ref.read(onGameWonUseCaseProvider).execute(now, duration, state.difficulty, username!);
+
+    if (!mounted) {
+      return;
+    }
   }
 }
