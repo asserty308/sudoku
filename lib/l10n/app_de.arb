@@ -27,5 +27,7 @@
     "theme": "Darstellung",
     "systemTheme": "System",
     "lightTheme": "Hell",
-    "darkTheme": "Dunkel"
+    "darkTheme": "Dunkel",
+    "leaderboardPageErrorMessage": "Ein Fehler ist aufgetreten. Bitte versuche es erneut.",
+    "leaderboardPageErrorButton": "Erneut laden"
 }

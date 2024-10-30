@@ -27,5 +27,7 @@
     "theme": "Appearance",
     "systemTheme": "System",
     "lightTheme": "Light",
-    "darkTheme": "Dark"
+    "darkTheme": "Dark",
+    "leaderboardPageErrorMessage": "An unexpected error occured. Please try again.",
+    "leaderboardPageErrorButton": "Reload leaderboard"
 }

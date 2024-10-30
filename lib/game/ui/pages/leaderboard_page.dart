@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sudoku/app/data/providers/providers.dart';
 import 'package:sudoku/game/data/models/leaderboard_entry_model.dart';
 import 'package:sudoku/game/ui/blocs/leaderboard/leaderboard_cubit.dart';
+import 'package:sudoku/l10n/l10n.dart';
 
 class LeaderboardPage extends ConsumerStatefulWidget {
   const LeaderboardPage({super.key});
@@ -60,17 +61,19 @@ class _LeaderboardPageState extends ConsumerState<LeaderboardPage> {
     child: CircularProgressIndicator.adaptive(),
   );
 
-  Widget get _errorHint => Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Text(
-        'An unexpected error occured. Please try again.'
-      ),
-      const SizedBox(height: 32,),
-      TextButton(
-        onPressed: () => _bloc.getLeaderboard(), 
-        child: Text('Reload leaderboard'),
-      )
-    ],
+  Widget get _errorHint => Center(
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          context.l10n.leaderboardPageErrorMessage,
+        ),
+        const SizedBox(height: 32,),
+        TextButton(
+          onPressed: () => _bloc.getLeaderboard(), 
+          child: Text(context.l10n.leaderboardPageErrorButton),
+        )
+      ],
+    ),
   );
 }
