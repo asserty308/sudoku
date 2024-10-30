@@ -15,6 +15,8 @@ class LeaderboardCubit extends Cubit<LeaderboardState> {
 
   final SharedPreferencesAsync sharedPreferences;
 
+  /// Loads the leaderboard of the currently selected diffictulty.
+  /// Emits a [LeaderboardError] when an error occurs.
   Future<void> getLeaderboard() async {
     emit(LeaderboardLoading());
 
@@ -22,7 +24,7 @@ class LeaderboardCubit extends Cubit<LeaderboardState> {
       final results = await sharedPreferences.getLeaderboard(await sharedPreferences.difficulty);
       emit(LeaderboardLoaded(results: results));
     } catch (e) {
-      log('Error loading leaderborad', error: e);
+      log('Error loading leaderboard', error: e);
       emit(LeaderboardError());
     }
   }
