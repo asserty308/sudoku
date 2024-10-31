@@ -27,7 +27,9 @@ class _LeaderboardPageState extends ConsumerState<LeaderboardPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(),
+    appBar: AppBar(
+      title: Text('Leaderboard'),
+    ),
     body: _bodyBuilder,
   );
 
