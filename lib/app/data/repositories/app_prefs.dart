@@ -36,6 +36,7 @@ extension AppPreferences on SharedPreferencesAsync {
     final values = await getStringList('leaderboard_${difficulty.name}') ?? <String>[];
     return values
       .map((e) => LeaderboardEntryModel.fromJson(jsonDecode(e)))
-      .toList();
+      .toList()
+      ..sort((a,b) => a.durationInSeconds.compareTo(b.durationInSeconds));
   }
 }
