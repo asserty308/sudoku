@@ -31,6 +31,11 @@ flutter:
   uses-material-design: true
   generate: true
 
+  fonts:
+    - family: IndieFlower
+      fonts:
+        - asset: fonts/IndieFlower/IndieFlower-Regular.ttf
+
 # dart run flutter_launcher_icons
 flutter_launcher_icons:
   image_path: 'assets/app_icon.jpg'

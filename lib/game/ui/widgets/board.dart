@@ -91,7 +91,7 @@ class _SudokuBoardState extends State<SudokuBoard> {
       ),
       child: TextButton(
         onPressed: editable ? () => _onEdit(x, y)  : null, 
-        child: Text(value),
+        child: Text(value, style: TextStyle(fontSize: 21),),
       ),
     );
   }
@@ -114,7 +114,7 @@ class _SudokuBoardState extends State<SudokuBoard> {
       ),
       child: TextButton(
         onPressed: () => _onInput(value), 
-        child: Text('$value'),
+        child: Text('$value', style: TextStyle(fontSize: 21),),
       ),
     );
   }
