@@ -43,7 +43,6 @@ class _GamePageState extends ConsumerState<GamePage> {
   );
 
   Widget _body(SudokuLoaded state) => Stack(
-    key: UniqueKey(), // needed to start new games
     children: [
       Align(
         alignment: Alignment.center,

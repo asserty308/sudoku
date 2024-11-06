@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sudoku/app/config/app_config.dart';
 import 'package:sudoku/app/domain/app_router.dart';
 import 'package:sudoku/app/ui/styles/theme.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:sudoku/l10n/gen/app_localizations.dart';
 import 'package:sudoku/settings/data/providers/providers.dart';
 
 class MyApp extends ConsumerStatefulWidget {
