@@ -1,10 +1,10 @@
 name: sudoku
 description: A new Flutter project.
 publish_to: 'none'
-version: 0.1.1+7
+version: 1.0.0+8
 
 environment:
-  sdk: '>=3.1.0 <4.0.0'
+  sdk: ^3.6.0
   
 dependencies:
   cupertino_icons: ^1.0.8
