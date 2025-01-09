@@ -232,6 +232,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reload leaderboard'**
   String get leaderboardPageErrorButton;
+
+  /// No description provided for @homePageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sudoku'**
+  String get homePageTitle;
+
+  /// No description provided for @homePageSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Challenge your mind with every grid'**
+  String get homePageSubtitle;
+
+  /// No description provided for @playButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Play'**
+  String get playButton;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

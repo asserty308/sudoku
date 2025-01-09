@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sudoku/l10n/l10n.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,8 +19,8 @@ class _HomePageState extends State<HomePage> {
     mainAxisAlignment: MainAxisAlignment.center,
     spacing: 24,
     children: [
-      Text('Sudoku', style: Theme.of(context).textTheme.headlineMedium,),
-      Text('Challenge your mind with every grid.'),
+      Text(context.l10n.homePageTitle, style: Theme.of(context).textTheme.headlineMedium,),
+      Text(context.l10n.homePageSubtitle),
       _playButton,
     ],
   );
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.blueGrey[400],
         minimumSize: Size(200, 50),
       ),
-      child: Text('Play'),
+      child: Text(context.l10n.playButton),
     ),
   );
 }

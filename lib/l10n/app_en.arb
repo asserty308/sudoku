@@ -1,4 +1,5 @@
 {
+    "@@locale": "en",
     "difficulty": "Difficulty",
     "test": "Test",
     "beginner": "Beginner",
@@ -29,5 +30,8 @@
     "lightTheme": "Light",
     "darkTheme": "Dark",
     "leaderboardPageErrorMessage": "An unexpected error occured. Please try again.",
-    "leaderboardPageErrorButton": "Reload leaderboard"
+    "leaderboardPageErrorButton": "Reload leaderboard",
+    "homePageTitle": "Sudoku",
+    "homePageSubtitle": "Challenge your mind with every grid",
+    "playButton": "Play"
 }

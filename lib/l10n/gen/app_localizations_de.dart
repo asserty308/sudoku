@@ -76,4 +76,13 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get leaderboardPageErrorButton => 'Erneut laden';
+
+  @override
+  String get homePageTitle => 'Sudoku';
+
+  @override
+  String get homePageSubtitle => 'Fordere deinen Verstand mit jedem Gitter heraus';
+
+  @override
+  String get playButton => 'Spielen';
 }
