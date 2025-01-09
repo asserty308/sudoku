@@ -1,7 +1,7 @@
 name: sudoku
 description: A new Flutter project.
 publish_to: 'none'
-version: 1.0.0+8
+version: 1.0.1+9
 
 environment:
   sdk: ^3.6.0
@@ -32,10 +32,10 @@ flutter:
   uses-material-design: true
   generate: true
 
-  fonts:
-    - family: IndieFlower
-      fonts:
-        - asset: fonts/IndieFlower/IndieFlower-Regular.ttf
+  # fonts:
+  #   - family: IndieFlower
+  #     fonts:
+  #       - asset: fonts/IndieFlower/IndieFlower-Regular.ttf
 
 # dart run flutter_launcher_icons
 flutter_launcher_icons:
