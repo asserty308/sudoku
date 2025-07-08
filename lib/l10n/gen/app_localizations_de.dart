@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -40,7 +42,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get changedDifficultyDialogTitle => 'Neues Spiel';
 
   @override
-  String get changedDifficultyDialogBody => 'Der Schwierigkeitsgrad wurde geändert. Möchtest du ein neues Spiel starten oder zu deinem aktuellen zurückkehren?';
+  String get changedDifficultyDialogBody =>
+      'Der Schwierigkeitsgrad wurde geändert. Möchtest du ein neues Spiel starten oder zu deinem aktuellen zurückkehren?';
 
   @override
   String get changedDifficultyDialogResume => 'Zurück zum Spiel';
@@ -72,7 +75,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get darkTheme => 'Dunkel';
 
   @override
-  String get leaderboardPageErrorMessage => 'Ein Fehler ist aufgetreten. Bitte versuche es erneut.';
+  String get leaderboardPageErrorMessage =>
+      'Ein Fehler ist aufgetreten. Bitte versuche es erneut.';
 
   @override
   String get leaderboardPageErrorButton => 'Erneut laden';
@@ -81,7 +85,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get homePageTitle => 'Sudoku';
 
   @override
-  String get homePageSubtitle => 'Fordere deinen Verstand mit jedem Gitter heraus';
+  String get homePageSubtitle =>
+      'Fordere deinen Verstand mit jedem Gitter heraus';
 
   @override
   String get playButton => 'Spielen';

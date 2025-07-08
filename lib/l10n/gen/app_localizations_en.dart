@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -40,7 +42,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get changedDifficultyDialogTitle => 'Start new game';
 
   @override
-  String get changedDifficultyDialogBody => 'The difficulty has been changed. Do you want to start a new game or resume to your current game?';
+  String get changedDifficultyDialogBody =>
+      'The difficulty has been changed. Do you want to start a new game or resume to your current game?';
 
   @override
   String get changedDifficultyDialogResume => 'Resume game';
@@ -72,7 +75,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get darkTheme => 'Dark';
 
   @override
-  String get leaderboardPageErrorMessage => 'An unexpected error occured. Please try again.';
+  String get leaderboardPageErrorMessage =>
+      'An unexpected error occured. Please try again.';
 
   @override
   String get leaderboardPageErrorButton => 'Reload leaderboard';
