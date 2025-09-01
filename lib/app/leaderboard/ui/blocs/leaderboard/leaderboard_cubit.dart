@@ -9,21 +9,21 @@ part 'leaderboard_state.dart';
 
 class LeaderboardCubit extends Cubit<LeaderboardState> {
   LeaderboardCubit({required this.getLeaderboardUseCase})
-    : super(LeaderboardInitial());
+    : super(LeaderboardStateInitial());
 
   final GetLeaderboardUseCase getLeaderboardUseCase;
 
   /// Loads the leaderboard of the currently selected diffictulty.
   /// Emits a [LeaderboardError] when an error occurs.
   Future<void> getLeaderboard() async {
-    emit(LeaderboardLoading());
+    emit(LeaderboardStateLoading());
 
     try {
       final results = await getLeaderboardUseCase.execute();
-      emit(LeaderboardLoaded(results: results));
+      emit(LeaderboardStateLoaded(results: results));
     } catch (e) {
       log('Error loading leaderboard', error: e);
-      emit(LeaderboardError());
+      emit(LeaderboardStateError());
     }
   }
 }

@@ -4,7 +4,9 @@ import 'package:flutter_core/flutter_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sudoku/app/leaderboard/data/providers/providers.dart';
 import 'package:sudoku/app/leaderboard/ui/blocs/leaderboard/leaderboard_cubit.dart';
-import 'package:sudoku/game/data/models/leaderboard_entry_model.dart';
+import 'package:sudoku/app/leaderboard/ui/widgets/leaderboard_error.dart';
+import 'package:sudoku/app/leaderboard/ui/widgets/leaderboard_list.dart';
+import 'package:sudoku/app/leaderboard/ui/widgets/leaderboard_loading.dart';
 import 'package:sudoku/l10n/l10n.dart';
 
 class LeaderboardPage extends ConsumerStatefulWidget {
@@ -41,49 +43,11 @@ class _LeaderboardPageState extends AppConsumerState<LeaderboardPage> {
   Widget get _bodyBuilder => BlocBuilder<LeaderboardCubit, LeaderboardState>(
     bloc: _bloc,
     builder: (context, state) => switch (state) {
-      LeaderboardLoaded l => _leaderboardList(l.results),
-      LeaderboardError _ => _errorHint,
-      _ => _progressIndicator,
-    },
-  );
-
-  Widget _leaderboardList(List<LeaderboardEntryModel> results) =>
-      results.isEmpty
-      ? Center(child: Text(context.l10n.leaderboardPageEmpty))
-      : ListView.separated(
-          itemCount: results.length,
-          itemBuilder: (context, index) =>
-              _leaderboardTile(results[index], index),
-          separatorBuilder: (context, index) => Divider(),
-        );
-
-  Widget _leaderboardTile(LeaderboardEntryModel entry, int index) => ListTile(
-    leading: SizedBox(
-      width: 50,
-      child: Center(
-        child: Text(context.l10n.leaderboardPageRankingFormat(index + 1)),
+      LeaderboardStateLoaded l => LeaderboardList(entries: l.results),
+      LeaderboardStateError _ => LeaderboardError(
+        onRetry: _bloc.getLeaderboard,
       ),
-    ),
-    title: Text(entry.username),
-    trailing: Text(
-      context.l10n.leaderboardPageTimeFormat(entry.formattedDuration),
-    ),
-  );
-
-  Widget get _progressIndicator =>
-      Center(child: CircularProgressIndicator.adaptive());
-
-  Widget get _errorHint => Center(
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(context.l10n.leaderboardPageErrorMessage),
-        const SizedBox(height: 32),
-        TextButton(
-          onPressed: () => _bloc.getLeaderboard(),
-          child: Text(context.l10n.leaderboardPageErrorButton),
-        ),
-      ],
-    ),
+      _ => const LeaderboardLoading(),
+    },
   );
 }
