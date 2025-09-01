@@ -85,6 +85,25 @@ class AppLocalizationsDe extends AppLocalizations {
   String get leaderboardPageErrorButton => 'Erneut laden';
 
   @override
+  String get leaderboardPageNetworkError =>
+      'Keine Internetverbindung. Bitte überprüfe deine Verbindung und versuche es erneut.';
+
+  @override
+  String get leaderboardPageStorageError =>
+      'Zugriff auf gespeicherte Daten fehlgeschlagen. Bitte starte die App neu und versuche es erneut.';
+
+  @override
+  String get leaderboardPageUnknownError =>
+      'Etwas ist schief gelaufen. Bitte versuche es später erneut.';
+
+  @override
+  String get leaderboardPageRetryButton => 'Wiederholen';
+
+  @override
+  String get leaderboardPageRefreshTooltip =>
+      'Nach unten ziehen zum Aktualisieren';
+
+  @override
   String get leaderboardPageEmpty => 'Keine Einträge verfügbar';
 
   @override

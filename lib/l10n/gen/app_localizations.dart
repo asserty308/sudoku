@@ -242,6 +242,36 @@ abstract class AppLocalizations {
   /// **'Reload leaderboard'**
   String get leaderboardPageErrorButton;
 
+  /// No description provided for @leaderboardPageNetworkError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to connect to the internet. Please check your connection and try again.'**
+  String get leaderboardPageNetworkError;
+
+  /// No description provided for @leaderboardPageStorageError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to access saved data. Please restart the app and try again.'**
+  String get leaderboardPageStorageError;
+
+  /// No description provided for @leaderboardPageUnknownError.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again later.'**
+  String get leaderboardPageUnknownError;
+
+  /// No description provided for @leaderboardPageRetryButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get leaderboardPageRetryButton;
+
+  /// No description provided for @leaderboardPageRefreshTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Pull down to refresh'**
+  String get leaderboardPageRefreshTooltip;
+
   /// No description provided for @leaderboardPageEmpty.
   ///
   /// In en, this message translates to:

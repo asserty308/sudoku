@@ -32,6 +32,11 @@
     "leaderboardPageTitle": "Bestenliste",
     "leaderboardPageErrorMessage": "Ein Fehler ist aufgetreten. Bitte versuche es erneut.",
     "leaderboardPageErrorButton": "Erneut laden",
+    "leaderboardPageNetworkError": "Keine Internetverbindung. Bitte überprüfe deine Verbindung und versuche es erneut.",
+    "leaderboardPageStorageError": "Zugriff auf gespeicherte Daten fehlgeschlagen. Bitte starte die App neu und versuche es erneut.",
+    "leaderboardPageUnknownError": "Etwas ist schief gelaufen. Bitte versuche es später erneut.",
+    "leaderboardPageRetryButton": "Wiederholen",
+    "leaderboardPageRefreshTooltip": "Nach unten ziehen zum Aktualisieren",
     "leaderboardPageEmpty": "Keine Einträge verfügbar",
     "leaderboardPageRankingFormat": "{rank}.",
     "@leaderboardPageRankingFormat": {

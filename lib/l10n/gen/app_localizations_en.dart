@@ -85,6 +85,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get leaderboardPageErrorButton => 'Reload leaderboard';
 
   @override
+  String get leaderboardPageNetworkError =>
+      'Unable to connect to the internet. Please check your connection and try again.';
+
+  @override
+  String get leaderboardPageStorageError =>
+      'Unable to access saved data. Please restart the app and try again.';
+
+  @override
+  String get leaderboardPageUnknownError =>
+      'Something went wrong. Please try again later.';
+
+  @override
+  String get leaderboardPageRetryButton => 'Retry';
+
+  @override
+  String get leaderboardPageRefreshTooltip => 'Pull down to refresh';
+
+  @override
   String get leaderboardPageEmpty => 'No entries available';
 
   @override

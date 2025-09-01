@@ -43,9 +43,14 @@ class _LeaderboardPageState extends AppConsumerState<LeaderboardPage> {
   Widget get _bodyBuilder => BlocBuilder<LeaderboardCubit, LeaderboardState>(
     bloc: _bloc,
     builder: (context, state) => switch (state) {
-      LeaderboardStateLoaded l => LeaderboardList(entries: l.results),
-      LeaderboardStateError _ => LeaderboardError(
+      LeaderboardStateLoaded l => LeaderboardList(
+        entries: l.results,
+        onRefresh: _bloc.refresh,
+      ),
+      LeaderboardStateError e => LeaderboardError(
         onRetry: _bloc.getLeaderboard,
+        errorType: e.errorType,
+        message: e.message,
       ),
       _ => const LeaderboardLoading(),
     },

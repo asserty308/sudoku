@@ -4,17 +4,29 @@ import 'package:sudoku/app/leaderboard/ui/widgets/leaderboard_tile.dart';
 import 'package:sudoku/game/data/models/leaderboard_entry_model.dart';
 
 class LeaderboardList extends StatelessWidget {
-  const LeaderboardList({super.key, required this.entries});
+  const LeaderboardList({super.key, required this.entries, this.onRefresh});
 
   final List<LeaderboardEntryModel> entries;
+  final Future<void> Function()? onRefresh;
 
   @override
   Widget build(BuildContext context) {
     if (entries.isEmpty) {
-      return const EmptyLeaderboard();
+      return onRefresh != null
+          ? RefreshIndicator(
+              onRefresh: onRefresh!,
+              child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.7,
+                  child: const EmptyLeaderboard(),
+                ),
+              ),
+            )
+          : const EmptyLeaderboard();
     }
 
-    return ListView.separated(
+    final listView = ListView.separated(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       itemCount: entries.length,
       itemBuilder: (context, index) =>
@@ -22,5 +34,9 @@ class LeaderboardList extends StatelessWidget {
       separatorBuilder: (context, index) =>
           const Divider(height: 1, indent: 16, endIndent: 16),
     );
+
+    return onRefresh != null
+        ? RefreshIndicator(onRefresh: onRefresh!, child: listView)
+        : listView;
   }
 }

@@ -32,6 +32,11 @@
     "leaderboardPageTitle": "Leaderboard",
     "leaderboardPageErrorMessage": "An unexpected error occured. Please try again.",
     "leaderboardPageErrorButton": "Reload leaderboard",
+    "leaderboardPageNetworkError": "Unable to connect to the internet. Please check your connection and try again.",
+    "leaderboardPageStorageError": "Unable to access saved data. Please restart the app and try again.",
+    "leaderboardPageUnknownError": "Something went wrong. Please try again later.",
+    "leaderboardPageRetryButton": "Retry",
+    "leaderboardPageRefreshTooltip": "Pull down to refresh",
     "leaderboardPageEmpty": "No entries available",
     "leaderboardPageRankingFormat": "{rank}.",
     "@leaderboardPageRankingFormat": {

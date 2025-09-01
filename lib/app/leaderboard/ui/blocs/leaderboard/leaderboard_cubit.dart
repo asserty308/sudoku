@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,9 +14,12 @@ class LeaderboardCubit extends Cubit<LeaderboardState> {
 
   final GetLeaderboardUseCase getLeaderboardUseCase;
 
-  /// Loads the leaderboard of the currently selected diffictulty.
-  /// Emits a [LeaderboardError] when an error occurs.
+  /// Loads the leaderboard of the currently selected difficulty.
+  /// Emits specific error states based on the error type.
   Future<void> getLeaderboard() async {
+    if (state is LeaderboardStateLoading)
+      return; // Prevent multiple simultaneous requests
+
     emit(LeaderboardStateLoading());
 
     try {
@@ -23,7 +27,32 @@ class LeaderboardCubit extends Cubit<LeaderboardState> {
       emit(LeaderboardStateLoaded(results: results));
     } catch (e) {
       log('Error loading leaderboard', error: e);
-      emit(LeaderboardStateError());
+      emit(_handleError(e));
+    }
+  }
+
+  /// Refresh the leaderboard data
+  Future<void> refresh() async {
+    await getLeaderboard();
+  }
+
+  LeaderboardStateError _handleError(dynamic error) {
+    if (error is SocketException || error is HttpException) {
+      return LeaderboardStateError(
+        errorType: LeaderboardErrorType.network,
+        message: 'Network connection failed',
+      );
+    } else if (error is FormatException ||
+        error.toString().contains('storage')) {
+      return LeaderboardStateError(
+        errorType: LeaderboardErrorType.storage,
+        message: 'Failed to access local data',
+      );
+    } else {
+      return LeaderboardStateError(
+        errorType: LeaderboardErrorType.unknown,
+        message: error.toString(),
+      );
     }
   }
 }
