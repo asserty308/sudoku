@@ -278,6 +278,18 @@ abstract class AppLocalizations {
   /// **'No entries available'**
   String get leaderboardPageEmpty;
 
+  /// No description provided for @leaderboardPageEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No Leaderboard Yet'**
+  String get leaderboardPageEmptyTitle;
+
+  /// No description provided for @leaderboardPageEmptyDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete a game to see your time on the leaderboard!'**
+  String get leaderboardPageEmptyDescription;
+
   /// No description provided for @leaderboardPageRankingFormat.
   ///
   /// In en, this message translates to:

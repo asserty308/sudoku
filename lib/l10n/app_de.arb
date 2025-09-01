@@ -38,6 +38,8 @@
     "leaderboardPageRetryButton": "Wiederholen",
     "leaderboardPageRefreshTooltip": "Nach unten ziehen zum Aktualisieren",
     "leaderboardPageEmpty": "Keine Einträge verfügbar",
+    "leaderboardPageEmptyTitle": "Noch keine Bestenliste",
+    "leaderboardPageEmptyDescription": "Beende ein Spiel, um deine Zeit in der Bestenliste zu sehen!",
     "leaderboardPageRankingFormat": "{rank}.",
     "@leaderboardPageRankingFormat": {
         "placeholders": {

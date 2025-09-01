@@ -106,6 +106,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get leaderboardPageEmpty => 'No entries available';
 
   @override
+  String get leaderboardPageEmptyTitle => 'No Leaderboard Yet';
+
+  @override
+  String get leaderboardPageEmptyDescription =>
+      'Complete a game to see your time on the leaderboard!';
+
+  @override
   String leaderboardPageRankingFormat(int rank) {
     return '$rank.';
   }

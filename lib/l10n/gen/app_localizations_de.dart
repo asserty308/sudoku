@@ -107,6 +107,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get leaderboardPageEmpty => 'Keine Einträge verfügbar';
 
   @override
+  String get leaderboardPageEmptyTitle => 'Noch keine Bestenliste';
+
+  @override
+  String get leaderboardPageEmptyDescription =>
+      'Beende ein Spiel, um deine Zeit in der Bestenliste zu sehen!';
+
+  @override
   String leaderboardPageRankingFormat(int rank) {
     return '$rank.';
   }

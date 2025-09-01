@@ -19,7 +19,7 @@ class EmptyLeaderboard extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             Text(
-              'No Leaderboard Yet',
+              context.l10n.leaderboardPageEmptyTitle,
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 color: Theme.of(context).colorScheme.onSurfaceVariant,
               ),
@@ -35,7 +35,7 @@ class EmptyLeaderboard extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              'Complete a game to see your time on the leaderboard!',
+              context.l10n.leaderboardPageEmptyDescription,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: Theme.of(context).colorScheme.outline,
               ),

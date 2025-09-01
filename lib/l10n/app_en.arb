@@ -38,6 +38,8 @@
     "leaderboardPageRetryButton": "Retry",
     "leaderboardPageRefreshTooltip": "Pull down to refresh",
     "leaderboardPageEmpty": "No entries available",
+    "leaderboardPageEmptyTitle": "No Leaderboard Yet",
+    "leaderboardPageEmptyDescription": "Complete a game to see your time on the leaderboard!",
     "leaderboardPageRankingFormat": "{rank}.",
     "@leaderboardPageRankingFormat": {
         "placeholders": {
