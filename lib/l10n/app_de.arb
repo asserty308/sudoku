@@ -29,8 +29,28 @@
     "systemTheme": "System",
     "lightTheme": "Hell",
     "darkTheme": "Dunkel",
+    "leaderboardPageTitle": "Bestenliste",
     "leaderboardPageErrorMessage": "Ein Fehler ist aufgetreten. Bitte versuche es erneut.",
     "leaderboardPageErrorButton": "Erneut laden",
+    "leaderboardPageEmpty": "Keine Einträge verfügbar",
+    "leaderboardPageRankingFormat": "{rank}.",
+    "@leaderboardPageRankingFormat": {
+        "placeholders": {
+            "rank": {
+                "type": "int",
+                "example": "1"
+            }
+        }
+    },
+    "leaderboardPageTimeFormat": "{time} min",
+    "@leaderboardPageTimeFormat": {
+        "placeholders": {
+            "time": {
+                "type": "String",
+                "example": "02:30"
+            }
+        }
+    },
     "homePageTitle": "Sudoku",
     "homePageSubtitle": "Fordere deinen Verstand mit jedem Gitter heraus",
     "playButton": "Spielen"

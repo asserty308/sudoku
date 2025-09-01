@@ -224,6 +224,12 @@ abstract class AppLocalizations {
   /// **'Dark'**
   String get darkTheme;
 
+  /// No description provided for @leaderboardPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Leaderboard'**
+  String get leaderboardPageTitle;
+
   /// No description provided for @leaderboardPageErrorMessage.
   ///
   /// In en, this message translates to:
@@ -235,6 +241,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reload leaderboard'**
   String get leaderboardPageErrorButton;
+
+  /// No description provided for @leaderboardPageEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No entries available'**
+  String get leaderboardPageEmpty;
+
+  /// No description provided for @leaderboardPageRankingFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'{rank}.'**
+  String leaderboardPageRankingFormat(int rank);
+
+  /// No description provided for @leaderboardPageTimeFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'{time} min'**
+  String leaderboardPageTimeFormat(String time);
 
   /// No description provided for @homePageTitle.
   ///

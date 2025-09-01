@@ -29,8 +29,28 @@
     "systemTheme": "System",
     "lightTheme": "Light",
     "darkTheme": "Dark",
+    "leaderboardPageTitle": "Leaderboard",
     "leaderboardPageErrorMessage": "An unexpected error occured. Please try again.",
     "leaderboardPageErrorButton": "Reload leaderboard",
+    "leaderboardPageEmpty": "No entries available",
+    "leaderboardPageRankingFormat": "{rank}.",
+    "@leaderboardPageRankingFormat": {
+        "placeholders": {
+            "rank": {
+                "type": "int",
+                "example": "1"
+            }
+        }
+    },
+    "leaderboardPageTimeFormat": "{time} min",
+    "@leaderboardPageTimeFormat": {
+        "placeholders": {
+            "time": {
+                "type": "String",
+                "example": "02:30"
+            }
+        }
+    },
     "homePageTitle": "Sudoku",
     "homePageSubtitle": "Challenge your mind with every grid",
     "playButton": "Play"

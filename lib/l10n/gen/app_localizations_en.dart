@@ -75,11 +75,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get darkTheme => 'Dark';
 
   @override
+  String get leaderboardPageTitle => 'Leaderboard';
+
+  @override
   String get leaderboardPageErrorMessage =>
       'An unexpected error occured. Please try again.';
 
   @override
   String get leaderboardPageErrorButton => 'Reload leaderboard';
+
+  @override
+  String get leaderboardPageEmpty => 'No entries available';
+
+  @override
+  String leaderboardPageRankingFormat(int rank) {
+    return '$rank.';
+  }
+
+  @override
+  String leaderboardPageTimeFormat(String time) {
+    return '$time min';
+  }
 
   @override
   String get homePageTitle => 'Sudoku';

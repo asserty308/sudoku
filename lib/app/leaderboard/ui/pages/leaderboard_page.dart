@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_core/flutter_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sudoku/app/leaderboard/data/providers/providers.dart';
 import 'package:sudoku/app/leaderboard/ui/blocs/leaderboard/leaderboard_cubit.dart';
@@ -13,21 +14,27 @@ class LeaderboardPage extends ConsumerStatefulWidget {
   ConsumerState<LeaderboardPage> createState() => _LeaderboardPageState();
 }
 
-class _LeaderboardPageState extends ConsumerState<LeaderboardPage> {
+class _LeaderboardPageState extends AppConsumerState<LeaderboardPage> {
   late final _bloc = LeaderboardCubit(
     getLeaderboardUseCase: ref.read(getLeaderboardProvider),
   );
 
   @override
-  void initState() {
-    super.initState();
+  void onUIReady() {
+    super.onUIReady();
 
     _bloc.getLeaderboard();
   }
 
   @override
+  void dispose() {
+    _bloc.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: Text('Leaderboard')),
+    appBar: AppBar(title: Text(context.l10n.leaderboardPageTitle)),
     body: _bodyBuilder,
   );
 
@@ -42,7 +49,7 @@ class _LeaderboardPageState extends ConsumerState<LeaderboardPage> {
 
   Widget _leaderboardList(List<LeaderboardEntryModel> results) =>
       results.isEmpty
-      ? Center(child: Text('No entries available'))
+      ? Center(child: Text(context.l10n.leaderboardPageEmpty))
       : ListView.separated(
           itemCount: results.length,
           itemBuilder: (context, index) =>
@@ -51,9 +58,16 @@ class _LeaderboardPageState extends ConsumerState<LeaderboardPage> {
         );
 
   Widget _leaderboardTile(LeaderboardEntryModel entry, int index) => ListTile(
-    leading: SizedBox(width: 50, child: Center(child: Text('${index + 1}.'))),
+    leading: SizedBox(
+      width: 50,
+      child: Center(
+        child: Text(context.l10n.leaderboardPageRankingFormat(index + 1)),
+      ),
+    ),
     title: Text(entry.username),
-    trailing: Text('${entry.formattedDuration} min'),
+    trailing: Text(
+      context.l10n.leaderboardPageTimeFormat(entry.formattedDuration),
+    ),
   );
 
   Widget get _progressIndicator =>
