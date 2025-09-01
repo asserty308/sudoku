@@ -17,8 +17,9 @@ class LeaderboardCubit extends Cubit<LeaderboardState> {
   /// Loads the leaderboard of the currently selected difficulty.
   /// Emits specific error states based on the error type.
   Future<void> getLeaderboard() async {
-    if (state is LeaderboardStateLoading)
+    if (state is LeaderboardStateLoading) {
       return; // Prevent multiple simultaneous requests
+    }
 
     emit(LeaderboardStateLoading());
 
