@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 1.0.1+9
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.9.0
   
 dependencies:
   cupertino_icons: ^1.0.8
@@ -12,15 +12,20 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
+  flutter_core:
+    git:
+      url: git@github.com:asserty308/flutter_core.git
+      tag_pattern: v{{version}}
+    version: ^1.0.3
   flutter_localizations:
     sdk: flutter
   flutter_riverpod: ^2.6.1
-  go_router: ^16.0.0
+  go_router: ^16.2.1
   intl: ^0.20.2
-  package_info_plus: ^8.3.0
+  package_info_plus: ^8.3.1
   shared_preferences: ^2.5.3
   sudoku_solver_generator: ^2.1.0+1
-  url_launcher: ^6.3.1
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_launcher_icons: ^0.14.4
