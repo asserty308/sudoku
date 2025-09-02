@@ -30,53 +30,42 @@ class _GamePageState extends ConsumerState<GamePage> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    body: _bodyBuilder,
-  );
+  Widget build(BuildContext context) => Scaffold(body: _bodyBuilder);
 
   Widget get _bodyBuilder => BlocBuilder<SudokuCubit, SudokuState>(
     bloc: _bloc,
     builder: (context, state) => switch (state) {
       SudokuLoaded state => _body(state),
       _ => const Center(child: CircularProgressIndicator.adaptive()),
-    }
+    },
   );
 
-  Widget _body(SudokuLoaded state) => Stack(
-    children: [
-      Align(
-        alignment: Alignment.center,
-        child: _board(state),
-      ),
-      Align(
-        alignment: Alignment.bottomRight,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _leaderboardButton,
-            _settingsButton,
-          ],
+  Widget _body(SudokuLoaded state) => SafeArea(
+    child: Stack(
+      children: [
+        Align(alignment: Alignment.center, child: _board(state)),
+        Align(
+          alignment: Alignment.bottomRight,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [_leaderboardButton, _settingsButton],
+          ),
         ),
-      ),
-      Align(
-        alignment: Alignment.topRight,
-        child: _timerWidget(state),
-      )
-    ],
+        Align(alignment: Alignment.topRight, child: _timerWidget(state)),
+      ],
+    ),
   );
 
-  Widget _board(SudokuLoaded state) => SudokuBoard(
-    model: state.model,
-    onGameWon: () => _onGameWon(state),
-  );
+  Widget _board(SudokuLoaded state) =>
+      SudokuBoard(model: state.model, onGameWon: () => _onGameWon(state));
 
   Widget get _leaderboardButton => IconButton(
-    onPressed: () => appRouter.push('/leaderboard'), 
+    onPressed: () => appRouter.push('/leaderboard'),
     icon: const Icon(Icons.leaderboard),
   );
 
   Widget get _settingsButton => IconButton(
-    onPressed: () => appRouter.push('/settings'), 
+    onPressed: () => appRouter.push('/settings'),
     icon: const Icon(Icons.settings),
   );
 
@@ -101,7 +90,7 @@ class _GamePageState extends ConsumerState<GamePage> {
     final duration = now.difference(state.timeStarted).inSeconds;
 
     await showDialog(
-      context: context, 
+      context: context,
       builder: (context) => AlertDialog(
         title: Text(context.l10n.victoryDialogTitle),
         actions: [
@@ -109,7 +98,7 @@ class _GamePageState extends ConsumerState<GamePage> {
             onPressed: () {
               context.pop();
               _buildNewGame();
-            }, 
+            },
             child: Text(context.l10n.victoryDialogDismiss),
           ),
         ],
@@ -119,7 +108,7 @@ class _GamePageState extends ConsumerState<GamePage> {
     if (!mounted) {
       return;
     }
-    
+
     final username = await showDialog<String>(
       context: context,
       builder: (context) {
@@ -148,7 +137,9 @@ class _GamePageState extends ConsumerState<GamePage> {
       return;
     }
 
-    await ref.read(onGameWonUseCaseProvider).execute(now, duration, state.difficulty, username!);
+    await ref
+        .read(onGameWonUseCaseProvider)
+        .execute(now, duration, state.difficulty, username!);
 
     if (!mounted) {
       return;
