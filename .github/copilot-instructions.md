@@ -1,0 +1,12 @@
+- Use flutter_bloc cubits for state management.
+- Use riverpod for dependency injection.
+- Use go_router for navigation.
+- Use clean architecture principles.
+- Create use cases for business logic.
+- Always consider maintainability.
+- Prefer `const` constructions when possible.
+- Write unit tests for all features.
+- Document all public APIs.
+- Use descriptive names for all classes, methods, and variables.
+- Avoid using magic numbers and strings.
+- Keep widget build methods clean and concise.
