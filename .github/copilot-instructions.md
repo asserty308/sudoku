@@ -17,3 +17,5 @@
 - Use dart formatting tools like `dart format` to maintain code style.
 - Avoid unnecessary complexity in your code.
 - Keep your widget tree shallow.
+- Use `flutter_localizations` for localization support.
+- Put localization files into the lib/l10n directory.
