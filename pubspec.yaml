@@ -8,7 +8,6 @@ environment:
   
 dependencies:
   cupertino_icons: ^1.0.8
-  fast_noise: ^2.0.0
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
@@ -36,11 +35,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
-
-  # fonts:
-  #   - family: IndieFlower
-  #     fonts:
-  #       - asset: fonts/IndieFlower/IndieFlower-Regular.ttf
 
 # dart run flutter_launcher_icons
 flutter_launcher_icons:
