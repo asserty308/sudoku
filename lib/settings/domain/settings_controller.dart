@@ -9,7 +9,7 @@ import 'package:sudoku/app/data/repositories/app_prefs.dart';
 /// uses the SettingsService to store and retrieve user settings.
 class SettingsController with ChangeNotifier {
   SettingsController({required this.sharedPrefs});
-  
+
   final SharedPreferencesAsync sharedPrefs;
 
   // Make ThemeMode a private variable so it is not updated directly without

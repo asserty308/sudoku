@@ -7,7 +7,8 @@ import 'package:sudoku/game/data/models/difficulty.dart';
 import 'package:sudoku/game/data/models/leaderboard_entry_model.dart';
 
 extension AppPreferences on SharedPreferencesAsync {
-  Future<void> setDifficulty(Difficulty difficulty) => setString(kDifficultyKey, difficulty.name);
+  Future<void> setDifficulty(Difficulty difficulty) =>
+      setString(kDifficultyKey, difficulty.name);
 
   Future<Difficulty> get difficulty async {
     final cachedDifficulty = await getString(kDifficultyKey) ?? '';
@@ -20,23 +21,33 @@ extension AppPreferences on SharedPreferencesAsync {
     ThemeMode.dark => setInt(kPreferredThemeKey, 2),
   };
 
-  Future<ThemeMode> get preferredTheme async => switch (await getInt(kPreferredThemeKey)) {
-    1 => ThemeMode.light,
-    2 => ThemeMode.dark,
-    _ => ThemeMode.system,
-  };
+  Future<ThemeMode> get preferredTheme async =>
+      switch (await getInt(kPreferredThemeKey)) {
+        1 => ThemeMode.light,
+        2 => ThemeMode.dark,
+        _ => ThemeMode.system,
+      };
 
-  Future<void> addTimeToLeaderboard(Difficulty difficulty, LeaderboardEntryModel entry) async {
+  Future<void> addTimeToLeaderboard(
+    Difficulty difficulty,
+    LeaderboardEntryModel entry,
+  ) async {
     final currentLeaderboard = await getLeaderboard(difficulty);
     currentLeaderboard.add(entry);
-    await setStringList(leaderboardDifficultyKey(difficulty), currentLeaderboard.map((e) => jsonEncode(e.toJson())).toList());
+    await setStringList(
+      leaderboardDifficultyKey(difficulty),
+      currentLeaderboard.map((e) => jsonEncode(e.toJson())).toList(),
+    );
   }
 
-  Future<List<LeaderboardEntryModel>> getLeaderboard(Difficulty difficulty) async {
-    final values = await getStringList('leaderboard_${difficulty.name}') ?? <String>[];
+  Future<List<LeaderboardEntryModel>> getLeaderboard(
+    Difficulty difficulty,
+  ) async {
+    final values =
+        await getStringList('leaderboard_${difficulty.name}') ?? <String>[];
     return values
-      .map((e) => LeaderboardEntryModel.fromJson(jsonDecode(e)))
-      .toList()
-      ..sort((a,b) => a.durationInSeconds.compareTo(b.durationInSeconds));
+        .map((e) => LeaderboardEntryModel.fromJson(jsonDecode(e)))
+        .toList()
+      ..sort((a, b) => a.durationInSeconds.compareTo(b.durationInSeconds));
   }
 }

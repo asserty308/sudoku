@@ -6,8 +6,9 @@ class SudokuRepo {
   SudokuRepo({required this.sharedPrefs});
 
   final SharedPreferencesAsync sharedPrefs;
-  
-  Future<void> setDifficulty(Difficulty difficulty) => sharedPrefs.setDifficulty(difficulty);
+
+  Future<void> setDifficulty(Difficulty difficulty) =>
+      sharedPrefs.setDifficulty(difficulty);
 
   Future<Difficulty> getDifficulty() => sharedPrefs.difficulty;
 }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_core/flutter_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sudoku/game/data/providers/providers.dart';
@@ -18,13 +19,13 @@ class GamePage extends ConsumerStatefulWidget {
   ConsumerState<GamePage> createState() => _GamePageState();
 }
 
-class _GamePageState extends ConsumerState<GamePage> {
+class _GamePageState extends AppConsumerState<GamePage> {
   late final _bloc = ref.read(sudokuCubitProvider);
   Timer? _timer;
 
   @override
-  void initState() {
-    super.initState();
+  void onUIReady() {
+    super.onUIReady();
 
     _buildNewGame();
   }

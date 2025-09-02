@@ -10,9 +10,7 @@ import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 part 'sudoku_state.dart';
 
 class SudokuCubit extends Cubit<SudokuState> {
-  SudokuCubit({
-    required this.getDifficultyUseCase,
-  }) : super(SudokuInitial());
+  SudokuCubit({required this.getDifficultyUseCase}) : super(SudokuInitial());
 
   final GetDifficultyUseCase getDifficultyUseCase;
 
@@ -22,19 +20,25 @@ class SudokuCubit extends Cubit<SudokuState> {
     final difficulty = await getDifficultyUseCase.execute();
 
     final generator = SudokuGenerator(
-      emptySquares: difficulty.emptySquares, 
+      emptySquares: difficulty.emptySquares,
       uniqueSolution: true,
     );
 
     final model = SudokuModel(
-      board: generator.newSudoku, 
-      solution: generator.newSudokuSolved
+      board: generator.newSudoku,
+      solution: generator.newSudokuSolved,
     );
 
     final timeStarted = DateTime.now();
 
     log('Building new game with difficulty ${difficulty.name}');
 
-    emit(SudokuLoaded(model: model, timeStarted: timeStarted, difficulty: difficulty));
+    emit(
+      SudokuLoaded(
+        model: model,
+        timeStarted: timeStarted,
+        difficulty: difficulty,
+      ),
+    );
   }
 }

@@ -1,19 +1,15 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:sudoku/app/domain/media_query.dart';
+import 'package:flutter_core/flutter_core.dart';
 import 'package:sudoku/app/domain/theme.dart';
-import 'package:sudoku/game/data/models/sudoku_model.dart';
 import 'package:sudoku/app/ui/styles/colors.dart';
+import 'package:sudoku/game/data/models/sudoku_model.dart';
 import 'package:sudoku/game/domain/use_cases/handle_keyboad_input_use_case.dart';
 import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 
 class SudokuBoard extends StatefulWidget {
-  const SudokuBoard({
-    super.key, 
-    required this.model, 
-    required this.onGameWon,
-  });
+  const SudokuBoard({super.key, required this.model, required this.onGameWon});
 
   final SudokuModel model;
   final VoidCallback onGameWon;
@@ -45,7 +41,7 @@ class _SudokuBoardState extends State<SudokuBoard> {
 
   @override
   Widget build(BuildContext context) => Focus(
-    focusNode: _focusNode, 
+    focusNode: _focusNode,
     autofocus: true,
     onKeyEvent: (focusNode, event) {
       final enterValue = handleKeyboadInputUseCase.execute(event);
@@ -59,16 +55,13 @@ class _SudokuBoardState extends State<SudokuBoard> {
     },
     child: _board,
   );
-  
+
   Widget get _board => Column(
     mainAxisSize: MainAxisSize.min,
     children: [
       ...List.generate(9, _row),
       if (_selectedField != null)
-        Padding(
-          padding: const EdgeInsets.only(top: 16),
-          child: _inputRow,
-        ),
+        Padding(padding: const EdgeInsets.only(top: 16), child: _inputRow),
     ],
   );
 
@@ -85,13 +78,11 @@ class _SudokuBoardState extends State<SudokuBoard> {
     return Container(
       width: _buttonSize,
       height: _buttonSize,
-      decoration: BoxDecoration(
-        border: Border.all(),
-        color: _tileColor(x, y),
-      ),
+      decoration: BoxDecoration(border: Border.all(), color: _tileColor(x, y)),
       child: TextButton(
-        onPressed: editable ? () => _onEdit(x, y)  : null, 
-        child: Text(value, style: TextStyle(fontSize: 21),),
+        style: TextButton.styleFrom(padding: EdgeInsets.zero),
+        onPressed: editable ? () => _onEdit(x, y) : null,
+        child: Text(value, style: TextStyle(fontSize: 21)),
       ),
     );
   }
@@ -113,8 +104,9 @@ class _SudokuBoardState extends State<SudokuBoard> {
         ),
       ),
       child: TextButton(
-        onPressed: () => _onInput(value), 
-        child: Text('$value', style: TextStyle(fontSize: 21),),
+        style: TextButton.styleFrom(padding: EdgeInsets.zero),
+        onPressed: () => _onInput(value),
+        child: Text('$value', style: TextStyle(fontSize: 21)),
       ),
     );
   }
@@ -141,7 +133,7 @@ class _SudokuBoardState extends State<SudokuBoard> {
   }
 
   void _onEdit(int x, int y) => setState(() {
-    _selectedField = (x:x,y:y);
+    _selectedField = (x: x, y: y);
   });
 
   void _onInput(int value) {

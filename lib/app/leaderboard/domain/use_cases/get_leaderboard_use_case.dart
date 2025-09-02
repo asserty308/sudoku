@@ -10,7 +10,7 @@ class GetLeaderboardUseCase {
 
   Future<List<LeaderboardEntryModel>> execute() async {
     final difficulty = await sharedPrefs.difficulty;
-    
+
     logger.i('Getting leaderboard for difficulty: $difficulty');
 
     return await sharedPrefs.getLeaderboard(difficulty);

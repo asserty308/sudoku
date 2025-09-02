@@ -7,15 +7,18 @@ final appRouter = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      pageBuilder: (context, state) => const NoTransitionPage(child: GamePage()),
+      pageBuilder: (context, state) =>
+          const NoTransitionPage(child: GamePage()),
     ),
     GoRoute(
       path: '/leaderboard',
-      pageBuilder: (context, state) => const NoTransitionPage(child: LeaderboardPage()),
+      pageBuilder: (context, state) =>
+          const NoTransitionPage(child: LeaderboardPage()),
     ),
     GoRoute(
       path: '/settings',
-      pageBuilder: (context, state) => const NoTransitionPage(child: SettingsPage()),
-    )
-  ]
+      pageBuilder: (context, state) =>
+          const NoTransitionPage(child: SettingsPage()),
+    ),
+  ],
 );

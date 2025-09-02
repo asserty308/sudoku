@@ -5,7 +5,7 @@ import 'package:sudoku/app/domain/duration.dart';
 
 class SudokuTimer extends StatefulWidget {
   const SudokuTimer({
-    super.key, 
+    super.key,
     required this.startTime,
     required this.onTimerCreated,
   });

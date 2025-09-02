@@ -6,5 +6,6 @@ class SetDifficultyUseCase {
 
   final SudokuRepo sudokuRepo;
 
-  Future<void> execute(Difficulty difficulty) => sudokuRepo.setDifficulty(difficulty);
+  Future<void> execute(Difficulty difficulty) =>
+      sudokuRepo.setDifficulty(difficulty);
 }

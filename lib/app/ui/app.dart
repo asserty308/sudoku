@@ -18,7 +18,7 @@ class _MyAppState extends ConsumerState<MyApp> {
 
   @override
   Widget build(BuildContext context) => ListenableBuilder(
-    listenable: _settingsController, 
+    listenable: _settingsController,
     builder: (context, child) => _app,
   );
 
