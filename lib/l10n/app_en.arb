@@ -60,5 +60,12 @@
     },
     "homePageTitle": "Sudoku",
     "homePageSubtitle": "Challenge your mind with every grid",
-    "playButton": "Play"
+    "playButton": "Play",
+    "enterYourNameDialogTitle": "Enter your name",
+    "enterYourNameHint": "Your name",
+    "cancelButton": "Cancel",
+    "submitButton": "Submit",
+    "connectionErrorTitle": "Connection Error",
+    "storageErrorTitle": "Storage Error",
+    "unexpectedErrorTitle": "Unexpected Error"
 }

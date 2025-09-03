@@ -5,12 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_core/flutter_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sudoku/app/domain/app_router.dart';
 import 'package:sudoku/game/data/providers/providers.dart';
 import 'package:sudoku/game/ui/blocs/sudoku/sudoku_cubit.dart';
+import 'package:sudoku/game/ui/widgets/board.dart';
 import 'package:sudoku/game/ui/widgets/timer.dart';
 import 'package:sudoku/l10n/l10n.dart';
-import 'package:sudoku/app/domain/app_router.dart';
-import 'package:sudoku/game/ui/widgets/board.dart';
 
 class GamePage extends ConsumerStatefulWidget {
   const GamePage({super.key});
@@ -115,19 +115,21 @@ class _GamePageState extends AppConsumerState<GamePage> {
       builder: (context) {
         TextEditingController textController = TextEditingController();
         return AlertDialog(
-          title: Text('Enter your name'),
+          title: Text(context.l10n.enterYourNameDialogTitle),
           content: TextField(
             controller: textController,
-            decoration: InputDecoration(hintText: 'Your name'),
+            decoration: InputDecoration(
+              hintText: context.l10n.enterYourNameHint,
+            ),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text('Cancel'),
+              child: Text(context.l10n.cancelButton),
             ),
             TextButton(
               onPressed: () => Navigator.of(context).pop(textController.text),
-              child: Text('Submit'),
+              child: Text(context.l10n.submitButton),
             ),
           ],
         );

@@ -95,11 +95,11 @@ class LeaderboardError extends StatelessWidget {
   String _getErrorTitle(BuildContext context) {
     switch (errorType) {
       case LeaderboardErrorType.network:
-        return 'Connection Error';
+        return context.l10n.connectionErrorTitle;
       case LeaderboardErrorType.storage:
-        return 'Storage Error';
+        return context.l10n.storageErrorTitle;
       case LeaderboardErrorType.unknown:
-        return 'Unexpected Error';
+        return context.l10n.unexpectedErrorTitle;
     }
   }
 

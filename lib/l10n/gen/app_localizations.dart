@@ -319,6 +319,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Play'**
   String get playButton;
+
+  /// No description provided for @enterYourNameDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your name'**
+  String get enterYourNameDialogTitle;
+
+  /// No description provided for @enterYourNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your name'**
+  String get enterYourNameHint;
+
+  /// No description provided for @cancelButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancelButton;
+
+  /// No description provided for @submitButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit'**
+  String get submitButton;
+
+  /// No description provided for @connectionErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Connection Error'**
+  String get connectionErrorTitle;
+
+  /// No description provided for @storageErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage Error'**
+  String get storageErrorTitle;
+
+  /// No description provided for @unexpectedErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Unexpected Error'**
+  String get unexpectedErrorTitle;
 }
 
 class _AppLocalizationsDelegate

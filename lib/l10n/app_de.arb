@@ -60,5 +60,12 @@
     },
     "homePageTitle": "Sudoku",
     "homePageSubtitle": "Fordere deinen Verstand mit jedem Gitter heraus",
-    "playButton": "Spielen"
+    "playButton": "Spielen",
+    "enterYourNameDialogTitle": "Gib deinen Namen ein",
+    "enterYourNameHint": "Dein Name",
+    "cancelButton": "Abbrechen",
+    "submitButton": "Bestätigen",
+    "connectionErrorTitle": "Verbindungsfehler",
+    "storageErrorTitle": "Speicherfehler",
+    "unexpectedErrorTitle": "Unerwarteter Fehler"
 }

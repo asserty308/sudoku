@@ -130,4 +130,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get playButton => 'Play';
+
+  @override
+  String get enterYourNameDialogTitle => 'Enter your name';
+
+  @override
+  String get enterYourNameHint => 'Your name';
+
+  @override
+  String get cancelButton => 'Cancel';
+
+  @override
+  String get submitButton => 'Submit';
+
+  @override
+  String get connectionErrorTitle => 'Connection Error';
+
+  @override
+  String get storageErrorTitle => 'Storage Error';
+
+  @override
+  String get unexpectedErrorTitle => 'Unexpected Error';
 }
