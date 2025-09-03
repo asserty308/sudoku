@@ -1,0 +1,71 @@
+{
+    "@@locale": "es",
+    "difficulty": "Dificultad",
+    "test": "Prueba",
+    "beginner": "Principiante",
+    "easy": "Fácil",
+    "normal": "Normal",
+    "advanced": "Avanzado",
+    "expert": "Experto",
+    "victoryDialogTitle": "Has ganado",
+    "victoryDialogDismiss": "Vale",
+    "settings": "Configuración",
+    "changedDifficultyDialogTitle": "Nuevo juego",
+    "changedDifficultyDialogBody": "La dificultad ha sido cambiada. ¿Quieres empezar un nuevo juego o continuar con el actual?",
+    "changedDifficultyDialogResume": "Continuar juego",
+    "changedDifficultyDialogNew": "Nuevo juego",
+    "osl": "Licencias Open Source",
+    "appVersion": "Versión {version}",
+    "@appVersion": {
+        "placeholders": {
+            "version": {
+                "type": "String",
+                "example": "1.0.0"
+            }
+        }
+    },
+    "sourceCode": "Código fuente",
+    "theme": "Apariencia",
+    "systemTheme": "Sistema",
+    "lightTheme": "Claro",
+    "darkTheme": "Oscuro",
+    "leaderboardPageTitle": "Clasificación",
+    "leaderboardPageErrorMessage": "Ha ocurrido un error inesperado. Por favor, inténtalo de nuevo.",
+    "leaderboardPageErrorButton": "Recargar clasificación",
+    "leaderboardPageNetworkError": "No se puede conectar a internet. Por favor, verifica tu conexión e inténtalo de nuevo.",
+    "leaderboardPageStorageError": "No se puede acceder a los datos guardados. Por favor, reinicia la aplicación e inténtalo de nuevo.",
+    "leaderboardPageUnknownError": "Algo salió mal. Por favor, inténtalo más tarde.",
+    "leaderboardPageRetryButton": "Reintentar",
+    "leaderboardPageRefreshTooltip": "Desliza hacia abajo para actualizar",
+    "leaderboardPageEmpty": "No hay entradas disponibles",
+    "leaderboardPageEmptyTitle": "Aún no hay clasificación",
+    "leaderboardPageEmptyDescription": "¡Completa un juego para ver tu tiempo en la clasificación!",
+    "leaderboardPageRankingFormat": "{rank}.",
+    "@leaderboardPageRankingFormat": {
+        "placeholders": {
+            "rank": {
+                "type": "int",
+                "example": "1"
+            }
+        }
+    },
+    "leaderboardPageTimeFormat": "{time} min",
+    "@leaderboardPageTimeFormat": {
+        "placeholders": {
+            "time": {
+                "type": "String",
+                "example": "02:30"
+            }
+        }
+    },
+    "homePageTitle": "Sudoku",
+    "homePageSubtitle": "Desafía tu mente con cada cuadrícula",
+    "playButton": "Jugar",
+    "enterYourNameDialogTitle": "Introduce tu nombre",
+    "enterYourNameHint": "Tu nombre",
+    "cancelButton": "Cancelar",
+    "submitButton": "Enviar",
+    "connectionErrorTitle": "Error de conexión",
+    "storageErrorTitle": "Error de almacenamiento",
+    "unexpectedErrorTitle": "Error inesperado"
+}
