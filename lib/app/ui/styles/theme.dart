@@ -5,7 +5,7 @@ ThemeData get lightTheme => ThemeData(
   // fontFamily: _fontFamily,
   colorScheme: _colorScheme(false),
   textTheme: _textTheme,
-  textButtonTheme: _textButtonTheme(true),
+  textButtonTheme: _textButtonTheme(false),
 );
 
 ThemeData get darkTheme => ThemeData(
@@ -29,10 +29,10 @@ TextButtonThemeData? _textButtonTheme(bool isDarkMode) => TextButtonThemeData(
   style: TextButton.styleFrom(
     foregroundColor: isDarkMode
         ? Colors.white
-        : null, // use default color on light mode
+        : Colors.black, // use default color on light mode
     disabledForegroundColor: isDarkMode
         ? Colors.white54
-        : null, // use default color on light mode
+        : Colors.black54, // use default color on light mode
     // textStyle: TextStyle(fontFamily: _fontFamily),
   ),
 );
