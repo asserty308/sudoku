@@ -15,6 +15,7 @@ class MyApp extends ConsumerStatefulWidget {
 
 class _MyAppState extends ConsumerState<MyApp> {
   late final _settingsController = ref.read(settingsControllerProvider);
+  late final _appRouter = ref.read(appRouterProvider);
 
   @override
   Widget build(BuildContext context) => ListenableBuilder(
@@ -28,7 +29,7 @@ class _MyAppState extends ConsumerState<MyApp> {
     theme: lightTheme,
     darkTheme: darkTheme,
     themeMode: _settingsController.themeMode,
-    routerConfig: appRouter,
+    routerConfig: _appRouter,
     localizationsDelegates: AppLocalizations.localizationsDelegates,
     supportedLocales: AppLocalizations.supportedLocales,
   );

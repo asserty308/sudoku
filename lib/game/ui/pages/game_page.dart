@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_core/flutter_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sudoku/app/domain/app_router.dart';
 import 'package:sudoku/game/data/providers/providers.dart';
 import 'package:sudoku/game/ui/blocs/sudoku/sudoku_cubit.dart';
 import 'package:sudoku/game/ui/widgets/board.dart';
@@ -61,12 +60,12 @@ class _GamePageState extends AppConsumerState<GamePage> {
       SudokuBoard(model: state.model, onGameWon: () => _onGameWon(state));
 
   Widget get _leaderboardButton => IconButton(
-    onPressed: () => appRouter.push('/leaderboard'),
+    onPressed: () => context.push('/leaderboard'),
     icon: const Icon(Icons.leaderboard),
   );
 
   Widget get _settingsButton => IconButton(
-    onPressed: () => appRouter.push('/settings'),
+    onPressed: () => context.push('/settings'),
     icon: const Icon(Icons.settings),
   );
 
