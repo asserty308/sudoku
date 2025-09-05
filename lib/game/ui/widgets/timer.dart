@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_core/flutter_core.dart';
 import 'package:sudoku/app/domain/duration.dart';
 
 class SudokuTimer extends StatefulWidget {
@@ -17,28 +18,30 @@ class SudokuTimer extends StatefulWidget {
   State<SudokuTimer> createState() => _SudokuTimerState();
 }
 
-class _SudokuTimerState extends State<SudokuTimer> {
+class _SudokuTimerState extends AppState<SudokuTimer> {
   var _duration = Duration.zero;
 
   @override
-  void initState() {
-    super.initState();
+  void onUIReady() {
+    super.onUIReady();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final timer = Timer.periodic(const Duration(seconds: 1), (_) {
-        if (!mounted) {
-          return;
-        }
-
-        setState(() {
-          _duration = DateTime.now().difference(widget.startTime);
-        });
-      });
-
-      widget.onTimerCreated(timer);
-    });
+    _setupTimer();
   }
 
   @override
   Widget build(BuildContext context) => Text(_duration.format);
+
+  void _setupTimer() {
+    final timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (!mounted) {
+        return;
+      }
+
+      setState(() {
+        _duration = DateTime.now().difference(widget.startTime);
+      });
+    });
+
+    widget.onTimerCreated(timer);
+  }
 }
