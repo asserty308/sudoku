@@ -13,4 +13,10 @@ final class DifficultyLoaded extends DifficultyState {
   final Difficulty difficulty;
 }
 
+final class DifficultyChanged extends DifficultyState {
+  DifficultyChanged({required this.difficulty});
+
+  final Difficulty difficulty;
+}
+
 final class DifficultyError extends DifficultyState {}

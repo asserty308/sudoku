@@ -1,8 +1,8 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_core/flutter_core.dart';
 import 'package:sudoku/app/leaderboard/domain/use_cases/get_leaderboard_use_case.dart';
 import 'package:sudoku/game/data/models/leaderboard_entry_model.dart';
 
@@ -27,7 +27,7 @@ class LeaderboardCubit extends Cubit<LeaderboardState> {
       final results = await getLeaderboardUseCase.execute();
       emit(LeaderboardStateLoaded(results: results));
     } catch (e) {
-      log('Error loading leaderboard', error: e);
+      logger.e('Error loading leaderboard', error: e);
       emit(_handleError(e));
     }
   }

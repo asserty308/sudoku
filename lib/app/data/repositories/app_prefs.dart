@@ -8,21 +8,21 @@ import 'package:sudoku/game/data/models/leaderboard_entry_model.dart';
 
 extension AppPreferences on SharedPreferencesAsync {
   Future<void> setDifficulty(Difficulty difficulty) =>
-      setString(kDifficultyKey, difficulty.name);
+      setString(keyDifficulty, difficulty.name);
 
   Future<Difficulty> get difficulty async {
-    final cachedDifficulty = await getString(kDifficultyKey) ?? '';
+    final cachedDifficulty = await getString(keyDifficulty) ?? '';
     return DifficultyExt.fromString(cachedDifficulty);
   }
 
   Future<void> setPreferredTheme(ThemeMode theme) => switch (theme) {
-    ThemeMode.system => setInt(kPreferredThemeKey, 0),
-    ThemeMode.light => setInt(kPreferredThemeKey, 1),
-    ThemeMode.dark => setInt(kPreferredThemeKey, 2),
+    ThemeMode.system => setInt(keyPreferredTheme, 0),
+    ThemeMode.light => setInt(keyPreferredTheme, 1),
+    ThemeMode.dark => setInt(keyPreferredTheme, 2),
   };
 
   Future<ThemeMode> get preferredTheme async =>
-      switch (await getInt(kPreferredThemeKey)) {
+      switch (await getInt(keyPreferredTheme)) {
         1 => ThemeMode.light,
         2 => ThemeMode.dark,
         _ => ThemeMode.system,

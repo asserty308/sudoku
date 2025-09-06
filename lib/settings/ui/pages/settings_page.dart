@@ -21,12 +21,13 @@ class SettingsPage extends ConsumerStatefulWidget {
 
 class _SettingsPageState extends AppConsumerState<SettingsPage> {
   late final _settingsController = ref.read(settingsControllerProvider);
-  late final _gameBloc = ref.read(sudokuCubitProvider);
 
   late final _difficultyBloc = DifficultyCubit(
     getDifficultyUseCase: ref.read(getDifficultyUseCaseProvider),
     setDifficultyUseCase: ref.read(setDifficultyUseCaseProvider),
   );
+
+  Difficulty? newDifficulty;
 
   @override
   void onUIReady() {
@@ -36,32 +37,36 @@ class _SettingsPageState extends AppConsumerState<SettingsPage> {
     _difficultyBloc.getDifficulty();
   }
 
-  // TODO: PopScope not working with go_router https://github.com/flutter/flutter/issues/138737
   @override
-  Widget build(BuildContext context) => WillPopScope(
-    onWillPop: () async {
-      if (_difficultyBloc.difficultyChanged) {
-        await _showDifficultyChangedDialog();
-      }
-      return true;
-    },
-    child: Scaffold(
-      appBar: AppBar(title: Text(context.l10n.settings)),
-      body: ListView(
-        children: [
-          _difficultyTile,
-          _themeTile,
-          vGap16,
-          _licensesTile(context),
-          _showGitHubRepoTile(context),
-          _versionTileBuilder(context),
-        ],
+  Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(
+      title: Text(context.l10n.settings),
+      leading: IconButton(
+        onPressed: () => context.pop<Difficulty>(newDifficulty),
+        icon: Icon(Icons.arrow_back),
       ),
+    ),
+    body: ListView(
+      children: [
+        _difficultyTile,
+        _themeTile,
+        vGap16,
+        _licensesTile(context),
+        _showGitHubRepoTile(context),
+        _versionTileBuilder(context),
+      ],
     ),
   );
 
-  Widget get _difficultyTile => BlocBuilder<DifficultyCubit, DifficultyState>(
+  Widget get _difficultyTile => BlocConsumer<DifficultyCubit, DifficultyState>(
     bloc: _difficultyBloc,
+    listener: (context, state) {
+      if (state is DifficultyChanged) {
+        setState(() {
+          newDifficulty = state.difficulty;
+        });
+      }
+    },
     builder: (context, state) => ListTile(
       title: Text(context.l10n.difficulty),
       trailing: DropdownButton<Difficulty>(
@@ -120,29 +125,6 @@ class _SettingsPageState extends AppConsumerState<SettingsPage> {
 
   Widget _versionTileBuilder(BuildContext context) =>
       ListTile(subtitle: Text(context.l10n.appVersion(appPackageInfo.version)));
-
-  Future<void> _showDifficultyChangedDialog() => showDialog(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: Text(context.l10n.changedDifficultyDialogTitle),
-      content: Text(context.l10n.changedDifficultyDialogBody),
-      actions: [
-        TextButton(
-          onPressed: () {
-            context.pop();
-            _gameBloc.buildNewGame();
-          },
-          child: Text(context.l10n.changedDifficultyDialogNew),
-        ),
-        TextButton(
-          onPressed: () {
-            context.pop();
-          },
-          child: Text(context.l10n.changedDifficultyDialogResume),
-        ),
-      ],
-    ),
-  );
 
   void _changeDifficulty(Difficulty? difficulty) {
     if (difficulty == null) {

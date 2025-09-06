@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_core/flutter_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sudoku/game/data/models/difficulty.dart';
 import 'package:sudoku/game/data/providers/providers.dart';
 import 'package:sudoku/game/ui/blocs/sudoku/sudoku_cubit.dart';
 import 'package:sudoku/game/ui/widgets/board.dart';
@@ -65,19 +66,22 @@ class _GamePageState extends AppConsumerState<GamePage> {
   );
 
   Widget get _settingsButton => IconButton(
-    onPressed: () => context.push('/settings'),
+    onPressed: () async {
+      final newDifficulty = await context.push<Difficulty?>('/settings');
+
+      if (newDifficulty != null) {
+        await _showDifficultyChangedDialog();
+      }
+    },
     icon: const Icon(Icons.settings),
   );
 
-  Widget _timerWidget(SudokuLoaded state) => Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: SudokuTimer(
-      startTime: state.timeStarted,
-      onTimerCreated: (timer) {
-        _timer = timer;
-      },
-    ),
-  );
+  Widget _timerWidget(SudokuLoaded state) => SudokuTimer(
+    startTime: state.timeStarted,
+    onTimerCreated: (timer) {
+      _timer = timer;
+    },
+  ).paddingAll(8.0);
 
   void _buildNewGame() {
     _bloc.buildNewGame();
@@ -142,9 +146,30 @@ class _GamePageState extends AppConsumerState<GamePage> {
     await ref
         .read(onGameWonUseCaseProvider)
         .execute(now, duration, state.difficulty, username!);
+  }
 
-    if (!mounted) {
-      return;
-    }
+  Future<void> _showDifficultyChangedDialog() async {
+    await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(context.l10n.changedDifficultyDialogTitle),
+        content: Text(context.l10n.changedDifficultyDialogBody),
+        actions: [
+          TextButton(
+            onPressed: () {
+              context.pop(); // Dialog
+              _bloc.buildNewGame();
+            },
+            child: Text(context.l10n.changedDifficultyDialogNew),
+          ),
+          TextButton(
+            onPressed: () {
+              context.pop(); // Dialog
+            },
+            child: Text(context.l10n.changedDifficultyDialogResume),
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:flutter_core/flutter_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sudoku/app/data/repositories/app_prefs.dart';
 import 'package:sudoku/game/data/models/difficulty.dart';
@@ -25,7 +24,7 @@ class OnGameWonUseCase {
       await sharedPrefs.addTimeToLeaderboard(difficulty, entry);
       return true;
     } catch (e) {
-      log('Error adding time to leaderboard', error: e);
+      logger.e('Error adding time to leaderboard', error: e);
       return false;
     }
   }

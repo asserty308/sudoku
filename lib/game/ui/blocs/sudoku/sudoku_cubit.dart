@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_core/flutter_core.dart';
 import 'package:sudoku/game/data/models/difficulty.dart';
 import 'package:sudoku/game/data/models/sudoku_model.dart';
 import 'package:sudoku/game/domain/use_cases/get_difficulty_use_case.dart';
@@ -31,7 +30,7 @@ class SudokuCubit extends Cubit<SudokuState> {
 
     final timeStarted = DateTime.now();
 
-    log('Building new game with difficulty ${difficulty.name}');
+    logger.i('Building new game with difficulty ${difficulty.name}');
 
     emit(
       SudokuLoaded(

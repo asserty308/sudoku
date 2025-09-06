@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_core/flutter_core.dart';
 import 'package:sudoku/app/domain/theme.dart';
@@ -151,7 +149,7 @@ class _SudokuBoardState extends State<SudokuBoard> {
         widget.onGameWon();
       }
     } on InvalidSudokuConfigurationException {
-      log('User entered a wrong number');
+      logger.i('User entered a wrong number');
     }
   }
 }
