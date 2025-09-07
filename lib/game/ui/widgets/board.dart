@@ -58,6 +58,9 @@ class _SudokuBoardState extends State<SudokuBoard> {
       if (enterValue > 0) {
         _onInput(enterValue);
         return KeyEventResult.handled;
+      } else if (enterValue == -1) {
+        _onDelete();
+        return KeyEventResult.handled;
       }
 
       return KeyEventResult.ignored;
@@ -98,7 +101,10 @@ class _SudokuBoardState extends State<SudokuBoard> {
 
   Widget get _inputRow => Row(
     mainAxisSize: MainAxisSize.min,
-    children: List.generate(9, _inputButton),
+    children: [
+      ...List.generate(9, _inputButton),
+      _deleteButton,
+    ],
   );
 
   Widget _inputButton(int index) {
@@ -119,6 +125,25 @@ class _SudokuBoardState extends State<SudokuBoard> {
       ),
     );
   }
+
+  Widget get _deleteButton => Container(
+    width: _buttonSize,
+    height: _buttonSize,
+    decoration: BoxDecoration(
+      border: Border.all(
+        color: context.isDarkMode ? Colors.white : Colors.black,
+      ),
+    ),
+    child: TextButton(
+      style: TextButton.styleFrom(padding: EdgeInsets.zero),
+      onPressed: _onDelete,
+      child: Icon(
+        Icons.backspace,
+        size: 20,
+        color: context.isDarkMode ? Colors.white : Colors.black,
+      ),
+    ),
+  );
 
   double get _buttonSize {
     final shortestSide = context.mediaSize.shortestSide;
@@ -162,5 +187,16 @@ class _SudokuBoardState extends State<SudokuBoard> {
     } on InvalidSudokuConfigurationException {
       logger.i('User entered a wrong number');
     }
+  }
+
+  void _onDelete() {
+    if (_selectedField == null) {
+      return;
+    }
+
+    setState(() {
+      _currentProgress[_selectedField!.y][_selectedField!.x] = 0;
+      _selectedField = null;
+    });
   }
 }

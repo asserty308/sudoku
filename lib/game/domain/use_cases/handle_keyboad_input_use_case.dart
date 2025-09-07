@@ -2,6 +2,7 @@ import 'package:flutter/services.dart';
 
 class HandleKeyboadInputUseCase {
   /// Returns the entered number when a number between 1-9 is entered.
+  /// Returns -1 when delete/backspace is pressed.
   /// Returns 0 otherwise.
   int execute(KeyEvent event) {
     if (event is! KeyDownEvent) {
@@ -18,6 +19,7 @@ class HandleKeyboadInputUseCase {
       LogicalKeyboardKey.digit7 || LogicalKeyboardKey.numpad7 => 7,
       LogicalKeyboardKey.digit8 || LogicalKeyboardKey.numpad8 => 8,
       LogicalKeyboardKey.digit9 || LogicalKeyboardKey.numpad9 => 9,
+      LogicalKeyboardKey.backspace || LogicalKeyboardKey.delete => -1,
       _ => 0,
     };
   }
