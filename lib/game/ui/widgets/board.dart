@@ -32,6 +32,17 @@ class _SudokuBoardState extends State<SudokuBoard> {
   }
 
   @override
+  void didUpdateWidget(SudokuBoard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    // Reset the board when a new model is provided
+    if (oldWidget.model != widget.model) {
+      _currentProgress = widget.model.boardCopy;
+      _selectedField = null; // Clear any selected field
+    }
+  }
+
+  @override
   void dispose() {
     _focusNode.dispose();
     super.dispose();

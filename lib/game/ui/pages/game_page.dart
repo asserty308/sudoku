@@ -20,7 +20,10 @@ class GamePage extends ConsumerStatefulWidget {
 }
 
 class _GamePageState extends AppConsumerState<GamePage> {
-  late final _bloc = ref.read(sudokuCubitProvider);
+  late final _bloc = SudokuCubit(
+    getDifficultyUseCase: ref.watch(getDifficultyUseCaseProvider),
+  );
+
   Timer? _timer;
 
   @override
@@ -84,6 +87,7 @@ class _GamePageState extends AppConsumerState<GamePage> {
   ).paddingAll(8.0);
 
   void _buildNewGame() {
+    _timer?.cancel(); // Cancel any existing timer
     _bloc.buildNewGame();
   }
 
@@ -158,7 +162,7 @@ class _GamePageState extends AppConsumerState<GamePage> {
           TextButton(
             onPressed: () {
               context.pop(); // Dialog
-              _bloc.buildNewGame();
+              _buildNewGame();
             },
             child: Text(context.l10n.changedDifficultyDialogNew),
           ),
