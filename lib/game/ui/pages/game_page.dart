@@ -34,6 +34,12 @@ class _GamePageState extends AppConsumerState<GamePage> {
   }
 
   @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) => Scaffold(body: _bodyBuilder);
 
   Widget get _bodyBuilder => BlocBuilder<SudokuCubit, SudokuState>(
@@ -87,7 +93,7 @@ class _GamePageState extends AppConsumerState<GamePage> {
   ).paddingAll(8.0);
 
   void _buildNewGame() {
-    _timer?.cancel(); // Cancel any existing timer
+    _timer?.cancel();
     _bloc.buildNewGame();
   }
 
@@ -144,12 +150,15 @@ class _GamePageState extends AppConsumerState<GamePage> {
     );
 
     if (username?.isEmpty ?? true) {
+      _buildNewGame();
       return;
     }
 
     await ref
         .read(onGameWonUseCaseProvider)
         .execute(now, duration, state.difficulty, username!);
+
+    _buildNewGame();
   }
 
   Future<void> _showDifficultyChangedDialog() async {

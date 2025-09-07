@@ -20,6 +20,7 @@ class SudokuTimer extends StatefulWidget {
 
 class _SudokuTimerState extends AppState<SudokuTimer> {
   var _duration = Duration.zero;
+  Timer? _timer;
 
   @override
   void onUIReady() {
@@ -29,10 +30,30 @@ class _SudokuTimerState extends AppState<SudokuTimer> {
   }
 
   @override
+  void didUpdateWidget(SudokuTimer oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    // If startTime changed, restart the timer
+    if (oldWidget.startTime != widget.startTime) {
+      _timer?.cancel();
+      _setupTimer();
+    }
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) => Text(_duration.format);
 
   void _setupTimer() {
-    final timer = Timer.periodic(const Duration(seconds: 1), (_) {
+    // Reset duration to zero for new timer
+    _duration = Duration.zero;
+
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
       if (!mounted) {
         return;
       }
@@ -42,6 +63,6 @@ class _SudokuTimerState extends AppState<SudokuTimer> {
       });
     });
 
-    widget.onTimerCreated(timer);
+    widget.onTimerCreated(_timer!);
   }
 }
