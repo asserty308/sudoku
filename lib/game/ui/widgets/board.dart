@@ -101,10 +101,7 @@ class _SudokuBoardState extends State<SudokuBoard> {
 
   Widget get _inputRow => Row(
     mainAxisSize: MainAxisSize.min,
-    children: [
-      ...List.generate(9, _inputButton),
-      _deleteButton,
-    ],
+    children: [...List.generate(9, _inputButton), _deleteButton],
   );
 
   Widget _inputButton(int index) {
