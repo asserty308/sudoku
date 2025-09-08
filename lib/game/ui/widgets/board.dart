@@ -7,10 +7,16 @@ import 'package:sudoku/game/domain/use_cases/handle_keyboad_input_use_case.dart'
 import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 
 class SudokuBoard extends StatefulWidget {
-  const SudokuBoard({super.key, required this.model, required this.onGameWon});
+  const SudokuBoard({
+    super.key,
+    required this.model,
+    required this.onGameWon,
+    this.onBoardChanged,
+  });
 
   final SudokuModel model;
   final VoidCallback onGameWon;
+  final void Function(List<List<int>> board)? onBoardChanged;
 
   @override
   State<SudokuBoard> createState() => _SudokuBoardState();
@@ -177,6 +183,9 @@ class _SudokuBoardState extends State<SudokuBoard> {
       _selectedField = null;
     });
 
+    // Notify parent about board change for state persistence
+    widget.onBoardChanged?.call(_currentProgress);
+
     try {
       if (SudokuUtilities.isSolved(_currentProgress)) {
         widget.onGameWon();
@@ -195,5 +204,8 @@ class _SudokuBoardState extends State<SudokuBoard> {
       _currentProgress[_selectedField!.y][_selectedField!.x] = 0;
       _selectedField = null;
     });
+
+    // Notify parent about board change for state persistence
+    widget.onBoardChanged?.call(_currentProgress);
   }
 }
