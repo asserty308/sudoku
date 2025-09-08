@@ -21,7 +21,7 @@ class SudokuCubit extends Cubit<SudokuState> {
 
   /// Try to restore a previously saved game state
   Future<void> restoreGameIfAvailable() async {
-    emit(SudokuLoading());
+    emit(SudokuRestoring());
 
     final savedState = await sharedPrefs.loadCurrentGameState();
     if (savedState != null) {

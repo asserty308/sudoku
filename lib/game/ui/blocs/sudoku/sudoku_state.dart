@@ -7,6 +7,8 @@ final class SudokuInitial extends SudokuState {}
 
 final class SudokuLoading extends SudokuState {}
 
+final class SudokuRestoring extends SudokuState {}
+
 final class SudokuLoaded extends SudokuState {
   SudokuLoaded({
     required this.model,

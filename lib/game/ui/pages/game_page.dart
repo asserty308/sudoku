@@ -85,6 +85,16 @@ class _GamePageState extends AppConsumerState<GamePage> with WidgetsBindingObser
     bloc: _bloc,
     builder: (context, state) => switch (state) {
       SudokuLoaded state => _body(state),
+      SudokuRestoring() => const Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CircularProgressIndicator.adaptive(),
+            SizedBox(height: 16),
+            Text('Restoring game...'),
+          ],
+        ),
+      ),
       _ => const Center(child: CircularProgressIndicator.adaptive()),
     },
   );
