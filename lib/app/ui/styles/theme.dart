@@ -16,8 +16,6 @@ ThemeData get darkTheme => ThemeData(
   textButtonTheme: _textButtonTheme(true),
 );
 
-// const String _fontFamily = 'IndieFlower';
-
 ColorScheme _colorScheme(bool isDarkMode) => ColorScheme.fromSeed(
   seedColor: Colors.deepPurple,
   brightness: isDarkMode ? Brightness.dark : Brightness.light,
