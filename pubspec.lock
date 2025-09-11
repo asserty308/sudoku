@@ -180,7 +180,7 @@ packages:
       path: "."
       resolved-ref: b858753bbc71974d81446f98217360fd9b2b878b
       tag-pattern: "v{{version}}"
-      url: "git@github.com:asserty308/flutter_core.git"
+      url: "https://github.com/asserty308/flutter_core.git"
     source: git
     version: "1.0.4"
   flutter_launcher_icons:

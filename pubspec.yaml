@@ -1,7 +1,7 @@
 name: sudoku
 description: A new Flutter project.
 publish_to: 'none'
-version: 1.0.7+15
+version: 1.0.8+16
 
 environment:
   sdk: ^3.9.0
@@ -13,7 +13,7 @@ dependencies:
   flutter_bloc: ^9.1.1
   flutter_core:
     git:
-      url: git@github.com:asserty308/flutter_core.git
+      url: https://github.com/asserty308/flutter_core.git
       tag_pattern: v{{version}}
     version: ^1.0.3
   flutter_localizations:
