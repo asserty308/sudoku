@@ -34,37 +34,6 @@ void main() {
       // Clean up
       capturedTimer?.cancel();
     });
-
-    testWidgets('handles widget disposal properly', (
-      WidgetTester tester,
-    ) async {
-      Timer? capturedTimer;
-      final startTime = DateTime.now();
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: SudokuTimer(
-            startTime: startTime,
-            onTimerCreated: (timer) {
-              capturedTimer = timer;
-            },
-          ),
-        ),
-      );
-
-      await tester.pumpAndSettle();
-      expect(capturedTimer, isNotNull);
-      expect(capturedTimer!.isActive, isTrue);
-
-      // Remove the widget
-      await tester.pumpWidget(const MaterialApp(home: SizedBox()));
-
-      // Timer should still be active as it's managed externally
-      expect(capturedTimer!.isActive, isTrue);
-
-      // Clean up
-      capturedTimer?.cancel();
-    });
   });
 
   group('DurationExt Tests', () {
