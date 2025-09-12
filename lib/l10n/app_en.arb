@@ -1,5 +1,6 @@
 {
     "@@locale": "en",
+    "appTitle": "Sudoku",
     "difficulty": "Difficulty",
     "test": "Test",
     "beginner": "Beginner",

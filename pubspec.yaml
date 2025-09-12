@@ -15,7 +15,7 @@ dependencies:
     git:
       url: https://github.com/asserty308/flutter_core.git
       tag_pattern: v{{version}}
-    version: ^1.0.3
+    version: ^1.0.7
   flutter_localizations:
     sdk: flutter
   flutter_riverpod: ^3.0.0

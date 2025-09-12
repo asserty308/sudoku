@@ -178,11 +178,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      resolved-ref: b858753bbc71974d81446f98217360fd9b2b878b
+      resolved-ref: f106bc1ded24cba9cd903bf3732c6d804baa7d95
       tag-pattern: "v{{version}}"
       url: "https://github.com/asserty308/flutter_core.git"
     source: git
-    version: "1.0.4"
+    version: "1.0.7"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:

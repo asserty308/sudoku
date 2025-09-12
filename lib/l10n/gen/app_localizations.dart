@@ -100,6 +100,12 @@ abstract class AppLocalizations {
     Locale('es'),
   ];
 
+  /// No description provided for @appTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sudoku'**
+  String get appTitle;
+
   /// No description provided for @difficulty.
   ///
   /// In en, this message translates to:

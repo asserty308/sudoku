@@ -9,6 +9,9 @@ class AppLocalizationsDe extends AppLocalizations {
   AppLocalizationsDe([String locale = 'de']) : super(locale);
 
   @override
+  String get appTitle => 'Sudoku';
+
+  @override
   String get difficulty => 'Schwierigkeitsgrad';
 
   @override
