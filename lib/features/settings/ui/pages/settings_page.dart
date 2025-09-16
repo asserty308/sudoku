@@ -8,7 +8,6 @@ import 'package:sudoku/core/config/setup.dart';
 import 'package:sudoku/features/game/data/models/difficulty.dart';
 import 'package:sudoku/features/game/data/providers/providers.dart';
 import 'package:sudoku/l10n/l10n.dart';
-import 'package:sudoku/features/settings/data/providers/providers.dart';
 import 'package:sudoku/features/settings/ui/blocs/difficulty/difficulty_cubit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -20,8 +19,6 @@ class SettingsPage extends ConsumerStatefulWidget {
 }
 
 class _SettingsPageState extends AppConsumerState<SettingsPage> {
-  late final _settingsController = ref.read(settingsControllerProvider);
-
   late final _difficultyBloc = DifficultyCubit(
     getDifficultyUseCase: ref.read(getDifficultyUseCaseProvider),
     setDifficultyUseCase: ref.read(setDifficultyUseCaseProvider),
@@ -33,7 +30,6 @@ class _SettingsPageState extends AppConsumerState<SettingsPage> {
   void onUIReady() {
     super.onUIReady();
 
-    _settingsController.loadSettings();
     _difficultyBloc.getDifficulty();
   }
 
@@ -49,7 +45,6 @@ class _SettingsPageState extends AppConsumerState<SettingsPage> {
     body: ListView(
       children: [
         _difficultyTile,
-        _themeTile,
         vGap16,
         _licensesTile(context),
         _showGitHubRepoTile(context),
@@ -81,32 +76,6 @@ class _SettingsPageState extends AppConsumerState<SettingsPage> {
             .toList(),
         onChanged: _changeDifficulty,
       ),
-    ),
-  );
-
-  Widget get _themeTile => ListTile(
-    title: Text(context.l10n.theme),
-    trailing: DropdownButton<ThemeMode>(
-      // Read the selected themeMode from the controller
-      value: _settingsController.themeMode,
-      // Call the updateThemeMode method any time the user selects a theme.
-      onChanged: (theme) => _settingsController
-          .updateThemeMode(theme)
-          .then((value) => setState(() {})),
-      items: [
-        DropdownMenuItem(
-          value: ThemeMode.system,
-          child: Text(context.l10n.systemTheme),
-        ),
-        DropdownMenuItem(
-          value: ThemeMode.light,
-          child: Text(context.l10n.lightTheme),
-        ),
-        DropdownMenuItem(
-          value: ThemeMode.dark,
-          child: Text(context.l10n.darkTheme),
-        ),
-      ],
     ),
   );
 
