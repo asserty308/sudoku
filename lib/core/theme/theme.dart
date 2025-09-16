@@ -1,36 +1,43 @@
 import 'package:flutter/material.dart';
 
-ThemeData get lightTheme => ThemeData(
-  useMaterial3: true,
-  // fontFamily: _fontFamily,
-  colorScheme: _colorScheme(false),
-  textTheme: _textTheme,
-  textButtonTheme: _textButtonTheme(false),
+const Color _kSeedColor = Colors.deepPurple;
+
+final ColorScheme _lightColorScheme = ColorScheme.fromSeed(
+  seedColor: _kSeedColor,
+  brightness: Brightness.light,
 );
 
-ThemeData get darkTheme => ThemeData(
-  useMaterial3: true,
-  // fontFamily: _fontFamily,
-  colorScheme: _colorScheme(true),
-  textTheme: _textTheme,
-  textButtonTheme: _textButtonTheme(true),
+final ColorScheme _darkColorScheme = ColorScheme.fromSeed(
+  seedColor: _kSeedColor,
+  brightness: Brightness.dark,
 );
 
-ColorScheme _colorScheme(bool isDarkMode) => ColorScheme.fromSeed(
-  seedColor: Colors.deepPurple,
-  brightness: isDarkMode ? Brightness.dark : Brightness.light,
-);
+const TextTheme _kTextTheme = TextTheme(bodyMedium: TextStyle(fontSize: 21));
 
-TextTheme get _textTheme => TextTheme(bodyMedium: TextStyle(fontSize: 21));
-
-TextButtonThemeData? _textButtonTheme(bool isDarkMode) => TextButtonThemeData(
+final TextButtonThemeData _lightTextButtonTheme = TextButtonThemeData(
   style: TextButton.styleFrom(
-    foregroundColor: isDarkMode
-        ? Colors.white
-        : Colors.black, // use default color on light mode
-    disabledForegroundColor: isDarkMode
-        ? Colors.white54
-        : Colors.black54, // use default color on light mode
-    // textStyle: TextStyle(fontFamily: _fontFamily),
+    foregroundColor: Colors.black,
+    disabledForegroundColor: Colors.black54,
   ),
+);
+
+final TextButtonThemeData _darkTextButtonTheme = TextButtonThemeData(
+  style: TextButton.styleFrom(
+    foregroundColor: Colors.white,
+    disabledForegroundColor: Colors.white54,
+  ),
+);
+
+final ThemeData lightTheme = ThemeData(
+  useMaterial3: true,
+  colorScheme: _lightColorScheme,
+  textTheme: _kTextTheme,
+  textButtonTheme: _lightTextButtonTheme,
+);
+
+final ThemeData darkTheme = ThemeData(
+  useMaterial3: true,
+  colorScheme: _darkColorScheme,
+  textTheme: _kTextTheme,
+  textButtonTheme: _darkTextButtonTheme,
 );
