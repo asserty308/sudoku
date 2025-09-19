@@ -35,7 +35,7 @@ jobs:
       run: flutter test
       
     - name: Build web (production)
-      run: flutter build web --base-href "/sudoku/"
+      run: flutter build web --wasm --base-href "/sudoku/"
       
     - name: Setup Pages
       uses: actions/configure-pages@v4
