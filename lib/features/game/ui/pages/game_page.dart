@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_core/flutter_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sudoku/core/navigation/extension/navigation_extension.dart';
 import 'package:sudoku/features/game/data/models/difficulty.dart';
 import 'package:sudoku/features/game/data/providers/providers.dart';
 import 'package:sudoku/features/game/ui/blocs/sudoku/sudoku_cubit.dart';
@@ -70,13 +71,13 @@ class _GamePageState extends AppConsumerState<GamePage> {
       SudokuBoard(model: state.model, onGameWon: () => _onGameWon(state));
 
   Widget get _leaderboardButton => IconButton(
-    onPressed: () => context.push('/leaderboard'),
+    onPressed: () => context.pushToLeaderboard(),
     icon: const Icon(Icons.leaderboard),
   );
 
   Widget get _settingsButton => IconButton(
     onPressed: () async {
-      final newDifficulty = await context.push<Difficulty?>('/settings');
+      final newDifficulty = await context.pushToSettings<Difficulty?>();
 
       if (newDifficulty != null) {
         await _showDifficultyChangedDialog();
@@ -126,7 +127,7 @@ class _GamePageState extends AppConsumerState<GamePage> {
     final username = await showDialog<String>(
       context: context,
       builder: (context) {
-        TextEditingController textController = TextEditingController();
+        final textController = TextEditingController();
         return AlertDialog(
           title: Text(context.l10n.enterYourNameDialogTitle),
           content: TextField(

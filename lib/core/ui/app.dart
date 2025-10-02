@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_core/flutter_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sudoku/core/config/app_router.dart';
+import 'package:sudoku/core/di/providers.dart';
 import 'package:sudoku/core/ui/material_app.dart';
 
 class MyApp extends ConsumerStatefulWidget {
@@ -14,5 +14,5 @@ class MyApp extends ConsumerStatefulWidget {
 class _MyAppState extends AppConsumerState<MyApp> {
   @override
   Widget build(BuildContext context) =>
-      SudokuMaterialApp(appRouter: ref.watch(appRouterProvider));
+      SudokuMaterialApp(appRouter: ref.read(appRouterProvider));
 }
