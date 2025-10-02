@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_core/flutter_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:sudoku/core/config/constants.dart';
 import 'package:sudoku/core/config/setup.dart';
+import 'package:sudoku/core/navigation/extension/navigation_extension.dart';
 import 'package:sudoku/features/game/data/models/difficulty.dart';
 import 'package:sudoku/features/game/data/providers/providers.dart';
-import 'package:sudoku/l10n/l10n.dart';
 import 'package:sudoku/features/settings/ui/blocs/difficulty/difficulty_cubit.dart';
+import 'package:sudoku/l10n/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends ConsumerStatefulWidget {
@@ -38,7 +38,7 @@ class _SettingsPageState extends AppConsumerState<SettingsPage> {
     appBar: AppBar(
       title: Text(context.l10n.settings),
       leading: IconButton(
-        onPressed: () => context.pop<Difficulty>(newDifficulty),
+        onPressed: () => context.popWithResult<Difficulty>(newDifficulty),
         icon: Icon(Icons.arrow_back),
       ),
     ),

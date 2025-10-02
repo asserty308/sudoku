@@ -14,5 +14,5 @@ class MyApp extends ConsumerStatefulWidget {
 class _MyAppState extends AppConsumerState<MyApp> {
   @override
   Widget build(BuildContext context) =>
-      SudokuMaterialApp(appRouter: ref.read(appRouterProvider));
+      SudokuMaterialApp(routerConfig: ref.read(appRouterProvider));
 }

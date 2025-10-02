@@ -39,7 +39,7 @@ class NavigationService {
 
   /// Pop with result (for dialogs)
   static void popWithResult<T>(BuildContext context, [T? result]) {
-    context.pop(result);
+    context.pop<T>(result);
   }
 
   /// Get current route name
