@@ -10,6 +10,7 @@ class SudokuMaterialApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp.router(
+    restorationScopeId: 'app',
     onGenerateTitle: (context) => context.l10n.appTitle,
     debugShowCheckedModeBanner: false,
     theme: lightTheme,

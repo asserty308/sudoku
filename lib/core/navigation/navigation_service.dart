@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sudoku/core/navigation/routes.dart';
+import 'package:sudoku/core/navigation/constants.dart';
 
 /// Navigation service for type-safe navigation throughout the app
 class NavigationService {
