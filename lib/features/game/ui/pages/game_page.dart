@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_core/flutter_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sudoku/core/navigation/extension/navigation_extension.dart';
 import 'package:sudoku/features/game/data/models/difficulty.dart';
 import 'package:sudoku/features/game/data/providers/providers.dart';
@@ -53,15 +54,15 @@ class _GamePageState extends AppConsumerState<GamePage> {
   Widget _body(SudokuLoaded state) => SafeArea(
     child: Stack(
       children: [
-        Align(alignment: Alignment.center, child: _board(state)),
+        Align(alignment: .center, child: _board(state)),
         Align(
-          alignment: Alignment.bottomRight,
+          alignment: .bottomRight,
           child: Row(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: .min,
             children: [_leaderboardButton, _settingsButton],
           ),
         ),
-        Align(alignment: Alignment.topRight, child: _timerWidget(state)),
+        Align(alignment: .topRight, child: _timerWidget(state)),
       ],
     ),
   );
@@ -137,11 +138,11 @@ class _GamePageState extends AppConsumerState<GamePage> {
           ),
           actions: [
             TextButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => context.pop(),
               child: Text(context.l10n.cancelButton),
             ),
             TextButton(
-              onPressed: () => Navigator.of(context).pop(textController.text),
+              onPressed: () => context.pop(textController.text),
               child: Text(context.l10n.submitButton),
             ),
           ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_core/flutter_core.dart';
 import 'package:sudoku/features/leaderboard/ui/blocs/leaderboard/leaderboard_cubit.dart';
 import 'package:sudoku/l10n/l10n.dart';
 
@@ -15,113 +16,85 @@ class LeaderboardError extends StatelessWidget {
   final String? message;
 
   @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _buildErrorIcon(context),
-            const SizedBox(height: 16),
-            Text(
-              _getErrorTitle(context),
-              style: Theme.of(context).textTheme.headlineSmall,
-              textAlign: TextAlign.center,
+  Widget build(BuildContext context) => Center(
+    child: Padding(
+      padding: const .all(24.0),
+      child: Column(
+        mainAxisSize: .min,
+        children: [
+          _buildErrorIcon(context),
+          vGap16,
+          Text(
+            _getErrorTitle(context),
+            style: context.textTheme.headlineSmall,
+            textAlign: .center,
+          ),
+          vGap8,
+          Text(
+            _getErrorMessage(context),
+            style: context.textTheme.bodyLarge?.copyWith(
+              color: context.colorScheme.onSurfaceVariant,
             ),
-            const SizedBox(height: 8),
-            Text(
-              _getErrorMessage(context),
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            if (message != null) ...[
-              const SizedBox(height: 12),
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Theme.of(
-                    context,
-                  ).colorScheme.errorContainer.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.error.withValues(alpha: 0.2),
-                  ),
+            textAlign: .center,
+          ),
+          if (message != null) ...[
+            vGap12,
+            Container(
+              padding: const .all(12),
+              decoration: BoxDecoration(
+                color: context.colorScheme.errorContainer.withValues(
+                  alpha: 0.1,
                 ),
-                child: Text(
-                  message!,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Theme.of(context).colorScheme.error,
-                    fontFamily: 'monospace',
-                  ),
-                  textAlign: TextAlign.center,
+                borderRadius: BorderRadius.circular(8),
+                border: .all(
+                  color: context.colorScheme.error.withValues(alpha: 0.2),
                 ),
               ),
-            ],
-            const SizedBox(height: 24),
-            _buildRetryButton(context),
+              child: Text(
+                message!,
+                style: context.textTheme.bodySmall?.copyWith(
+                  color: context.colorScheme.error,
+                  fontFamily: 'monospace',
+                ),
+                textAlign: .center,
+              ),
+            ),
           ],
-        ),
+          vGap24,
+          _buildRetryButton(context),
+        ],
       ),
-    );
-  }
+    ),
+  );
 
-  Widget _buildErrorIcon(BuildContext context) {
-    IconData iconData;
-    Color iconColor;
-
+  Widget _buildErrorIcon(BuildContext context) => Icon(
     switch (errorType) {
-      case LeaderboardErrorType.network:
-        iconData = Icons.wifi_off_outlined;
-        iconColor = Theme.of(context).colorScheme.error;
-        break;
-      case LeaderboardErrorType.storage:
-        iconData = Icons.storage_outlined;
-        iconColor = Theme.of(context).colorScheme.error;
-        break;
-      case LeaderboardErrorType.unknown:
-        iconData = Icons.error_outline;
-        iconColor = Theme.of(context).colorScheme.error;
-        break;
-    }
+      .network => Icons.wifi_off_outlined,
+      .storage => Icons.storage_outlined,
+      .unknown => Icons.error_outline,
+    },
+    size: 64,
+    color: context.colorScheme.error,
+  );
 
-    return Icon(iconData, size: 64, color: iconColor);
-  }
+  String _getErrorTitle(BuildContext context) => switch (errorType) {
+    .network => context.l10n.connectionErrorTitle,
+    .storage => context.l10n.storageErrorTitle,
+    .unknown => context.l10n.unexpectedErrorTitle,
+  };
 
-  String _getErrorTitle(BuildContext context) {
-    switch (errorType) {
-      case LeaderboardErrorType.network:
-        return context.l10n.connectionErrorTitle;
-      case LeaderboardErrorType.storage:
-        return context.l10n.storageErrorTitle;
-      case LeaderboardErrorType.unknown:
-        return context.l10n.unexpectedErrorTitle;
-    }
-  }
+  String _getErrorMessage(BuildContext context) => switch (errorType) {
+    .network => context.l10n.leaderboardPageNetworkError,
+    .storage => context.l10n.leaderboardPageStorageError,
+    .unknown => context.l10n.leaderboardPageUnknownError,
+  };
 
-  String _getErrorMessage(BuildContext context) {
-    switch (errorType) {
-      case LeaderboardErrorType.network:
-        return context.l10n.leaderboardPageNetworkError;
-      case LeaderboardErrorType.storage:
-        return context.l10n.leaderboardPageStorageError;
-      case LeaderboardErrorType.unknown:
-        return context.l10n.leaderboardPageUnknownError;
-    }
-  }
-
-  Widget _buildRetryButton(BuildContext context) {
-    return FilledButton.icon(
-      onPressed: onRetry,
-      icon: const Icon(Icons.refresh),
-      label: Text(context.l10n.leaderboardPageRetryButton),
-      style: FilledButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-      ),
-    );
-  }
+  Widget _buildRetryButton(BuildContext context) => FilledButton.icon(
+    onPressed: onRetry,
+    icon: const Icon(Icons.refresh),
+    label: Text(context.l10n.leaderboardPageRetryButton),
+    style: FilledButton.styleFrom(
+      padding: const .symmetric(horizontal: 24, vertical: 12),
+    ),
+  );
 }

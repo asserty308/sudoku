@@ -57,30 +57,28 @@ class _SudokuBoardState extends State<SudokuBoard> {
 
       if (enterValue > 0) {
         _onInput(enterValue);
-        return KeyEventResult.handled;
+        return .handled;
       } else if (enterValue == -1) {
         _onDelete();
-        return KeyEventResult.handled;
+        return .handled;
       }
 
-      return KeyEventResult.ignored;
+      return .ignored;
     },
     child: _board,
   );
 
   Widget get _board => Column(
-    mainAxisSize: MainAxisSize.min,
+    mainAxisSize: .min,
     children: [
       ...List.generate(9, _row),
       if (_selectedField != null)
-        Padding(padding: const EdgeInsets.only(top: 16), child: _inputRow),
+        Padding(padding: const .only(top: 16), child: _inputRow),
     ],
   );
 
-  Widget _row(int y) => Row(
-    mainAxisSize: MainAxisSize.min,
-    children: List.generate(9, (x) => _tile(x, y)),
-  );
+  Widget _row(int y) =>
+      Row(mainAxisSize: .min, children: List.generate(9, (x) => _tile(x, y)));
 
   Widget _tile(int x, int y) {
     final editable = widget.model.board[y][x] == 0;
@@ -90,9 +88,9 @@ class _SudokuBoardState extends State<SudokuBoard> {
     return Container(
       width: _buttonSize,
       height: _buttonSize,
-      decoration: BoxDecoration(border: Border.all(), color: _tileColor(x, y)),
+      decoration: BoxDecoration(border: .all(), color: _tileColor(x, y)),
       child: TextButton(
-        style: TextButton.styleFrom(padding: EdgeInsets.zero),
+        style: TextButton.styleFrom(padding: .zero),
         onPressed: editable ? () => _onEdit(x, y) : null,
         child: Text(value, style: TextStyle(fontSize: 21)),
       ),
@@ -100,7 +98,7 @@ class _SudokuBoardState extends State<SudokuBoard> {
   }
 
   Widget get _inputRow => Row(
-    mainAxisSize: MainAxisSize.min,
+    mainAxisSize: .min,
     children: [...List.generate(9, _inputButton), _deleteButton],
   );
 
@@ -111,12 +109,10 @@ class _SudokuBoardState extends State<SudokuBoard> {
       width: _buttonSize,
       height: _buttonSize,
       decoration: BoxDecoration(
-        border: Border.all(
-          color: context.isDarkMode ? Colors.white : Colors.black,
-        ),
+        border: .all(color: context.isDarkMode ? Colors.white : Colors.black),
       ),
       child: TextButton(
-        style: TextButton.styleFrom(padding: EdgeInsets.zero),
+        style: TextButton.styleFrom(padding: .zero),
         onPressed: () => _onInput(value),
         child: Text('$value', style: TextStyle(fontSize: 21)),
       ),
@@ -127,12 +123,10 @@ class _SudokuBoardState extends State<SudokuBoard> {
     width: _buttonSize,
     height: _buttonSize,
     decoration: BoxDecoration(
-      border: Border.all(
-        color: context.isDarkMode ? Colors.white : Colors.black,
-      ),
+      border: .all(color: context.isDarkMode ? Colors.white : Colors.black),
     ),
     child: TextButton(
-      style: TextButton.styleFrom(padding: EdgeInsets.zero),
+      style: TextButton.styleFrom(padding: .zero),
       onPressed: _onDelete,
       child: Icon(
         Icons.backspace,

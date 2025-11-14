@@ -7,7 +7,7 @@ class EmptyLeaderboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Column(
-    mainAxisSize: MainAxisSize.min,
+    mainAxisSize: .min,
     children: [
       Icon(
         Icons.leaderboard_outlined,
@@ -20,7 +20,7 @@ class EmptyLeaderboard extends StatelessWidget {
         style: context.textTheme.headlineSmall?.copyWith(
           color: context.colorScheme.onSurfaceVariant,
         ),
-        textAlign: TextAlign.center,
+        textAlign: .center,
       ),
       vGap16,
       Text(
@@ -28,7 +28,7 @@ class EmptyLeaderboard extends StatelessWidget {
         style: context.textTheme.bodyMedium?.copyWith(
           color: context.colorScheme.outline,
         ),
-        textAlign: TextAlign.center,
+        textAlign: .center,
       ),
     ],
   ).paddingAll(24).centered;

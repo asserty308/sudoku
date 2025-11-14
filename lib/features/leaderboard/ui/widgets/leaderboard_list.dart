@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_core/flutter_core.dart';
+import 'package:sudoku/features/game/data/models/leaderboard_entry_model.dart';
 import 'package:sudoku/features/leaderboard/ui/widgets/empty_leaderboard.dart';
 import 'package:sudoku/features/leaderboard/ui/widgets/leaderboard_tile.dart';
-import 'package:sudoku/features/game/data/models/leaderboard_entry_model.dart';
 
 class LeaderboardList extends StatelessWidget {
   const LeaderboardList({super.key, required this.entries, this.onRefresh});
@@ -18,7 +19,7 @@ class LeaderboardList extends StatelessWidget {
               child: SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.7,
+                  height: context.mediaSize.height * 0.7,
                   child: const EmptyLeaderboard(),
                 ),
               ),
@@ -27,7 +28,7 @@ class LeaderboardList extends StatelessWidget {
     }
 
     final listView = ListView.separated(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const .symmetric(vertical: 8.0),
       itemCount: entries.length,
       itemBuilder: (context, index) =>
           LeaderboardTile(entry: entries[index], rank: index + 1),
