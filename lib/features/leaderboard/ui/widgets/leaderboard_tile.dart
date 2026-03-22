@@ -16,9 +16,7 @@ class LeaderboardTile extends StatelessWidget {
       child: Center(
         child: Text(
           context.l10n.leaderboardPageRankingFormat(rank),
-          style: context.textTheme.bodyMedium?.copyWith(
-            fontWeight: .bold,
-          ),
+          style: context.textTheme.bodyMedium?.copyWith(fontWeight: .bold),
         ),
       ),
     ),
