@@ -51,31 +51,46 @@ class _GamePageState extends AppConsumerState<GamePage> {
     },
   );
 
-  Widget _body(SudokuLoaded state) => SafeArea(
-    child: Stack(
-      children: [
-        Align(alignment: .center, child: _board(state)),
-        Align(
-          alignment: .bottomRight,
-          child: Row(
-            mainAxisSize: .min,
-            children: [_leaderboardButton, _settingsButton],
-          ),
+  Widget _body(SudokuLoaded state) {
+    final scheme = Theme.of(context).colorScheme;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [scheme.surface, scheme.surfaceContainerLowest],
         ),
-        Align(alignment: .topRight, child: _timerWidget(state)),
-      ],
-    ),
-  );
+      ),
+      child: SafeArea(
+        child: Stack(
+          children: [
+            Align(alignment: Alignment.center, child: _board(state)),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [_leaderboardButton, _settingsButton],
+              ),
+            ),
+            Align(alignment: Alignment.topRight, child: _timerWidget(state)),
+          ],
+        ),
+      ),
+    );
+  }
 
   Widget _board(SudokuLoaded state) =>
       SudokuBoard(model: state.model, onGameWon: () => _onGameWon(state));
 
-  Widget get _leaderboardButton => IconButton(
+  Widget get _leaderboardButton => IconButton.filledTonal(
     onPressed: () => context.pushToLeaderboard(),
-    icon: const Icon(Icons.leaderboard),
+    icon: const Icon(Icons.leaderboard_outlined),
+    style: IconButton.styleFrom(
+      padding: const EdgeInsets.all(12),
+    ),
   );
 
-  Widget get _settingsButton => IconButton(
+  Widget get _settingsButton => IconButton.filledTonal(
     onPressed: () async {
       final newDifficulty = await context.pushToSettings<Difficulty?>();
 
@@ -83,7 +98,10 @@ class _GamePageState extends AppConsumerState<GamePage> {
         await _showDifficultyChangedDialog();
       }
     },
-    icon: const Icon(Icons.settings),
+    icon: const Icon(Icons.settings_outlined),
+    style: IconButton.styleFrom(
+      padding: const EdgeInsets.all(12),
+    ),
   );
 
   Widget _timerWidget(SudokuLoaded state) => SudokuTimer(
