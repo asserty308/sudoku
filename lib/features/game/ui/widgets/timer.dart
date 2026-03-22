@@ -46,7 +46,7 @@ class _SudokuTimerState extends AppState<SudokuTimer> {
   }
 
   @override
-  Widget build(BuildContext context) => Text(_duration.formatMS(trailing: 'm'));
+  Widget build(BuildContext context) => Text(_duration.format());
 
   void _setupTimer() {
     // Reset duration to zero for new timer
