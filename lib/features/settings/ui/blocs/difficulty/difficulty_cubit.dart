@@ -8,10 +8,8 @@ import 'package:sudoku/features/game/domain/use_cases/set_difficulty_use_case.da
 part 'difficulty_state.dart';
 
 class DifficultyCubit extends Cubit<DifficultyState> {
-  DifficultyCubit({
-    required this.getDifficultyUseCase,
-    required this.setDifficultyUseCase,
-  }) : super(DifficultyInitial());
+  new({required this.getDifficultyUseCase, required this.setDifficultyUseCase})
+    : super(DifficultyInitial());
 
   final GetDifficultyUseCase getDifficultyUseCase;
   final SetDifficultyUseCase setDifficultyUseCase;

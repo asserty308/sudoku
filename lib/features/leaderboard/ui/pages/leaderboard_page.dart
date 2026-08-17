@@ -10,7 +10,7 @@ import 'package:sudoku/features/leaderboard/ui/widgets/leaderboard_loading.dart'
 import 'package:sudoku/l10n/l10n.dart';
 
 class LeaderboardPage extends ConsumerStatefulWidget {
-  const LeaderboardPage({super.key});
+  const new({super.key});
 
   @override
   ConsumerState<LeaderboardPage> createState() => _LeaderboardPageState();

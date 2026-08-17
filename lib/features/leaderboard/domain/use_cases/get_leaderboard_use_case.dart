@@ -4,7 +4,7 @@ import 'package:sudoku/core/storage/app_prefs.dart';
 import 'package:sudoku/features/game/data/models/leaderboard_entry_model.dart';
 
 class GetLeaderboardUseCase {
-  GetLeaderboardUseCase({required this.sharedPrefs});
+  new({required this.sharedPrefs});
 
   final SharedPreferencesAsync sharedPrefs;
 

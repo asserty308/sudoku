@@ -4,7 +4,7 @@ import 'package:sudoku/l10n/gen/app_localizations.dart';
 import 'package:sudoku/l10n/l10n.dart';
 
 class SudokuMaterialApp extends StatelessWidget {
-  const SudokuMaterialApp({super.key, required this.routerConfig});
+  const new({super.key, required this.routerConfig});
 
   final RouterConfig<Object> routerConfig;
 

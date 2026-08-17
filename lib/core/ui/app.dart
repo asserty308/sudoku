@@ -5,7 +5,7 @@ import 'package:sudoku/core/navigation/router.dart';
 import 'package:sudoku/core/ui/material_app.dart';
 
 class MyApp extends ConsumerStatefulWidget {
-  const MyApp({super.key});
+  const new({super.key});
 
   @override
   ConsumerState<MyApp> createState() => _MyAppState();

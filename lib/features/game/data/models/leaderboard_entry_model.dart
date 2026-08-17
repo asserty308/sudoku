@@ -1,18 +1,17 @@
 import 'package:intl/intl.dart';
 
 class LeaderboardEntryModel {
-  LeaderboardEntryModel({
+  new({
     required this.timestamp,
     required this.durationInSeconds,
     required this.username,
   });
 
-  factory LeaderboardEntryModel.fromJson(Map<String, dynamic> json) =>
-      LeaderboardEntryModel(
-        timestamp: DateFormat('yyyy-MM-dd HH:mm:ss').parse(json['timestamp']),
-        durationInSeconds: json['duration'],
-        username: json['username'],
-      );
+  factory fromJson(Map<String, dynamic> json) => LeaderboardEntryModel(
+    timestamp: DateFormat('yyyy-MM-dd HH:mm:ss').parse(json['timestamp']),
+    durationInSeconds: json['duration'],
+    username: json['username'],
+  );
 
   final DateTime timestamp;
   final int durationInSeconds;

@@ -5,7 +5,7 @@ import 'package:sudoku/features/game/data/models/difficulty.dart';
 import 'package:sudoku/features/game/data/models/leaderboard_entry_model.dart';
 
 class OnGameWonUseCase {
-  OnGameWonUseCase({required this.sharedPrefs});
+  new({required this.sharedPrefs});
 
   final SharedPreferencesAsync sharedPrefs;
 

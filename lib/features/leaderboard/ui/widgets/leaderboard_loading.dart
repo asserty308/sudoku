@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_core/flutter_core.dart';
 
 class LeaderboardLoading extends StatelessWidget {
-  const LeaderboardLoading({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) => Center(

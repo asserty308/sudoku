@@ -12,7 +12,7 @@ import 'package:sudoku/l10n/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends ConsumerStatefulWidget {
-  const SettingsPage({super.key});
+  const new({super.key});
 
   @override
   ConsumerState<SettingsPage> createState() => _SettingsPageState();
@@ -39,7 +39,7 @@ class _SettingsPageState extends AppConsumerState<SettingsPage> {
       title: Text(context.l10n.settings),
       leading: IconButton(
         onPressed: () => context.popWithResult<Difficulty>(newDifficulty),
-        icon: Icon(Icons.arrow_back),
+        icon: const Icon(Icons.arrow_back),
       ),
     ),
     body: ListView(

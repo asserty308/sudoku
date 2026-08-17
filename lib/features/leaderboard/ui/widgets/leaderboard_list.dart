@@ -5,7 +5,7 @@ import 'package:sudoku/features/leaderboard/ui/widgets/empty_leaderboard.dart';
 import 'package:sudoku/features/leaderboard/ui/widgets/leaderboard_tile.dart';
 
 class LeaderboardList extends StatelessWidget {
-  const LeaderboardList({super.key, required this.entries, this.onRefresh});
+  const new({super.key, required this.entries, this.onRefresh});
 
   final List<LeaderboardEntryModel> entries;
   final Future<void> Function()? onRefresh;

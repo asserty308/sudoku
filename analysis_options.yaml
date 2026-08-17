@@ -1,10 +1,32 @@
 include: package:flutter_lints/flutter.yaml
 
+analyzer:
+  exclude: 
+    - lib/l10n/**
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**
+    
 linter:
   rules:
     - always_use_package_imports
+    - empty_container_bodies
+    - directives_ordering
+    - eol_at_end_of_file
+    - initialize_in_field_declaration
+    - prefer_const_constructors
+    - prefer_const_declarations
     - prefer_constructors_over_static_methods
+    # - public_member_api_docs
     - sort_constructors_first
     - sort_unnamed_constructors_first
     - unnecessary_lambdas
-    - eol_at_end_of_file
+    - unnecessary_const_in_enum_constructor
+    - unnecessary_primary_constructor_body
+    - unnecessary_type_name_in_constructor
+    - use_declaring_parameters
+    - use_super_parameters

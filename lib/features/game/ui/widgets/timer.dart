@@ -4,11 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_core/flutter_core.dart';
 
 class SudokuTimer extends StatefulWidget {
-  const SudokuTimer({
-    super.key,
-    required this.startTime,
-    required this.onTimerCreated,
-  });
+  const new({super.key, required this.startTime, required this.onTimerCreated});
 
   final DateTime startTime;
   final void Function(Timer timer) onTimerCreated;

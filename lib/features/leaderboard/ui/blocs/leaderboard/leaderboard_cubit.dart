@@ -3,14 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_core/flutter_core.dart';
-import 'package:sudoku/features/leaderboard/domain/use_cases/get_leaderboard_use_case.dart';
 import 'package:sudoku/features/game/data/models/leaderboard_entry_model.dart';
+import 'package:sudoku/features/leaderboard/domain/use_cases/get_leaderboard_use_case.dart';
 
 part 'leaderboard_state.dart';
 
 class LeaderboardCubit extends Cubit<LeaderboardState> {
-  LeaderboardCubit({required this.getLeaderboardUseCase})
-    : super(LeaderboardStateInitial());
+  new({required this.getLeaderboardUseCase}) : super(LeaderboardStateInitial());
 
   final GetLeaderboardUseCase getLeaderboardUseCase;
 

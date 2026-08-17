@@ -3,7 +3,7 @@ import 'package:flutter_core/flutter_core.dart';
 import 'package:sudoku/l10n/l10n.dart';
 
 class EmptyLeaderboard extends StatelessWidget {
-  const EmptyLeaderboard({super.key});
+  const new({super.key});
 
   @override
   Widget build(BuildContext context) => Column(

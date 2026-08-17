@@ -4,7 +4,7 @@ import 'package:sudoku/features/leaderboard/ui/blocs/leaderboard/leaderboard_cub
 import 'package:sudoku/l10n/l10n.dart';
 
 class LeaderboardError extends StatelessWidget {
-  const LeaderboardError({
+  const new({
     super.key,
     required this.onRetry,
     required this.errorType,

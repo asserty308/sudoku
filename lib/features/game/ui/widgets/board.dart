@@ -7,7 +7,7 @@ import 'package:sudoku/features/game/domain/use_cases/handle_keyboad_input_use_c
 import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 
 class SudokuBoard extends StatefulWidget {
-  const SudokuBoard({super.key, required this.model, required this.onGameWon});
+  const new({super.key, required this.model, required this.onGameWon});
 
   final SudokuModel model;
   final VoidCallback onGameWon;
@@ -92,7 +92,7 @@ class _SudokuBoardState extends State<SudokuBoard> {
       child: TextButton(
         style: TextButton.styleFrom(padding: .zero),
         onPressed: editable ? () => _onEdit(x, y) : null,
-        child: Text(value, style: TextStyle(fontSize: 21)),
+        child: Text(value, style: const TextStyle(fontSize: 21)),
       ),
     );
   }
@@ -114,7 +114,7 @@ class _SudokuBoardState extends State<SudokuBoard> {
       child: TextButton(
         style: TextButton.styleFrom(padding: .zero),
         onPressed: () => _onInput(value),
-        child: Text('$value', style: TextStyle(fontSize: 21)),
+        child: Text('$value', style: const TextStyle(fontSize: 21)),
       ),
     );
   }

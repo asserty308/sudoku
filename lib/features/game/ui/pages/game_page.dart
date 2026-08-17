@@ -14,7 +14,7 @@ import 'package:sudoku/features/game/ui/widgets/timer.dart';
 import 'package:sudoku/l10n/l10n.dart';
 
 class GamePage extends ConsumerStatefulWidget {
-  const GamePage({super.key});
+  const new({super.key});
 
   @override
   ConsumerState<GamePage> createState() => _GamePageState();

@@ -1,9 +1,9 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sudoku/features/game/data/models/difficulty.dart';
 import 'package:sudoku/core/storage/app_prefs.dart';
+import 'package:sudoku/features/game/data/models/difficulty.dart';
 
 class SudokuRepo {
-  SudokuRepo({required this.sharedPrefs});
+  new({required this.sharedPrefs});
 
   final SharedPreferencesAsync sharedPrefs;
 
