@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_core/flutter_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sudoku/core/navigation/extension/navigation_extension.dart';
 import 'package:sudoku/features/game/data/models/difficulty.dart';
-import 'package:sudoku/features/game/data/providers/providers.dart';
+import 'package:sudoku/features/game/di/providers.dart';
 import 'package:sudoku/features/game/ui/blocs/sudoku/sudoku_cubit.dart';
 import 'package:sudoku/features/game/ui/widgets/board.dart';
 import 'package:sudoku/features/game/ui/widgets/timer.dart';

@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_core/flutter_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sudoku/features/leaderboard/data/providers/providers.dart';
+import 'package:material_ui/material_ui.dart';
+import 'package:sudoku/features/leaderboard/di/providers.dart';
 import 'package:sudoku/features/leaderboard/ui/blocs/leaderboard/leaderboard_cubit.dart';
 import 'package:sudoku/features/leaderboard/ui/widgets/leaderboard_error.dart';
 import 'package:sudoku/features/leaderboard/ui/widgets/leaderboard_list.dart';

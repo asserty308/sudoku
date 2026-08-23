@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_core/flutter_core.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sudoku/core/extensions/theme_extension.dart';
 import 'package:sudoku/core/theme/colors.dart';
 import 'package:sudoku/features/game/data/models/sudoku_model.dart';

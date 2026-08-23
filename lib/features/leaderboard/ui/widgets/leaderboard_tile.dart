@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_core/flutter_core.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sudoku/features/game/data/models/leaderboard_entry_model.dart';
 import 'package:sudoku/l10n/l10n.dart';
 

@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_core/flutter_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sudoku/core/config/constants.dart';
 import 'package:sudoku/core/config/setup.dart';
 import 'package:sudoku/core/navigation/extension/navigation_extension.dart';
 import 'package:sudoku/features/game/data/models/difficulty.dart';
-import 'package:sudoku/features/game/data/providers/providers.dart';
+import 'package:sudoku/features/game/di/providers.dart';
 import 'package:sudoku/features/settings/ui/blocs/difficulty/difficulty_cubit.dart';
 import 'package:sudoku/l10n/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';

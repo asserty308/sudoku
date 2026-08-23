@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_core/flutter_core.dart';
+import 'package:material_ui/material_ui.dart';
 
 class const SudokuTimer({super.key, required final DateTime startTime, required final void Function(Timer timer) onTimerCreated}) extends StatefulWidget {
   @override

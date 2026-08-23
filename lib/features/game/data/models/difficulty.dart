@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sudoku/l10n/l10n.dart';
 
 enum Difficulty() { test, beginner, easy, normal, advanced, expert }

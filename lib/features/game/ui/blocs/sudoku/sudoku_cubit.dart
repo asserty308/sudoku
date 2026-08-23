@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_core/flutter_core.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sudoku/features/game/data/models/difficulty.dart';
 import 'package:sudoku/features/game/data/models/sudoku_model.dart';
 import 'package:sudoku/features/game/domain/use_cases/get_difficulty_use_case.dart';

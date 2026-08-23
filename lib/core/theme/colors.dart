@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sudoku/core/extensions/theme_extension.dart';
 
 extension AppColors on Colors {

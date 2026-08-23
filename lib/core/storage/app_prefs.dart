@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sudoku/core/config/keys.dart';
 import 'package:sudoku/features/game/data/models/difficulty.dart';
