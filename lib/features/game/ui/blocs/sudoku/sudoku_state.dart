@@ -1,20 +1,14 @@
 part of 'sudoku_cubit.dart';
 
 @immutable
-sealed class SudokuState;
+sealed class const SudokuState();
 
-final class SudokuInitial extends SudokuState;
+final class const SudokuInitial() extends SudokuState;
 
-final class SudokuLoading extends SudokuState;
+final class const SudokuLoading() extends SudokuState;
 
-final class SudokuLoaded extends SudokuState {
-  new({
-    required this.model,
-    required this.timeStarted,
-    required this.difficulty,
-  });
-
-  final SudokuModel model;
-  final DateTime timeStarted;
-  final Difficulty difficulty;
-}
+final class const SudokuLoaded({
+    required final SudokuModel model,
+    required final DateTime timeStarted,
+    required final Difficulty difficulty,
+  }) extends SudokuState;

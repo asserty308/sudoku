@@ -1,22 +1,14 @@
 part of 'difficulty_cubit.dart';
 
 @immutable
-sealed class DifficultyState;
+sealed class const DifficultyState();
 
-final class DifficultyInitial extends DifficultyState;
+final class const DifficultyInitial() extends DifficultyState;
 
-final class DifficultyLoading extends DifficultyState;
+final class const DifficultyLoading() extends DifficultyState;
 
-final class DifficultyLoaded extends DifficultyState {
-  new({required this.difficulty});
+final class const DifficultyLoaded({required final Difficulty difficulty}) extends DifficultyState;
 
-  final Difficulty difficulty;
-}
+final class const DifficultyChanged({required final Difficulty difficulty}) extends DifficultyState;
 
-final class DifficultyChanged extends DifficultyState {
-  new({required this.difficulty});
-
-  final Difficulty difficulty;
-}
-
-final class DifficultyError extends DifficultyState;
+final class const DifficultyError() extends DifficultyState;

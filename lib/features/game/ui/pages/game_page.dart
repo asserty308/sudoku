@@ -13,14 +13,12 @@ import 'package:sudoku/features/game/ui/widgets/board.dart';
 import 'package:sudoku/features/game/ui/widgets/timer.dart';
 import 'package:sudoku/l10n/l10n.dart';
 
-class GamePage extends ConsumerStatefulWidget {
-  const new({super.key});
-
+class const GamePage({super.key}) extends ConsumerStatefulWidget {
   @override
   ConsumerState<GamePage> createState() => _GamePageState();
 }
 
-class _GamePageState extends AppConsumerState<GamePage> {
+class _GamePageState() extends AppConsumerState<GamePage> {
   late final _bloc = SudokuCubit(
     getDifficultyUseCase: ref.watch(getDifficultyUseCaseProvider),
   );

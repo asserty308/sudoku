@@ -3,11 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sudoku/core/storage/app_prefs.dart';
 import 'package:sudoku/features/game/data/models/leaderboard_entry_model.dart';
 
-class GetLeaderboardUseCase {
-  new({required this.sharedPrefs});
-
-  final SharedPreferencesAsync sharedPrefs;
-
+class GetLeaderboardUseCase({required final SharedPreferencesAsync sharedPrefs}) {
   Future<List<LeaderboardEntryModel>> execute() async {
     final difficulty = await sharedPrefs.difficulty;
 

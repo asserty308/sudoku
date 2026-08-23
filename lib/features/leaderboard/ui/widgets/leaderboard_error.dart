@@ -3,18 +3,12 @@ import 'package:flutter_core/flutter_core.dart';
 import 'package:sudoku/features/leaderboard/ui/blocs/leaderboard/leaderboard_cubit.dart';
 import 'package:sudoku/l10n/l10n.dart';
 
-class LeaderboardError extends StatelessWidget {
-  const new({
+class const LeaderboardError({
     super.key,
-    required this.onRetry,
-    required this.errorType,
-    this.message,
-  });
-
-  final VoidCallback onRetry;
-  final LeaderboardErrorType errorType;
-  final String? message;
-
+    required final VoidCallback onRetry,
+    required final LeaderboardErrorType errorType,
+    final String? message,
+  }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Center(
     child: Padding(

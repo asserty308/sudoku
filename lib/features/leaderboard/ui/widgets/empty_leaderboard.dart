@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_core/flutter_core.dart';
 import 'package:sudoku/l10n/l10n.dart';
 
-class EmptyLeaderboard extends StatelessWidget {
-  const new({super.key});
-
+class const EmptyLeaderboard({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Column(
     mainAxisSize: .min,

@@ -4,11 +4,7 @@ import 'package:sudoku/core/storage/app_prefs.dart';
 import 'package:sudoku/features/game/data/models/difficulty.dart';
 import 'package:sudoku/features/game/data/models/leaderboard_entry_model.dart';
 
-class OnGameWonUseCase {
-  new({required this.sharedPrefs});
-
-  final SharedPreferencesAsync sharedPrefs;
-
+class OnGameWonUseCase({required final SharedPreferencesAsync sharedPrefs}) {
   Future<bool> execute(
     DateTime now,
     int durationInSeconds,

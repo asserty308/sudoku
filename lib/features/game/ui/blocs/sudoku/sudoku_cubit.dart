@@ -8,13 +8,11 @@ import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 
 part 'sudoku_state.dart';
 
-class SudokuCubit extends Cubit<SudokuState> {
-  new({required this.getDifficultyUseCase}) : super(SudokuInitial());
-
-  final GetDifficultyUseCase getDifficultyUseCase;
+class SudokuCubit({required final GetDifficultyUseCase getDifficultyUseCase}) extends Cubit<SudokuState> {
+  this : super(const SudokuInitial());
 
   Future<void> buildNewGame() async {
-    emit(SudokuLoading());
+    emit(const SudokuLoading());
 
     final difficulty = await getDifficultyUseCase.execute();
 

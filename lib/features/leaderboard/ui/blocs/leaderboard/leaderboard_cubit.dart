@@ -8,10 +8,8 @@ import 'package:sudoku/features/leaderboard/domain/use_cases/get_leaderboard_use
 
 part 'leaderboard_state.dart';
 
-class LeaderboardCubit extends Cubit<LeaderboardState> {
-  new({required this.getLeaderboardUseCase}) : super(LeaderboardStateInitial());
-
-  final GetLeaderboardUseCase getLeaderboardUseCase;
+class LeaderboardCubit({required final GetLeaderboardUseCase getLeaderboardUseCase}) extends Cubit<LeaderboardState> {
+  this : super(const LeaderboardStateInitial());
 
   /// Loads the leaderboard of the currently selected difficulty.
   /// Emits specific error states based on the error type.
@@ -20,7 +18,7 @@ class LeaderboardCubit extends Cubit<LeaderboardState> {
       return; // Prevent multiple simultaneous requests
     }
 
-    emit(LeaderboardStateLoading());
+    emit(const LeaderboardStateLoading());
 
     try {
       final results = await getLeaderboardUseCase.execute();
@@ -38,13 +36,13 @@ class LeaderboardCubit extends Cubit<LeaderboardState> {
 
   LeaderboardStateError _handleError(dynamic error) {
     if (error is SocketException || error is HttpException) {
-      return LeaderboardStateError(
+      return const LeaderboardStateError(
         errorType: LeaderboardErrorType.network,
         message: 'Network connection failed',
       );
     } else if (error is FormatException ||
         error.toString().contains('storage')) {
-      return LeaderboardStateError(
+      return const LeaderboardStateError(
         errorType: LeaderboardErrorType.storage,
         message: 'Failed to access local data',
       );

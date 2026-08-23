@@ -1,23 +1,14 @@
 part of 'leaderboard_cubit.dart';
 
 @immutable
-sealed class LeaderboardState;
+sealed class const LeaderboardState();
 
-final class LeaderboardStateInitial extends LeaderboardState;
+final class const LeaderboardStateInitial() extends LeaderboardState;
 
-final class LeaderboardStateLoading extends LeaderboardState;
+final class const LeaderboardStateLoading() extends LeaderboardState;
 
-final class LeaderboardStateLoaded extends LeaderboardState {
-  new({required this.results});
+final class const LeaderboardStateLoaded({required final List<LeaderboardEntryModel> results}) extends LeaderboardState;
 
-  final List<LeaderboardEntryModel> results;
-}
+final class const LeaderboardStateError({required final LeaderboardErrorType errorType, final String? message}) extends LeaderboardState;
 
-final class LeaderboardStateError extends LeaderboardState {
-  new({required this.errorType, this.message});
-
-  final LeaderboardErrorType errorType;
-  final String? message;
-}
-
-enum LeaderboardErrorType { network, storage, unknown }
+enum LeaderboardErrorType() { network, storage, unknown }

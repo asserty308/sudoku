@@ -3,12 +3,7 @@ import 'package:flutter_core/flutter_core.dart';
 import 'package:sudoku/features/game/data/models/leaderboard_entry_model.dart';
 import 'package:sudoku/l10n/l10n.dart';
 
-class LeaderboardTile extends StatelessWidget {
-  const new({super.key, required this.entry, required this.rank});
-
-  final LeaderboardEntryModel entry;
-  final int rank;
-
+class const LeaderboardTile({super.key, required final LeaderboardEntryModel entry, required final int rank}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ListTile(
     leading: SizedBox(

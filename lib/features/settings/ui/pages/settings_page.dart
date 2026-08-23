@@ -11,14 +11,12 @@ import 'package:sudoku/features/settings/ui/blocs/difficulty/difficulty_cubit.da
 import 'package:sudoku/l10n/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class SettingsPage extends ConsumerStatefulWidget {
-  const new({super.key});
-
+class const SettingsPage({super.key}) extends ConsumerStatefulWidget {
   @override
   ConsumerState<SettingsPage> createState() => _SettingsPageState();
 }
 
-class _SettingsPageState extends AppConsumerState<SettingsPage> {
+class _SettingsPageState() extends AppConsumerState<SettingsPage> {
   late final _difficultyBloc = DifficultyCubit(
     getDifficultyUseCase: ref.read(getDifficultyUseCaseProvider),
     setDifficultyUseCase: ref.read(setDifficultyUseCaseProvider),

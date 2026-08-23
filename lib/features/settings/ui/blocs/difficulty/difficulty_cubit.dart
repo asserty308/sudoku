@@ -7,24 +7,21 @@ import 'package:sudoku/features/game/domain/use_cases/set_difficulty_use_case.da
 
 part 'difficulty_state.dart';
 
-class DifficultyCubit extends Cubit<DifficultyState> {
-  new({required this.getDifficultyUseCase, required this.setDifficultyUseCase})
-    : super(DifficultyInitial());
-
-  final GetDifficultyUseCase getDifficultyUseCase;
-  final SetDifficultyUseCase setDifficultyUseCase;
+class DifficultyCubit({required final GetDifficultyUseCase getDifficultyUseCase, required final SetDifficultyUseCase setDifficultyUseCase}) extends Cubit<DifficultyState> {
+  this
+    : super(const DifficultyInitial());
 
   var difficulty = Difficulty.normal;
 
   Future<void> getDifficulty() async {
-    emit(DifficultyLoading());
+    emit(const DifficultyLoading());
 
     try {
       difficulty = await getDifficultyUseCase.execute();
       emit(DifficultyLoaded(difficulty: difficulty));
     } catch (e) {
       logger.e('Error loading difficulty', error: e);
-      emit(DifficultyError());
+      emit(const DifficultyError());
     }
   }
 
@@ -35,7 +32,7 @@ class DifficultyCubit extends Cubit<DifficultyState> {
       emit(DifficultyChanged(difficulty: difficulty));
     } on Exception catch (e) {
       logger.e('Error changing difficulty', error: e);
-      emit(DifficultyError());
+      emit(const DifficultyError());
     }
   }
 }

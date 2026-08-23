@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 
-class HandleKeyboadInputUseCase {
+class HandleKeyboadInputUseCase() {
   /// Returns the entered number when a number between 1-9 is entered.
   /// Returns -1 when delete/backspace is pressed.
   /// Returns 0 otherwise.

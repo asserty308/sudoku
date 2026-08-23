@@ -26,7 +26,11 @@ linter:
     - sort_unnamed_constructors_first
     - unnecessary_lambdas
     - unnecessary_const_in_enum_constructor
-    - unnecessary_primary_constructor_body
-    - unnecessary_type_name_in_constructor
-    - use_declaring_parameters
     - use_super_parameters
+    # Dart 3.13
+    - use_primary_constructors
+    - use_declaring_parameters
+    - unnecessary_type_name_in_constructor
+    - unnecessary_primary_constructor_body
+    - simplify_variable_pattern
+    - use_named_constants

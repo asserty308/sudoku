@@ -3,11 +3,10 @@ import 'package:sudoku/core/theme/theme.dart';
 import 'package:sudoku/l10n/gen/app_localizations.dart';
 import 'package:sudoku/l10n/l10n.dart';
 
-class SudokuMaterialApp extends StatelessWidget {
-  const new({super.key, required this.routerConfig});
-
-  final RouterConfig<Object> routerConfig;
-
+class const SudokuMaterialApp({
+  super.key,
+  required final RouterConfig<Object> routerConfig,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp.router(
     restorationScopeId: 'app',

@@ -4,12 +4,7 @@ import 'package:sudoku/features/game/data/models/leaderboard_entry_model.dart';
 import 'package:sudoku/features/leaderboard/ui/widgets/empty_leaderboard.dart';
 import 'package:sudoku/features/leaderboard/ui/widgets/leaderboard_tile.dart';
 
-class LeaderboardList extends StatelessWidget {
-  const new({super.key, required this.entries, this.onRefresh});
-
-  final List<LeaderboardEntryModel> entries;
-  final Future<void> Function()? onRefresh;
-
+class const LeaderboardList({super.key, required final List<LeaderboardEntryModel> entries, final Future<void> Function()? onRefresh}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (entries.isEmpty) {

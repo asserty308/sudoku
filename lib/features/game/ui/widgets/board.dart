@@ -6,17 +6,12 @@ import 'package:sudoku/features/game/data/models/sudoku_model.dart';
 import 'package:sudoku/features/game/domain/use_cases/handle_keyboad_input_use_case.dart';
 import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 
-class SudokuBoard extends StatefulWidget {
-  const new({super.key, required this.model, required this.onGameWon});
-
-  final SudokuModel model;
-  final VoidCallback onGameWon;
-
+class const SudokuBoard({super.key, required final SudokuModel model, required final VoidCallback onGameWon}) extends StatefulWidget {
   @override
   State<SudokuBoard> createState() => _SudokuBoardState();
 }
 
-class _SudokuBoardState extends State<SudokuBoard> {
+class _SudokuBoardState() extends State<SudokuBoard> {
   var _currentProgress = <List<int>>[];
   ({int x, int y})? _selectedField;
 

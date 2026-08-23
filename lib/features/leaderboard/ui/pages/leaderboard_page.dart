@@ -9,14 +9,12 @@ import 'package:sudoku/features/leaderboard/ui/widgets/leaderboard_list.dart';
 import 'package:sudoku/features/leaderboard/ui/widgets/leaderboard_loading.dart';
 import 'package:sudoku/l10n/l10n.dart';
 
-class LeaderboardPage extends ConsumerStatefulWidget {
-  const new({super.key});
-
+class const LeaderboardPage({super.key}) extends ConsumerStatefulWidget {
   @override
   ConsumerState<LeaderboardPage> createState() => _LeaderboardPageState();
 }
 
-class _LeaderboardPageState extends AppConsumerState<LeaderboardPage> {
+class _LeaderboardPageState() extends AppConsumerState<LeaderboardPage> {
   late final _bloc = LeaderboardCubit(
     getLeaderboardUseCase: ref.read(getLeaderboardProvider),
   );

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_core/flutter_core.dart';
 
-class LeaderboardLoading extends StatelessWidget {
-  const new({super.key});
-
+class const LeaderboardLoading({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Center(
     child: Padding(
